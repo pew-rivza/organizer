@@ -18,7 +18,13 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "utils/*": ["src/utils/*"],
+      "BW_types": ["src/apps/balanceWheel/types.ts"],
+      "BW_models/*": ["src/apps/balanceWheel/models/*"],
+      "BW_components/*": ["src/apps/balanceWheel/components/*"],
+    }
   },
   "include": [
     "src"

@@ -1,0 +1,29 @@
+.bw_date {
+  display: flex;
+  align-items: center;
+
+  .bw_date-arrow {
+    width: 10px;
+    height: 10px;
+    border: solid;
+    border-width: 0 0 2px 2px;
+    cursor: pointer;
+
+    &-previous {
+      transform: rotate(45deg);
+    }
+
+    &-next {
+      transform: rotate(-135deg);
+    }
+
+    &.disabled {
+      border-color: #ccc;
+    }
+  }
+
+  .bw_date-text {
+    width: 80px;
+    text-align: center;
+  }
+}
