@@ -1,50 +1,60 @@
-import React from 'react';
+import React from "react";
 import { useEvent, useStore } from "effector-react";
-import { joinCn } from 'utils/joinCn';
-import { $currentWheel, $wheels, updateCurrentWheel } from "BW_models/wheel";
-import { fetchAreaValuesFx } from "BW_models/areaValue";
-import { AreaValue, Wheel } from 'BW_types';
+import { joinCn } from "utils/joinCn";
+import { $wheel, $wheels, updateWheel } from "BW_models/wheel";
+import {
+  cancelEditedAreaValues,
+  editModeOff,
+  fetchAreaValuesFx,
+} from "BW_models/areaValue";
+import { AreaValue, Wheel } from "BW_types";
 import "./Date.scss";
 
 export const Date: React.FC<{}> = () => {
   const wheels: Wheel[] = useStore($wheels);
-  const currentWheel: Wheel = useStore($currentWheel);
-  const currentWheelIndex: number = wheels.indexOf(currentWheel);
-  const fetchAreaValues: (wheelId?: number) => Promise<AreaValue[]> = useEvent(fetchAreaValuesFx);
+  const wheel: Wheel = useStore($wheel);
+  const wheelIndex: number = wheels.indexOf(wheel);
+  const fetchAreaValues: (wheelId?: number) => Promise<AreaValue[]> =
+    useEvent(fetchAreaValuesFx);
 
-  const getWheel = async (wheel: Wheel, isDisabled: boolean): Promise<void> => {
+  const switchWheelTo = async (
+    wheel: Wheel,
+    isDisabled: boolean
+  ): Promise<void> => {
     if (isDisabled) return;
     await fetchAreaValues(wheel.id);
-    updateCurrentWheel(wheel);
-  }
+    updateWheel(wheel);
+    cancelEditedAreaValues();
+    editModeOff();
+  };
 
   const prevWheelCn: string = joinCn(
     "bw_date-arrow",
     "bw_date-arrow-previous",
-    currentWheelIndex === 0 && "disabled"
+    wheelIndex === 0 && "disabled"
   );
   const nextWheelCn: string = joinCn(
     "bw_date-arrow",
     "bw_date-arrow-next",
-    currentWheelIndex === wheels.length - 1 && "disabled");
+    wheelIndex === wheels.length - 1 && "disabled"
+  );
 
   return (
     <div className="bw_date">
       <div
         className={prevWheelCn}
-        onClick={() => getWheel(
-          wheels[currentWheelIndex - 1],
-          currentWheelIndex === 0
-        )}
+        onClick={() => switchWheelTo(wheels[wheelIndex - 1], wheelIndex === 0)}
       />
-        <div className="bw_date-text">{currentWheel.date || "..."}</div>
+      <div className="bw_date-text">{wheel.date || "..."}</div>
       <div
         className={nextWheelCn}
-        onClick={() => getWheel(
-          wheels[currentWheelIndex + 1],
-          currentWheelIndex === wheels.length - 1
-        )}
+        onClick={() =>
+          switchWheelTo(
+            wheels[wheelIndex + 1],
+            wheelIndex === wheels.length - 1
+          )
+        }
       />
     </div>
-  )
+  );
 };

@@ -1,0 +1,27 @@
+.wheel {
+  width: 400px;
+  height: 400px;
+
+  .loader {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.edit-toolbar {
+  display: flex;
+  gap: 0 15px;
+  width: 100%;
+  justify-content: center;
+
+  .save {
+    background: #46858c;
+  }
+
+  .cancel {
+    background: #8c2e2e;
+  }
+}

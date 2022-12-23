@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -22,11 +18,10 @@
     "paths": {
       "utils/*": ["src/utils/*"],
       "BW_types": ["src/apps/balanceWheel/types.ts"],
+      "BW_const/*": ["src/apps/balanceWheel/const/*"],
       "BW_models/*": ["src/apps/balanceWheel/models/*"],
-      "BW_components/*": ["src/apps/balanceWheel/components/*"],
+      "BW_components/*": ["src/apps/balanceWheel/components/*"]
     }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }
