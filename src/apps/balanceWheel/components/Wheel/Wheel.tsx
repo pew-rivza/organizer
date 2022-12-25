@@ -71,6 +71,9 @@ export const Wheel: React.FC<{}> = () => {
       r: {
         min: 0,
         max: 10,
+        ticks: {
+          backdropColor: "transparent",
+        },
       },
     },
   };
