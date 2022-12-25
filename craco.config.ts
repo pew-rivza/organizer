@@ -4,6 +4,7 @@ module.exports = {
   webpack: {
     alias: {
       utils: resolve(__dirname, "src/utils"),
+      components: resolve(__dirname, "src/components"),
       BW_types: resolve(__dirname, "src/apps/balanceWheel/types.ts"),
       BW_const: resolve(__dirname, "src/apps/balanceWheel/const"),
       BW_models: resolve(__dirname, "src/apps/balanceWheel/models"),

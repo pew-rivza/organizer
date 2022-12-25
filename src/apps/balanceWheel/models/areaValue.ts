@@ -9,7 +9,7 @@ export const fetchAreaValuesFx = createEffect<number | void, AreaValue[]>(
       method: "GET",
       body: null,
       headers: {},
-    }).then((req) => req.json())
+    }).then((response) => response.json())
 );
 
 export const editModeOn = createEvent();
@@ -23,7 +23,7 @@ export const cancelEditedAreaValues = createEvent();
 // Stores
 export const $areaValues = createStore<AreaValue[]>([]).on(
   fetchAreaValuesFx.doneData,
-  (_, res) => res
+  (_, areaValues) => areaValues
 );
 
 export const $editMode = createStore<boolean>(false)
@@ -37,3 +37,5 @@ export const $editedAreaValues = createStore<EditedAreaValues>({})
     return newState;
   })
   .on(cancelEditedAreaValues, () => ({}));
+
+// TODO: сделать кеширование запросов на получение areaValues и todos

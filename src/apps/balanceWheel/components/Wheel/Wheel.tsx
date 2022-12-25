@@ -33,9 +33,9 @@ ChartJS.register(
 );
 
 export const Wheel: React.FC<{}> = () => {
-  const areasWithValues: AreaWithValue[] = useStore($areasWithValues);
-  const editMode: boolean = useStore($editMode);
-  const editedAreaValues: EditedAreaValues = useStore($editedAreaValues);
+  const areasWithValues = useStore<AreaWithValue[]>($areasWithValues);
+  const editMode = useStore<boolean>($editMode);
+  const editedAreaValues = useStore<EditedAreaValues>($editedAreaValues);
 
   const data = {
     labels: areasWithValues.length
@@ -75,21 +75,21 @@ export const Wheel: React.FC<{}> = () => {
     },
   };
 
-  const cancelEditing = () => {
+  const cancelEditing = (): void => {
     cancelEditedAreaValues();
     editModeOff();
   };
 
   return (
     <React.Fragment>
-      <div className="wheel">
+      <div className="bw_wheel">
         {/* @ts-ignore */}
         <Radar data={data} options={options} />
       </div>
       {editMode && (
-        <div className="edit-toolbar">
-          <button className="save">Сохранить</button>
-          <button className="cancel" onClick={cancelEditing}>
+        <div className="bw_wheel-edit-toolbar">
+          <button className="bw_wheel-save">Сохранить</button>
+          <button className="bw_wheel-cancel" onClick={cancelEditing}>
             Отмена
           </button>
         </div>

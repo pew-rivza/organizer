@@ -1,0 +1,35 @@
+.popup-overlay {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.modal {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 30px;
+  position: relative;
+  max-width: 300px;
+  text-align: center;
+
+  .close {
+    position: absolute;
+    left: calc(100% - 25px);
+    bottom: calc(100% - 25px);
+    cursor: pointer;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    gap: 0 10px;
+    justify-content: center;
+    margin-top: 20px;
+
+    .confirm {
+      background: #084259;
+    }
+
+    .cancel {
+      background: #8c2e2e;
+    }
+  }
+}

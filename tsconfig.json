@@ -17,6 +17,7 @@
     "jsx": "react-jsx",
     "paths": {
       "utils/*": ["src/utils/*"],
+      "components/*": ["src/components/*"],
       "BW_types": ["src/apps/balanceWheel/types.ts"],
       "BW_const/*": ["src/apps/balanceWheel/const/*"],
       "BW_models/*": ["src/apps/balanceWheel/models/*"],

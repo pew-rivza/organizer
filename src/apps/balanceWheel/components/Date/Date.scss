@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
 
-  .bw_date-arrow {
+  &-arrow {
     width: 10px;
     height: 10px;
     border: solid;
@@ -23,7 +23,7 @@
     }
   }
 
-  .bw_date-text {
+  &-text {
     width: 80px;
     text-align: center;
   }

@@ -7,15 +7,18 @@ import {
   editModeOff,
   fetchAreaValuesFx,
 } from "BW_models/areaValue";
-import { AreaValue, Wheel } from "BW_types";
+import { AreaValue, Todo, Wheel } from "BW_types";
 import "./Date.scss";
+import { fetchTodosFx } from "BW_models/todo";
 
 export const Date: React.FC<{}> = () => {
-  const wheels: Wheel[] = useStore($wheels);
-  const wheel: Wheel = useStore($wheel);
+  const wheels = useStore<Wheel[]>($wheels);
+  const wheel = useStore<Wheel>($wheel);
   const wheelIndex: number = wheels.indexOf(wheel);
-  const fetchAreaValues: (wheelId?: number) => Promise<AreaValue[]> =
-    useEvent(fetchAreaValuesFx);
+  const fetchAreaValues = useEvent<number | void, AreaValue[]>(
+    fetchAreaValuesFx
+  );
+  const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
 
   const switchWheelTo = async (
     wheel: Wheel,
@@ -23,6 +26,7 @@ export const Date: React.FC<{}> = () => {
   ): Promise<void> => {
     if (isDisabled) return;
     await fetchAreaValues(wheel.id);
+    await fetchTodos(wheel.id);
     updateWheel(wheel);
     cancelEditedAreaValues();
     editModeOff();

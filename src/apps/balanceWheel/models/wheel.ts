@@ -8,7 +8,7 @@ export const fetchWheelsFx = createEffect<void, Wheel[]>(() =>
     method: "GET",
     body: null,
     headers: {},
-  }).then((req) => req.json())
+  }).then((response) => response.json())
 );
 
 export const updateWheel = createEvent<Wheel>();
@@ -16,7 +16,7 @@ export const updateWheel = createEvent<Wheel>();
 // Stores
 export const $wheels = createStore<Wheel[]>([]).on(
   fetchWheelsFx.doneData,
-  (_, result) => result
+  (_, wheels) => wheels
 );
 
 export const $wheel = createStore<Wheel>({})
