@@ -2,29 +2,41 @@
   display: flex;
   align-items: center;
 
-  &-arrow {
-    width: 10px;
-    height: 10px;
-    border: solid;
-    border-width: 0 0 2px 2px;
+  &-icon {
     cursor: pointer;
-
-    &-previous {
-      transform: rotate(45deg);
-    }
-
-    &-next {
-      transform: rotate(-135deg);
-    }
+    height: 20px;
+    width: 20px;
 
     &.disabled {
-      border-color: #ccc;
       cursor: not-allowed;
+
+      path {
+        color: #ccc;
+      }
     }
   }
 
   &-text {
     width: 80px;
     text-align: center;
+  }
+
+  &-input {
+    width: 60px;
+    height: 17px;
+    box-sizing: border-box;
+    background: transparent;
+    border: 0;
+    text-align: center;
+    position: static;
+    padding: 0;
+    margin: 0 10px;
+    transition: 100ms;
+
+    &:focus-visible {
+      border-bottom: 1px solid #999;
+      outline: none;
+
+    }
   }
 }

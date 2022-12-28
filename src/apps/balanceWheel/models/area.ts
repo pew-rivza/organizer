@@ -1,18 +1,12 @@
 import { createEffect, createStore } from "effector";
-import { Area, AreaValue, AreaWithTodos, AreaWithValue, Todo } from "BW_types";
-import { $areaValues } from "BW_models/areaValue";
+import {Area, AreasFullInfo, AreaValue, Todo} from "BW_types";
+import {$areaValues, $previousAreaValues} from "BW_models/areaValue";
 import { findAllObjects, findObject } from "utils/objects";
-import { AREA_URL } from "BW_const/api";
 import { $todos } from "BW_models/todo";
+import {API_FETCH_AREAS} from "../api/area";
 
-// Effects & Events
-export const fetchAreasFx = createEffect<void, Area[]>(() =>
-  fetch(AREA_URL, {
-    method: "GET",
-    body: null,
-    headers: {},
-  }).then((response) => response.json())
-);
+// Effects
+export const fetchAreasFx = createEffect<void, Area[]>(async () => await API_FETCH_AREAS());
 
 // Stores
 export const $areas = createStore<Area[]>([]).on(
@@ -20,40 +14,34 @@ export const $areas = createStore<Area[]>([]).on(
   (_, areas) => areas
 );
 
-export const $areasWithValues = $areas
-  .map<AreaWithValue[]>((areas) =>
-    areas.map(
-      (area): AreaWithValue => ({ id: area.id, name: area.name, value: 0 })
-    )
-  )
+export const $areasFullInfo = createStore<AreasFullInfo[]>([])
+  .on($areas, (prevState, areas) => {
+    if (!prevState.length) {
+      return areas.map(
+        (area): AreasFullInfo => ({
+          id: area.id,
+          name: area.name,
+          icon: area.icon,
+          value: 0,
+          previousValue: 0,
+          todos: [],
+        })
+      )
+    }
+    return prevState;
+  })
   .on($areaValues, (prevState, areaValues) => {
-    return prevState.map((areaWithValue) => {
-      const areaValue = findObject<number, AreaValue>(
-        areaValues,
-        "BWAreaId",
-        areaWithValue.id
-      );
-      return { ...areaWithValue, value: areaValue?.value || 0 };
-    });
-  });
-
-export const $areasWithTodos = $areas
-  .map<AreaWithTodos[]>((areas) =>
-    areas.map(
-      (area): AreaWithTodos => ({
-        id: area.id,
-        name: area.name,
-        icon: area.icon,
-        todos: [],
-      })
-    )
-  )
+    return makeAreaValuesInfo(prevState, areaValues, "value");
+  })
+  .on($previousAreaValues, (prevState, prevAreaValues) => {
+    return makeAreaValuesInfo(prevState, prevAreaValues, "previousValue");
+  })
   .on($todos, (prevState, todos) => {
-    return prevState.map((areaWithTodos) => {
+    return prevState.map((areasFullInfo) => {
       const areaTodos = findAllObjects<number, Todo>(
         todos,
         "BWAreaId",
-        areaWithTodos.id
+        areasFullInfo.id
       ).map(
         (areaTodo): Todo => ({
           id: areaTodo.id,
@@ -61,6 +49,18 @@ export const $areasWithTodos = $areas
           checked: areaTodo.checked,
         })
       );
-      return { ...areaWithTodos, todos: areaTodos };
+      return { ...areasFullInfo, todos: areaTodos };
     });
   });
+
+// utils
+const makeAreaValuesInfo = (prevState: AreasFullInfo[], areaValues: AreaValue[], fieldName: string) => {
+  return prevState.map((areaFullInfo) => {
+    const areaValue = findObject<number, AreaValue>(
+      areaValues,
+      "BWAreaId",
+      areaFullInfo.id
+    );
+    return { ...areaFullInfo, [fieldName]: areaValue?.value || 0 };
+  });
+}

@@ -1,14 +1,10 @@
 import { createEffect, createStore } from "effector";
-import { TODOS_URL } from "BW_const/api";
 import { Todo } from "BW_types";
+import {API_FETCH_TODOS} from "../api/todo";
 
 // Effects & Events
-export const fetchTodosFx = createEffect<number | void, Todo[]>((wheelId) =>
-  fetch(TODOS_URL(wheelId), {
-    method: "GET",
-    body: null,
-    headers: {},
-  }).then((response) => response.json())
+export const fetchTodosFx = createEffect<number | void, Todo[]>(async (wheelId) =>
+  await API_FETCH_TODOS(wheelId)
 );
 
 // Stores

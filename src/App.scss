@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
+:root {
+  --toastify-color-success: #92A69A
+}
+
 * {
   font-family: "Inter", sans-serif;
   font-size: 14px;
@@ -24,21 +28,26 @@ button {
     outline: none;
     opacity: 0.5;
   }
+
+  &:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
 }
 
 .layout {
   width: 100%;
-  background: #ededed;
+  background: #f9f9f9;
   height: 100vh;
   position: relative;
 
   nav {
-    background: #ddd;
-    border-top: 1px solid #ccc;
     position: absolute;
     height: 50px;
-    top: calc(100% - 51px);
+    top: calc(100% - 50px);
     width: 100%;
+    background: rgba(70, 133, 140, 0.5);
 
     ul {
       margin: 0;
@@ -49,9 +58,10 @@ button {
       li {
         list-style-type: none;
         height: 100%;
+        transition: 500ms;
 
         &.selected {
-          background: #bbb;
+          background: #46858C;
 
           * {
             color: white;
@@ -74,15 +84,15 @@ button {
           justify-content: center;
           height: 100%;
           width: 50px;
-          border-right: 1px solid #ccc;
+          border-right: 1px solid #46858C;
           transition: 500ms;
 
           * {
-            color: #999;
+            color: #46858C;
           }
 
           &:hover {
-            background: #ccc;
+            background: rgba(70, 133, 140, 0.3);
           }
         }
       }
@@ -90,7 +100,7 @@ button {
   }
 
   &-content {
-    height: calc(100vh - 71px);
+    height: calc(100vh - 70px);
     overflow: auto;
     padding: 20px 20px 0;
   }

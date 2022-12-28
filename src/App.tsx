@@ -1,8 +1,11 @@
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { BalanceWheel } from "./apps/balanceWheel";
 import "./App.scss";
 import { Icon } from "@iconify/react";
+import {useState} from "react";
 
 export default function App() {
   return (
@@ -25,7 +28,7 @@ const menu = [
   { icon: "game-icons:medicines", link: "/medication-taking" },
   { icon: "uil:food", link: "/recipes-book" },
   {
-    icon: "material-symbols:featured-play-list-outline-sharp",
+    icon: "carbon:event-schedule",
     link: "/daily-schedule",
   },
   { icon: "cil:dog", link: "/dog-training" },
@@ -35,20 +38,23 @@ const menu = [
   { icon: "iconoir:hammer", link: "/repair-costs" },
 ];
 
-// TODO: нужно сделать механизм определения выбранного пункта меню
 function Layout() {
+  const [currentPage, setCurrentPage] = useState(window.location.pathname);
   return (
     <div className="layout">
       <div className="layout-content">
-        {/* <Outlet> is a placeholder for the child routes */}
+        {/* Outlet is a placeholder for the child routes */}
         <Outlet />
+        <ToastContainer
+          autoClose={5000}
+        />
       </div>
       <nav>
         <ul>
           {menu.map((item, i) => {
-            // const itemCn = window.location.pathname === item.link ? "selected" : "";
+            const itemCn = currentPage === item.link ? "selected" : "";
             return (
-              <li key={i}>
+              <li key={i} onClick={() => setCurrentPage(item.link)} className={itemCn}>
                 <Link to={item.link}>
                   <Icon icon={item.icon} width={30} height={30} />
                 </Link>

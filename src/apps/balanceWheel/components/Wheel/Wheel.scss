@@ -1,6 +1,13 @@
 .bw_wheel {
   width: 400px;
   height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-add {
+    background: #084259;
+  }
 }
 
 .bw_wheel-edit-toolbar {
