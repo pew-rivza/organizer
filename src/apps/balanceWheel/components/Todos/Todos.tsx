@@ -3,11 +3,11 @@ import "./Todos.scss";
 import { useStore } from "effector-react";
 import { Icon } from "@iconify/react";
 import {$areasFullInfo} from "BW_models/area";
-import {AreasFullInfo} from "BW_types";
+import {AreaFullInfo} from "BW_types";
 import {$isNewWheel} from "BW_models/wheel";
 
 export const Todos: React.FC = () => {
-  const areasFullInfo = useStore<AreasFullInfo[]>($areasFullInfo);
+  const areasFullInfo = useStore<AreaFullInfo[]>($areasFullInfo);
   const isNewWheel = useStore<boolean>($isNewWheel);
   return (
     isNewWheel ? null : (
@@ -18,19 +18,17 @@ export const Todos: React.FC = () => {
               <Icon icon={area.icon} />
               <div className="bw_todos-header">
                 {area.name}
-                {!!area.todos.length && (
-                  <div className="bw_todos-progress-bar">
-                    <div
-                      style={{
-                        width: `${
-                          (area.todos.filter((todo) => todo.checked).length *
-                            100) /
-                          area.todos.length
-                        }%`,
-                      }}
-                    ></div>
-                  </div>
-                )}
+                <div className="bw_todos-progress-bar">
+                  <div
+                    style={{
+                      width: !!area.todos.length ? `${
+                        (area.todos.filter((todo) => todo.checked).length *
+                          100) /
+                        area.todos.length
+                      }%` : 0,
+                    }}
+                  ></div>
+                </div>
               </div>
             </div>
             {!!area.todos.length && (

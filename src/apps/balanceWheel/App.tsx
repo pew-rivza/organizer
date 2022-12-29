@@ -20,8 +20,10 @@ export function App() {
   return (
     <div className="balance-wheel">
       <Date />
-      <Wheel />
-      <Todos />
+      <div className="bw_container">
+        <Wheel />
+        <Todos />
+      </div>
     </div>
   );
 }

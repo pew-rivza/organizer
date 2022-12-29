@@ -12,15 +12,20 @@ export interface Area {
 export interface AreaValue {
   id: number;
   value: number;
+  BWAreaId: number;
 }
 
 export interface EditedAreaValue {
   index: number;
+  areaId: number;
   value: number;
 }
 
 export interface EditedAreaValues {
-  [index: number]: number;
+  [index: number]: {
+    areaId: number;
+    value: number;
+  }
 }
 
 export interface Todo {
@@ -29,7 +34,7 @@ export interface Todo {
   checked: boolean;
 }
 
-export interface AreasFullInfo {
+export interface AreaFullInfo {
   id: number;
   name: string;
   icon: string;

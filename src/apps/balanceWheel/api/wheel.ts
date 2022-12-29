@@ -14,3 +14,11 @@ export const API_ADD_WHEEL = (date: string): Promise<Wheel> => fetch(WHEEL_URL, 
     "Content-Type": "application/json",
   },
 }).then((response) => response.json());
+
+export const API_DELETE_WHEEL = (wheelId: number | void): Promise<void> => fetch(WHEEL_URL, {
+  method: "DELETE",
+  body: JSON.stringify({ wheelId }),
+  headers: {
+    "Content-Type": "application/json",
+  },
+}).then((response) => response.json());

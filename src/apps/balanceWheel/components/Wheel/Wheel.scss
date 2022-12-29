@@ -1,27 +1,20 @@
 .bw_wheel {
-  width: 400px;
-  height: 400px;
+  width: calc(50% - 25px);
+  max-width: 550px;
+  min-width: 330px;
+  flex-grow: 1;
   display: flex;
-  align-items: center;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
 
   &-add {
     background: #084259;
-  }
-}
-
-.bw_wheel-edit-toolbar {
-  display: flex;
-  gap: 0 15px;
-  width: 100%;
-  justify-content: center;
-  margin-bottom: 20px;
-
-  .bw_wheel-save {
-    background: #084259;
-  }
-
-  .bw_wheel-cancel {
-    background: #8c2e2e;
+    width: min-content;
   }
 }

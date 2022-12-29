@@ -19,7 +19,7 @@ export const Confirmation: React.FC<ConfirmationProp> = ({
   onConfirm,
 }) => {
   return (
-    <Popup trigger={trigger} modal nested>
+    <Popup trigger={trigger} modal>
       {/* @ts-ignore */}
       {(close: React.MouseEventHandler) => (
         <div className="modal">

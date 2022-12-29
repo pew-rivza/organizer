@@ -19,11 +19,9 @@ export const WHEEL_OPTIONS = {
     },
     dragData: {
       round: 0,
-      onDragStart: function(e: MouseEvent, element: number) {
-        if (element === 1) return false;
-      },
-      onDragEnd: (e: MouseEvent, i: number, index: number, value: number) => {
-        updateEditedAreaValues({ index, value });
+      onDragEnd: (e: MouseEvent, datasetIndex: number, index: number, value: number) => {
+        const areaId = window._organizer.balanceWheel.areasFullInfo[index].id;
+        updateEditedAreaValues({ index, value, areaId });
         editModeOn();
       },
     },
@@ -34,9 +32,16 @@ export const WHEEL_OPTIONS = {
       max: 10,
       ticks: {
         backdropColor: "transparent"
+      },
+      pointLabels: {
+        font: {
+          size: "12px"
+        }
       }
     },
   },
+  responsive: true,
+  maintainAspectRatio: true,
 };
 
 export const AREA_VALUES_DATA = {
@@ -56,6 +61,7 @@ export const AREA_VALUES_DATA = {
 
 export const PREVIOUS_AREA_VALUES_DATA = {
   id: 2,
+  dragData: false,
   backgroundColor: "rgba(200, 200, 200, 0.2)",
   borderColor: "rgb(200,200,200, 0.5)",
   borderWidth: 1,

@@ -1,0 +1,19 @@
+.bw_toolbar {
+  display: flex;
+  gap: 0 15px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
+
+  &-save {
+    background: #92A69A;
+  }
+
+  &-cancel {
+    background: #D9C8A9;
+  }
+
+  &-delete {
+    background: #8c2e2e;
+  }
+}

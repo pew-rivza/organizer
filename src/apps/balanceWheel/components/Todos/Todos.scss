@@ -1,5 +1,7 @@
 .bw_todos {
-  width: 100%;
+  width: calc(50% - 25px);
+  min-width: 330px;
+  flex-grow: 1;
 
   &-header {
     display: flex;
@@ -117,6 +119,7 @@
       &-delete {
         cursor: pointer;
         min-width: 14px;
+        margin-left: 10px;
       }
     }
   }
