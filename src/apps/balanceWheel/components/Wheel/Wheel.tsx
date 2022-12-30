@@ -18,7 +18,7 @@ import {
 import {
   $editedAreaValues,
 } from "BW_models/areaValue";
-import {AREA_COUNT, DEFAULT_AREAS} from "BW_const/index";
+import {AREA_COUNT, dateRegExp, DEFAULT_AREAS} from "BW_const/index";
 import {$isNewWheel, $newDate, fetchWheelsFx} from "BW_models/wheel";
 import {AREA_VALUES_DATA, PREVIOUS_AREA_VALUES_DATA, WHEEL_OPTIONS} from "BW_const/wheel-config";
 import {API_ADD_WHEEL} from "../../api/wheel";
@@ -40,7 +40,6 @@ export const Wheel: React.FC = () => {
   const isNewWheel = useStore<boolean>($isNewWheel);
   const newDate = useStore<string>($newDate);
   const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);
-  const dateRegExp = /^(0[1-9])|(1[1-2]).[1-9][0-9][0-9][0-9]$/;
 
   window._organizer.balanceWheel.areasFullInfo = areasFullInfo;
 

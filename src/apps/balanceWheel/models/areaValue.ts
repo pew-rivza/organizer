@@ -9,9 +9,6 @@ export const fetchAreaValuesFx = createEffect<number | void, AreaValue[]>(
 );
 
 // Events
-
-export const editModeOn = createEvent();
-export const editModeOff = createEvent();
 export const updateAreaValues = createEvent<AreaValue[]>();
 export const updatePreviousAreaValues = createEvent<AreaValue[]>();
 export const updateEditedAreaValues = createEvent<EditedAreaValue>();
@@ -26,16 +23,13 @@ export const $areaValues = createStore<AreaValue[]>([])
       const editedAreasValuesArr: ({ areaId: number, value: number })[] = Object.values(editedAreasValues);
       const editedAreasValue = findObject(editedAreasValuesArr, "areaId", areaValue.BWAreaId)
       return {...areaValue, value: editedAreasValue?.value ?? areaValue.value}
+      // TODO: (!) сделать редактирования пустого полеса здесь и на бэке в пут методе
     })
   });
 
 export const $previousAreaValues = createStore<AreaValue[]>([]).on(
   updatePreviousAreaValues, (_, areaValues) => areaValues
 );
-
-export const $editMode = createStore<boolean>(false)
-  .on(editModeOn, () => true)
-  .on(editModeOff, () => false);
 
 export const $editedAreaValues = createStore<EditedAreaValues>({})
   .on(updateEditedAreaValues, (prevState, editedAreaValue) => {

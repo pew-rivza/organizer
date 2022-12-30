@@ -4,18 +4,28 @@ import MaskedInput from 'react-text-mask';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { joinCn } from "utils/joinCn";
-import {$isNewWheel, $wheel, $wheels, updateWheel, updateIsNewWheel, $newDate, updateNewDate} from "BW_models/wheel";
 import {
+  $isNewWheel,
+  $wheel,
+  $wheels,
+  updateWheel,
+  updateIsNewWheel,
+  $newDate,
+  updateNewDate,
+  $editedDate, updateEditedDate, cancelEditedDate
+} from "BW_models/wheel";
+import {
+  $editedAreaValues,
   cancelEditedAreaValues,
-  editModeOff,
   fetchAreaValuesFx,
   updateAreaValues,
   updatePreviousAreaValues,
 } from "BW_models/areaValue";
-import { AreaValue, Todo, Wheel } from "BW_types";
+import {AreaValue, EditedAreaValues, Todo, Wheel} from "BW_types";
 import "./Date.scss";
 import { fetchTodosFx } from "BW_models/todo";
 import {Icon} from "@iconify/react";
+import {editModeOff, editModeOn} from "BW_models/common";
 
 export const Date: React.FC = () => {
   const wheels = useStore<Wheel[]>($wheels);
@@ -25,11 +35,14 @@ export const Date: React.FC = () => {
   const isLastWheel: boolean = wheelIndex === wheels.length - 1;
   const isNewWheel = useStore<boolean>($isNewWheel);
   const newDate = useStore<string>($newDate);
+  const editedDate = useStore<string | false>($editedDate);
+  const editedAreaValues = useStore<EditedAreaValues>($editedAreaValues);
   const fetchAreaValues = useEvent<number | void, AreaValue[]>(
     fetchAreaValuesFx
   );
   const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
   const [wheelYear, wheelMonth]: string[] = wheel.date?.split(".") || [];
+  const formattedDate = `${wheelMonth}.${wheelYear}`;
 
   const switchWheelTo = async (wheel: Wheel, prevWheel?: Wheel): Promise<void> => {
     const areaValues = await fetchAreaValues(wheel.id);
@@ -40,14 +53,38 @@ export const Date: React.FC = () => {
     updateAreaValues(areaValues);
     updatePreviousAreaValues(previousAreaValues);
     cancelEditedAreaValues();
+    cancelEditedDate();
     editModeOff();
   };
 
   const switchToNewWheel = (): void => {
     updateIsNewWheel(true);
     cancelEditedAreaValues();
+    cancelEditedDate();
     editModeOff();
+  };
+
+  const inputChangeHandler = (value: string): void => {
+    if (isNewWheel) {
+      updateNewDate(value)
+    } else {
+      updateEditedDate(value);
+      editModeOn();
+    }
+  };
+
+  const inputBlurHandler = (): void => {
+    if (editedDate === formattedDate) {
+      cancelEditedDate();
+    }
+    if (!Object.keys(editedAreaValues).length) {
+      editModeOff();
+    }
   }
+
+  const dateClickHandler = (): void => {
+    updateEditedDate(formattedDate);
+  };
 
   const prevWheelCn: string = joinCn(
     "bw_date-icon",
@@ -69,21 +106,22 @@ export const Date: React.FC = () => {
         className={prevWheelCn}
       />
       {
-        isNewWheel ? (
+        isNewWheel || typeof editedDate === "string" ? (
           <MaskedInput
             type="text"
             autoFocus
             placeholder={newDate}
-            value={newDate}
+            value={isNewWheel ? newDate : (editedDate || "")}
             guide={false}
             mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
-            onChange={(event) => updateNewDate(event.target.value)}
+            onBlur={inputBlurHandler}
+            onChange={(event) => inputChangeHandler(event.target.value)}
             className="bw_date-input"
           />
         ) : (
-          <div className="bw_date-text">
+          <div className="bw_date-text" onClick={dateClickHandler}>
             {
-              !!wheel.date ? `${wheelMonth}.${wheelYear}` : <Skeleton />
+              !!wheel.date ? formattedDate : <Skeleton />
             }
           </div>
         )

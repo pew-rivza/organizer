@@ -1,4 +1,5 @@
-import {editModeOn, updateEditedAreaValues} from "BW_models/areaValue";
+import {updateEditedAreaValues} from "BW_models/areaValue";
+import { editModeOn } from "BW_models/common";
 
 export const WHEEL_OPTIONS = {
   plugins: {

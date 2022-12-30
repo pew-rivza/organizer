@@ -2,18 +2,26 @@ import React from "react";
 import "./Toolbar.scss";
 import {
   $editedAreaValues,
-  $editMode,
   cancelEditedAreaValues,
-  editModeOff, saveEditedAreasValues,
+  saveEditedAreasValues,
 } from "BW_models/areaValue";
 import {useEvent, useStore} from "effector-react";
 import { Icon } from "@iconify/react";
-import {API_DELETE_WHEEL} from "../../api/wheel";
+import {API_DELETE_WHEEL, API_UPDATE_DATE} from "../../api/wheel";
 import {Wheel as WheelType, Wheel, EditedAreaValues} from "BW_types";
-import {$isNewWheel, $wheel, fetchWheelsFx} from "BW_models/wheel";
+import {
+  $editedDate,
+  $isNewWheel,
+  $wheel,
+  cancelEditedDate,
+  fetchWheelsFx,
+  saveEditedDate
+} from "BW_models/wheel";
 import {toast} from "react-toastify";
 import {API_UPDATE_AREA_VALUES} from "../../api/areaValue";
 import { nanoid } from "nanoid";
+import { $editMode, editModeOff } from "BW_models/common";
+import {dateRegExp} from "BW_const/index";
 
 export const Toolbar: React.FC = () => {
   const editMode = useStore<boolean>($editMode);
@@ -21,9 +29,11 @@ export const Toolbar: React.FC = () => {
   const wheel = useStore<Wheel>($wheel);
   const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);
   const isNewWheel = useStore<boolean>($isNewWheel);
+  const editedDate = useStore<string | false>($editedDate);
 
   const cancelEditing = (): void => {
     cancelEditedAreaValues();
+    cancelEditedDate();
     editModeOff();
   };
 
@@ -36,14 +46,26 @@ export const Toolbar: React.FC = () => {
     fetchWheels();
   };
 
-  const updateAreValues = async (): Promise<void> => {
-    await API_UPDATE_AREA_VALUES(wheel.id, editedAreaValues);
-    toast("Новые значения сохранены!", {
+  const updateWheel = async (): Promise<void> => {
+    if (Object.keys(editedAreaValues).length) {
+      await API_UPDATE_AREA_VALUES(wheel.id, editedAreaValues);
+      saveEditedAreasValues(editedAreaValues);
+      cancelEditedAreaValues();
+    }
+
+    if (typeof editedDate === "string") {
+      const [wheelMonth, wheelYear] = editedDate.split(".");
+      const revertedDate = `${wheelYear}.${wheelMonth}`;
+      await API_UPDATE_DATE(wheel.id, revertedDate);
+      fetchWheels();
+      saveEditedDate(revertedDate);
+      cancelEditedDate();
+    }
+
+    toast("Изменения сохранены!", {
       toastId: nanoid(4),
       type: "success"
     });
-    saveEditedAreasValues(editedAreaValues);
-    cancelEditedAreaValues();
     editModeOff();
   }
 
@@ -52,7 +74,7 @@ export const Toolbar: React.FC = () => {
       {
         editMode ? (
           <React.Fragment>
-            <button key={1} className="bw_toolbar-save icon-button" onClick={updateAreValues}>
+            <button key={1} className="bw_toolbar-save icon-button" onClick={updateWheel} disabled={(typeof editedDate === "string") && !dateRegExp.test(editedDate || "")}>
               <Icon icon="uil:save"/>
             </button>
             <button key={2} className="bw_toolbar-cancel icon-button" onClick={cancelEditing}>

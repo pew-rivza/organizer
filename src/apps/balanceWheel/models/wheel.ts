@@ -24,6 +24,9 @@ export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
 export const updateWheel = createEvent<Wheel>();
 export const updateIsNewWheel = createEvent<boolean>();
 export const updateNewDate = createEvent<string>();
+export const updateEditedDate = createEvent<string>();
+export const cancelEditedDate = createEvent();
+export const saveEditedDate = createEvent<string>();
 
 // Stores
 export const $wheels = createStore<Wheel[]>([]).on(
@@ -33,10 +36,21 @@ export const $wheels = createStore<Wheel[]>([]).on(
 
 export const $wheel = createStore<Wheel>({})
   .on(fetchWheelsFx.doneData, (_, wheels) => wheels[wheels.length - 1])
-  .on(updateWheel, (_, wheel) => wheel);
+  .on(updateWheel, (_, wheel) => wheel)
+  .on(saveEditedDate, (prevState, editedDate) => {
+    return {...prevState, date: editedDate};
+  });
 
 export const $isNewWheel = createStore<boolean>(false)
   .on(updateIsNewWheel, (_, isNewWheel) => isNewWheel);
 
 export const $newDate = createStore<string>(`${DEFAULT_DATE.getMonth() + 1}.${DEFAULT_DATE.getFullYear()}`)
   .on(updateNewDate, (_, newDate) => newDate);
+
+export const $editedDate = createStore<string | false>(false)
+  .on(updateEditedDate, (_, editedDate) => {
+    return editedDate;
+  })
+  .on(cancelEditedDate, () => {
+    return false;
+  });

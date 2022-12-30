@@ -56,4 +56,4 @@ export const Todos: React.FC = () => {
   );
 };
 
-// TODO: (3) отрефакторить компонент Todos
+// TODO: отрефакторить компонент Todos
