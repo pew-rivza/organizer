@@ -1,0 +1,124 @@
+.bw_todos_item {
+  padding: 10px 10px 0;
+  display: flex;
+
+  &-checkbox {
+    height: 16px;
+    width: 16px;
+    margin-right: 7px;
+
+    &:hover {
+      input[type="checkbox"]:before {
+        background: rgba(217, 200, 169, 0.5);
+      }
+    }
+
+    & input[type="checkbox"] {
+      cursor: pointer;
+      margin: 0;
+      position: relative;
+      width: 0;
+
+      &:before {
+        background: transparent;
+        border: 1px solid #d9c8a9;
+        content: "";
+        height: 14px;
+        left: 0;
+        position: absolute;
+        top: 0;
+        transition: 500ms;
+        width: 14px;
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      &:focus-visible:before {
+        opacity: 0.5;
+        background: rgba(217, 200, 169, 0.5);
+      }
+
+      &:after {
+        border: solid white;
+        border-width: 0 2px 2px 0;
+        content: "";
+        height: 9px;
+        left: 5px;
+        opacity: 0;
+        position: absolute;
+        top: 1px;
+        transform: rotate(45deg);
+        transition: 500ms;
+        width: 4px;
+      }
+
+      &:disabled {
+        cursor: not-allowed;
+
+        &:before {
+          border-color: #ccc;
+          background: #ececec;
+        }
+      }
+
+      &:checked:focus-visible:before {
+        background: #d9c8a9;
+      }
+      &:checked:before {
+        background: #d9c8a9;
+      }
+      &:checked:after {
+        opacity: 1;
+      }
+    }
+  }
+
+  &-name {
+    align-items: flex-start;
+
+    &-content {
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+
+  &-toolbar {
+    display: flex;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+      min-height: 16px;
+      margin-left: 10px;
+    }
+
+    &-delete path {
+      color: #8c2e2e;
+    }
+
+    &-cancel path {
+      color: #d9c8a9;
+    }
+
+    &-save path {
+      color: #92a69a;
+    }
+  }
+
+  &-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: 0;
+    position: static;
+    padding: 0;
+    transition: 100ms;
+
+    &:focus-visible {
+      border-bottom: 1px solid #999;
+      outline: none;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+.bw_todos_header {
+  background: #92a69a;
+  padding: 10px;
+  color: white;
+  display: flex;
+  gap: 0 5px;
+  align-items: center;
+
+  * {
+    color: white;
+  }
+
+  &-toolbar {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  &-progress-bar {
+    width: 40px;
+    height: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.2);
+
+    div {
+      height: 100%;
+      background: #d9c8a9;
+      transition: 500ms;
+    }
+  }
+
+  & + & {
+    margin-top: 1px;
+  }
+}

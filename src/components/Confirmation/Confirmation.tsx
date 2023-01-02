@@ -3,7 +3,7 @@ import Popup from "reactjs-popup";
 import "./Confirmation.scss";
 import { Icon } from "@iconify/react";
 
-type ConfirmationProp = {
+type ConfirmationProps = {
   trigger: JSX.Element;
   question: string | JSX.Element;
   confirmText: string;
@@ -11,7 +11,7 @@ type ConfirmationProp = {
   onConfirm: () => void;
 };
 
-export const Confirmation: React.FC<ConfirmationProp> = ({
+export const Confirmation: React.FC<ConfirmationProps> = ({
   trigger,
   question,
   confirmText,

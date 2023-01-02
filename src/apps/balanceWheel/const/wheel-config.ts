@@ -1,26 +1,37 @@
-import {updateEditedAreaValues} from "BW_models/areaValue";
+import { updateEditedAreaValues } from "BW_models/areaValue";
 import { editModeOn } from "BW_models/common";
+import type { ChartOptions, TooltipItem } from "chart.js";
+import { DragData } from "BW_types";
 
-export const WHEEL_OPTIONS = {
+export const WHEEL_OPTIONS: ChartOptions<"radar"> & DragData = {
   plugins: {
     tooltip: {
-      filter: (tooltip: {datasetIndex: number}) => tooltip.datasetIndex === 0,
+      filter: (tooltip: { datasetIndex: number }) => tooltip.datasetIndex === 0,
       backgroundColor: "rgba(70, 133, 140, 0.8)",
       cornerRadius: 0,
       displayColors: false,
       titleMarginBottom: 0,
       callbacks: {
-        title: (context: any) => {
-          if (context.length) return `${context[0]?.label}: ${context[0]?.formattedValue}`;
-          return null;
+        title: (tooltipItems: TooltipItem<"radar">[]): string => {
+          if (!!tooltipItems.length) {
+            return `${tooltipItems[0]?.label}: ${tooltipItems[0]?.formattedValue}`;
+          } else {
+            return "";
+          }
         },
-        label: () => null
-      }
-
+        label: () => {
+          return;
+        },
+      },
     },
     dragData: {
       round: 0,
-      onDragEnd: (e: MouseEvent, datasetIndex: number, index: number, value: number) => {
+      onDragEnd: (
+        e: MouseEvent,
+        datasetIndex: number,
+        index: number,
+        value: number
+      ) => {
         const areaId = window._organizer.balanceWheel.areasFullInfo[index].id;
         updateEditedAreaValues({ index, value, areaId });
         editModeOn();
@@ -32,13 +43,13 @@ export const WHEEL_OPTIONS = {
       min: 0,
       max: 10,
       ticks: {
-        backdropColor: "transparent"
+        backdropColor: "transparent",
       },
       pointLabels: {
         font: {
-          size: "12px"
-        }
-      }
+          size: 12,
+        },
+      },
     },
   },
   responsive: true,
@@ -55,8 +66,8 @@ export const AREA_VALUES_DATA = {
       pointBackgroundColor: "#92a69a",
       pointBorderWidth: 0,
       pointRadius: 3,
-      hitRadius: 6
-    }
+      hitRadius: 6,
+    },
   },
 };
 
@@ -73,6 +84,6 @@ export const PREVIOUS_AREA_VALUES_DATA = {
       pointRadius: 2,
       hoverRadius: 2,
       hitRadius: 0,
-    }
+    },
   },
 };

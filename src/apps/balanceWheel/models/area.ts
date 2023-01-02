@@ -1,12 +1,14 @@
 import { createEffect, createStore } from "effector";
-import {Area, AreaFullInfo, AreaValue, Todo} from "BW_types";
-import {$areaValues, $previousAreaValues} from "BW_models/areaValue";
+import { Area, AreaFullInfo, AreaValue, Todo } from "BW_types";
+import { $areaValues, $previousAreaValues } from "BW_models/areaValue";
 import { findAllObjects, findObject } from "utils/objects";
 import { $todos } from "BW_models/todo";
-import {API_FETCH_AREAS} from "../api/area";
+import { API_FETCH_AREAS } from "../api/area";
 
 // Effects
-export const fetchAreasFx = createEffect<void, Area[]>(async () => await API_FETCH_AREAS());
+export const fetchAreasFx = createEffect<void, Area[]>(
+  async () => await API_FETCH_AREAS()
+);
 
 // Stores
 export const $areas = createStore<Area[]>([]).on(
@@ -26,7 +28,7 @@ export const $areasFullInfo = createStore<AreaFullInfo[]>([])
           previousValue: 0,
           todos: [],
         })
-      )
+      );
     }
     return prevState;
   })
@@ -54,7 +56,11 @@ export const $areasFullInfo = createStore<AreaFullInfo[]>([])
   });
 
 // utils
-const makeAreaValuesInfo = (prevState: AreaFullInfo[], areaValues: AreaValue[], fieldName: string) => {
+const makeAreaValuesInfo = (
+  prevState: AreaFullInfo[],
+  areaValues: AreaValue[],
+  fieldName: string
+) => {
   return prevState.map((areaFullInfo) => {
     const areaValue = findObject<number, AreaValue>(
       areaValues,
@@ -63,4 +69,4 @@ const makeAreaValuesInfo = (prevState: AreaFullInfo[], areaValues: AreaValue[], 
     );
     return { ...areaFullInfo, [fieldName]: areaValue?.value || 0 };
   });
-}
+};

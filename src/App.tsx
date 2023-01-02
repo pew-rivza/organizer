@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Routes, Route, Outlet, Link } from "react-router-dom";
-import {ToastContainer} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { BalanceWheel } from "./apps/balanceWheel";
 import "./App.scss";
 import { Icon } from "@iconify/react";
-import {useState} from "react";
+import { useState } from "react";
 
 export default function App() {
   return (
@@ -45,16 +45,18 @@ function Layout() {
       <div className="layout-content">
         {/* Outlet is a placeholder for the child routes */}
         <Outlet />
-        <ToastContainer
-          autoClose={5000}
-        />
+        <ToastContainer autoClose={2000} limit={2} />
       </div>
       <nav>
         <ul>
           {menu.map((item, i) => {
             const itemCn = currentPage === item.link ? "selected" : "";
             return (
-              <li key={i} onClick={() => setCurrentPage(item.link)} className={itemCn}>
+              <li
+                key={i}
+                onClick={() => setCurrentPage(item.link)}
+                className={itemCn}
+              >
                 <Link to={item.link}>
                   <Icon icon={item.icon} width={30} height={30} />
                 </Link>
@@ -68,7 +70,144 @@ function Layout() {
 }
 
 function Home() {
-  return <div>Домашняя страница</div>;
+  return (
+    <div>
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+      Домашняя страница
+      <br />
+    </div>
+  );
 }
 
 function NotFound() {

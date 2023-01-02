@@ -1,12 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
 :root {
-  --toastify-color-success: #92A69A
+  --toastify-color-success: #92a69a;
 }
 
 * {
   font-family: "Inter", sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   color: #555;
 }
 
@@ -15,7 +15,7 @@ body {
 }
 
 button {
-  border: 0;
+  border: 1px solid;
   padding: 5px 10px;
   color: white;
   cursor: pointer;
@@ -76,7 +76,7 @@ button {
         transition: 500ms;
 
         &.selected {
-          background: #46858C;
+          background: #46858c;
 
           * {
             color: white;
@@ -99,11 +99,11 @@ button {
           justify-content: center;
           height: 100%;
           width: 50px;
-          border-right: 1px solid #46858C;
+          border-right: 1px solid #46858c;
           transition: 500ms;
 
           * {
-            color: #46858C;
+            color: #46858c;
           }
 
           &:hover {

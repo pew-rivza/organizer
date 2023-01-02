@@ -6,9 +6,9 @@ import App from "./App";
 
 window._organizer = {
   balanceWheel: {
-    areasFullInfo: []
-  }
-}
+    areasFullInfo: [],
+  },
+};
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

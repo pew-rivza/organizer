@@ -1,0 +1,12 @@
+.bw_todos_list {
+  border: solid #92a69a;
+  border-width: 0 1px;
+
+  .bw_todos_item:last-child {
+    padding-bottom: 10px;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid #92a69a;
+  }
+}
