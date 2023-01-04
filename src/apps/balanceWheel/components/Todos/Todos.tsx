@@ -1,12 +1,15 @@
-import React from "react";
-import "./Todos.scss";
 import { useStore } from "effector-react";
+import React from "react";
+
 import { $areasFullInfo } from "BW_models/area";
-import { AreaFullInfo } from "BW_types";
-import { $isNewWheel } from "BW_models/wheel";
-import { Header } from "BW_components/Todos/components/Header";
-import { List } from "BW_components/Todos/components/List";
 import { $addableAreaId } from "BW_models/todo";
+import { $isNewWheel } from "BW_models/wheel";
+import { AreaFullInfo } from "BW_types/stores";
+
+import "./Todos.scss";
+
+import { Header } from "./components/Header";
+import { List } from "./components/List";
 
 export const Todos: React.FC = () => {
   const areasFullInfo = useStore<AreaFullInfo[]>($areasFullInfo);
@@ -16,12 +19,13 @@ export const Todos: React.FC = () => {
   return isNewWheel ? null : (
     <div className="bw_todos">
       {areasFullInfo.map((area) => {
+        const renderList: boolean =
+          !!area.todos.length || area.id === addableAreaId;
+
         return (
           <React.Fragment key={area.id}>
             <Header area={area} />
-            {(!!area.todos.length || area.id === addableAreaId) && (
-              <List todos={area.todos} areaId={area.id} />
-            )}
+            {renderList && <List todos={area.todos} areaId={area.id} />}
           </React.Fragment>
         );
       })}

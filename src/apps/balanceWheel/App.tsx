@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
 import { useEvent } from "effector-react";
-import { fetchWheelsFx } from "BW_models/wheel";
-import { fetchAreasFx } from "BW_models/area";
+import React, { useEffect } from "react";
+
 import { Date } from "BW_components/Date";
-import { Wheel } from "BW_components/Wheel";
 import { Todos } from "BW_components/Todos";
-import { Area, Wheel as WheelType } from "BW_types";
+import { Wheel } from "BW_components/Wheel";
+import { fetchAreasFx } from "BW_models/area";
+import { fetchWheelsFx } from "BW_models/wheel";
+import { Area, Wheel as WheelType } from "BW_types/stores";
+
 import "./App.scss";
 
 export function App() {
@@ -18,7 +20,7 @@ export function App() {
   }, [fetchAreas, fetchWheels]);
 
   return (
-    <div className="balance-wheel">
+    <div data-testid="balance-wheel" className="bw">
       <Date />
       <div className="bw_container">
         <Wheel />

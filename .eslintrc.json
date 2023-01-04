@@ -1,7 +1,40 @@
 {
   "extends": ["react-app"],
-  "plugins": ["prettier"],
-  "rules": {},
+  "plugins": ["prettier", "import"],
+  "ignorePatterns": ["node_modules/**", "**/*.scss"],
+  "rules": {
+    "import/no-anonymous-default-export": "off",
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true
+      }
+    ],
+    "import/order": [
+      1,
+      {
+        "groups": [
+          "external",
+          "builtin",
+          "internal",
+          "sibling",
+          "parent",
+          "index"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "^(utils)|(components)/(.*)$",
+            "group": "internal"
+          },
+          {
+            "pattern": "^BW_(.*)/(.*)$",
+            "group": "internal"
+          }
+        ]
+      }
+    ]
+  },
   "overrides": [
     {
       "files": ["**/*.ts?(x)"],

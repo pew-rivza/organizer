@@ -16,12 +16,17 @@
     "noEmit": true,
     "jsx": "react-jsx",
     "paths": {
-      "utils/*": ["src/utils/*"],
-      "components/*": ["src/components/*"],
-      "BW_types": ["src/apps/balanceWheel/types.ts"],
-      "BW_const/*": ["src/apps/balanceWheel/const/*"],
-      "BW_models/*": ["src/apps/balanceWheel/models/*"],
-      "BW_components/*": ["src/apps/balanceWheel/components/*"]
+      "apps/*": ["./src/apps/*"],
+      "components/*": ["./src/components/*"],
+      "const/*": ["./src/const/*"],
+      "types/*": ["./src/types/*"],
+      "utils/*": ["./src/utils/*"],
+      "BW_api/*": ["./src/apps/balanceWheel/api/*"],
+      "BW_components/*": ["./src/apps/balanceWheel/components/*"],
+      "BW_const/*": ["./src/apps/balanceWheel/const/*"],
+      "BW_models/*": ["./src/apps/balanceWheel/models/*"],
+      "BW_types/*": ["./src/apps/balanceWheel/types/*"],
+      "BW_utils/*": ["./src/apps/balanceWheel/utils/*"],
     }
   },
   "include": ["src"]

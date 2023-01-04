@@ -1,8 +1,8 @@
-import { AreaValue, EditedAreaValues } from "BW_types";
 import { AREA_VALUES_URL } from "BW_const/api";
+import { AreaValue, EditedAreaValues } from "BW_types/stores";
 
 export const API_FETCH_AREA_VALUES = (
-  wheelId: number | void
+  wheelId: number | void,
 ): Promise<AreaValue[]> =>
   fetch(`${AREA_VALUES_URL}${wheelId || -1}`, {
     method: "GET",
@@ -12,7 +12,7 @@ export const API_FETCH_AREA_VALUES = (
 
 export const API_UPDATE_AREA_VALUES = (
   wheelId: number | void,
-  editedAreaValues: EditedAreaValues
+  editedAreaValues: EditedAreaValues,
 ): Promise<void> =>
   fetch(AREA_VALUES_URL, {
     method: "PUT",

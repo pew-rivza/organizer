@@ -17,7 +17,7 @@ body {
 button {
   border: 1px solid;
   padding: 5px 10px;
-  color: white;
+  color: #f9f9f9;
   cursor: pointer;
   transition: 500ms;
 
@@ -43,80 +43,9 @@ button {
       width: 20px;
       height: 20px;
 
-      path {
-        color: white;
+      * {
+        color: #f9f9f9;
       }
     }
-  }
-}
-
-.layout {
-  width: 100%;
-  background: #f9f9f9;
-  height: 100vh;
-  position: relative;
-
-  nav {
-    position: absolute;
-    height: 50px;
-    top: calc(100% - 50px);
-    width: 100%;
-    background: rgba(70, 133, 140, 0.5);
-    overflow: hidden;
-
-    ul {
-      margin: 0;
-      padding: 0;
-      display: flex;
-      height: 100%;
-
-      li {
-        list-style-type: none;
-        height: 100%;
-        transition: 500ms;
-
-        &.selected {
-          background: #46858c;
-
-          * {
-            color: white;
-          }
-
-          a {
-            cursor: default;
-            pointer-events: none;
-            &:hover {
-              background: transparent;
-            }
-          }
-        }
-
-        a {
-          color: white;
-          text-decoration: none;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          height: 100%;
-          width: 50px;
-          border-right: 1px solid #46858c;
-          transition: 500ms;
-
-          * {
-            color: #46858c;
-          }
-
-          &:hover {
-            background: rgba(70, 133, 140, 0.3);
-          }
-        }
-      }
-    }
-  }
-
-  &-content {
-    height: calc(100vh - 70px);
-    overflow: auto;
-    padding: 20px 20px 0;
   }
 }

@@ -1,5 +1,5 @@
 import { WHEEL_URL } from "BW_const/api";
-import { Wheel } from "BW_types";
+import { Wheel } from "BW_types/stores";
 
 export const API_FETCH_WHEELS = (): Promise<Wheel[]> =>
   fetch(WHEEL_URL, {
@@ -19,7 +19,7 @@ export const API_ADD_WHEEL = (date: string): Promise<Wheel> =>
 
 export const API_UPDATE_DATE = (
   wheelId: number | void,
-  date: string
+  date: string,
 ): Promise<void> =>
   fetch(WHEEL_URL, {
     method: "PUT",

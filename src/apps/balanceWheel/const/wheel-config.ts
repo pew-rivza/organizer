@@ -1,26 +1,26 @@
+import type { ChartOptions } from "chart.js";
+
 import { updateEditedAreaValues } from "BW_models/areaValue";
 import { editModeOn } from "BW_models/common";
-import type { ChartOptions, TooltipItem } from "chart.js";
-import { DragData } from "BW_types";
+import { DragData } from "BW_types/other";
 
 export const WHEEL_OPTIONS: ChartOptions<"radar"> & DragData = {
   plugins: {
     tooltip: {
-      filter: (tooltip: { datasetIndex: number }) => tooltip.datasetIndex === 0,
-      backgroundColor: "rgba(70, 133, 140, 0.8)",
+      filter: (tooltip) => tooltip.datasetIndex === 0,
+      backgroundColor: "rgba(70, 133, 140, 0.7)",
       cornerRadius: 0,
       displayColors: false,
       titleMarginBottom: 0,
       callbacks: {
-        title: (tooltipItems: TooltipItem<"radar">[]): string => {
+        title: (tooltipItems): string => {
           if (!!tooltipItems.length) {
             return `${tooltipItems[0]?.label}: ${tooltipItems[0]?.formattedValue}`;
-          } else {
-            return "";
           }
+          return "";
         },
         label: () => {
-          return;
+          return [];
         },
       },
     },
@@ -30,7 +30,7 @@ export const WHEEL_OPTIONS: ChartOptions<"radar"> & DragData = {
         e: MouseEvent,
         datasetIndex: number,
         index: number,
-        value: number
+        value: number,
       ) => {
         const areaId = window._organizer.balanceWheel.areasFullInfo[index].id;
         updateEditedAreaValues({ index, value, areaId });

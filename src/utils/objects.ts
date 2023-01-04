@@ -1,19 +1,19 @@
-// Метод массива. Находит в массиве объектов объект, у которого
-// заданное поле равно заданному значению
+type Obj = {
+  [key: string]: any;
+};
+
 export function findObject<ValueType, ObjType>(
-  arr: ObjType[],
+  arr: (ObjType & Obj)[],
   field: string,
-  value: ValueType
-): ObjType | undefined {
-  // @ts-ignore
+  value: ValueType,
+): (ObjType & Obj) | undefined {
   return arr.find((obj) => obj[field] === value);
 }
 
 export function findAllObjects<ValueType, ObjType>(
-  arr: ObjType[],
+  arr: (ObjType & Obj)[],
   field: string,
-  value: ValueType
-): ObjType[] {
-  // @ts-ignore
+  value: ValueType,
+): (ObjType & Obj)[] {
   return arr.filter((obj) => obj[field] === value);
 }

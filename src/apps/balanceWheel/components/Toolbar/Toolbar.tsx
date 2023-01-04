@@ -1,20 +1,18 @@
+import { Icon } from "@iconify/react";
+import { useEvent, useStore } from "effector-react";
 import React from "react";
-import "./Toolbar.scss";
+import { toast } from "react-toastify";
+
+import { API_UPDATE_AREA_VALUES } from "BW_api/areaValue";
+import { API_DELETE_WHEEL, API_UPDATE_DATE } from "BW_api/wheel";
+import { DATE_REGEXP } from "BW_const/common";
 import {
   $editedAreaValues,
   cancelEditedAreaValues,
   fetchAreaValuesFx,
   updateAreaValues,
 } from "BW_models/areaValue";
-import { useEvent, useStore } from "effector-react";
-import { Icon } from "@iconify/react";
-import { API_DELETE_WHEEL, API_UPDATE_DATE } from "../../api/wheel";
-import {
-  Wheel as WheelType,
-  Wheel,
-  EditedAreaValues,
-  AreaValue,
-} from "BW_types";
+import { $editMode, editModeOff } from "BW_models/common";
 import {
   $editedDate,
   $isNewWheel,
@@ -22,11 +20,14 @@ import {
   cancelEditedDate,
   fetchWheelsFx,
 } from "BW_models/wheel";
-import { toast } from "react-toastify";
-import { API_UPDATE_AREA_VALUES } from "../../api/areaValue";
-import { nanoid } from "nanoid";
-import { $editMode, editModeOff } from "BW_models/common";
-import { DATE_REGEXP } from "BW_const/index";
+import {
+  AreaValue,
+  EditedAreaValues,
+  Wheel,
+  Wheel as WheelType,
+} from "BW_types/stores";
+
+import "./Toolbar.scss";
 
 export const Toolbar: React.FC = () => {
   const editMode = useStore<boolean>($editMode);
@@ -34,7 +35,7 @@ export const Toolbar: React.FC = () => {
   const wheel = useStore<Wheel>($wheel);
   const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);
   const fetchAreaValues = useEvent<number | void, AreaValue[]>(
-    fetchAreaValuesFx
+    fetchAreaValuesFx,
   );
   const isNewWheel = useStore<boolean>($isNewWheel);
   const editedDate = useStore<string | false>($editedDate);
@@ -48,7 +49,7 @@ export const Toolbar: React.FC = () => {
   const deleteWheel = async (): Promise<void> => {
     await API_DELETE_WHEEL(wheel.id);
     toast("Колесо удалено!", {
-      toastId: nanoid(4),
+      toastId: 1,
       type: "success",
     });
     fetchWheels();
@@ -71,7 +72,7 @@ export const Toolbar: React.FC = () => {
     }
 
     toast("Изменения сохранены!", {
-      toastId: nanoid(4),
+      toastId: 2,
       type: "success",
     });
     editModeOff();

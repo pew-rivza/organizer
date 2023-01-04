@@ -1,13 +1,20 @@
 .bw_todos_header {
   background: #92a69a;
   padding: 10px;
-  color: white;
+  color: #f9f9f9;
   display: flex;
   gap: 0 5px;
   align-items: center;
 
   * {
-    color: white;
+    color: #f9f9f9;
+  }
+
+  &-area-icon {
+    height: 17px;
+    width: 17px;
+    min-width: 17px;
+    min-height: 17px;
   }
 
   &-toolbar {
@@ -23,14 +30,21 @@
   &-progress-bar {
     width: 40px;
     height: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.2);
-    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(85, 85, 85, 0.3);
+    background: rgba(249, 249, 249, 0.2);
 
     div {
       height: 100%;
       background: #d9c8a9;
       transition: 500ms;
     }
+  }
+
+  &-add-todo {
+    height: 15px;
+    width: 15px;
+    min-width: 15px;
+    min-height: 15px;
   }
 
   & + & {

@@ -29,7 +29,7 @@ export interface EditedAreaValues {
 }
 
 export interface Todo {
-  id: number;
+  id?: number;
   name: string;
   checked: boolean;
 }
@@ -41,18 +41,4 @@ export interface AreaFullInfo {
   value: number;
   previousValue: number;
   todos: Todo[];
-}
-
-export interface DragData {
-  plugins: {
-    dragData: {
-      round: 0;
-      onDragEnd: (
-        e: MouseEvent,
-        datasetIndex: number,
-        index: number,
-        value: number
-      ) => void;
-    };
-  };
 }

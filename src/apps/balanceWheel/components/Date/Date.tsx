@@ -1,21 +1,12 @@
-import React from "react";
+import { Icon } from "@iconify/react";
 import { useEvent, useStore } from "effector-react";
-import MaskedInput from "react-text-mask";
+import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import MaskedInput from "react-text-mask";
+
 import { joinCn } from "utils/joinCn";
-import {
-  $isNewWheel,
-  $wheel,
-  $wheels,
-  updateWheel,
-  updateIsNewWheel,
-  $newDate,
-  updateNewDate,
-  $editedDate,
-  updateEditedDate,
-  cancelEditedDate,
-} from "BW_models/wheel";
+
 import {
   $editedAreaValues,
   cancelEditedAreaValues,
@@ -23,11 +14,23 @@ import {
   updateAreaValues,
   updatePreviousAreaValues,
 } from "BW_models/areaValue";
-import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types";
-import "./Date.scss";
-import { fetchTodosFx } from "BW_models/todo";
-import { Icon } from "@iconify/react";
 import { editModeOff, editModeOn } from "BW_models/common";
+import { fetchTodosFx } from "BW_models/todo";
+import {
+  $editedDate,
+  $isNewWheel,
+  $newDate,
+  $wheel,
+  $wheels,
+  cancelEditedDate,
+  updateEditedDate,
+  updateIsNewWheel,
+  updateNewDate,
+  updateWheel,
+} from "BW_models/wheel";
+import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types/stores";
+
+import "./Date.scss";
 
 export const Date: React.FC = () => {
   const wheels = useStore<Wheel[]>($wheels);
@@ -40,15 +43,15 @@ export const Date: React.FC = () => {
   const editedDate = useStore<string | false>($editedDate);
   const editedAreaValues = useStore<EditedAreaValues>($editedAreaValues);
   const fetchAreaValues = useEvent<number | void, AreaValue[]>(
-    fetchAreaValuesFx
+    fetchAreaValuesFx,
   );
   const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
   const [wheelYear, wheelMonth]: string[] = wheel.date?.split(".") || [];
-  const formattedDate = `${wheelMonth}.${wheelYear}`;
+  const formattedDate: string = `${wheelMonth}.${wheelYear}`;
 
   const switchWheelTo = async (
     wheel: Wheel,
-    prevWheel?: Wheel
+    prevWheel?: Wheel,
   ): Promise<void> => {
     const areaValues = await fetchAreaValues(wheel.id);
     const previousAreaValues = await fetchAreaValues(prevWheel?.id);
@@ -93,11 +96,11 @@ export const Date: React.FC = () => {
 
   const prevWheelCn: string = joinCn(
     "bw_date-icon",
-    (isFirstWheel || !wheel.date) && "disabled"
+    isFirstWheel || !wheel.date ? "disabled" : "",
   );
   const nextWheelCn: string = joinCn(
     "bw_date-icon",
-    (isNewWheel || !wheel.date) && "disabled"
+    isNewWheel || !wheel.date ? "disabled" : "",
   );
 
   return (
@@ -108,7 +111,7 @@ export const Date: React.FC = () => {
           !isFirstWheel &&
           switchWheelTo(
             isNewWheel ? wheels[wheelIndex] : wheels[wheelIndex - 1],
-            isNewWheel ? wheels[wheelIndex - 1] : wheels[wheelIndex - 2]
+            isNewWheel ? wheels[wheelIndex - 1] : wheels[wheelIndex - 2],
           )
         }
         className={prevWheelCn}

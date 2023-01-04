@@ -41,7 +41,7 @@
       }
 
       &:after {
-        border: solid white;
+        border: solid #f9f9f9;
         border-width: 0 2px 2px 0;
         content: "";
         height: 9px;
@@ -60,6 +60,10 @@
         &:before {
           border-color: #ccc;
           background: #ececec;
+        }
+
+        &:checked:before {
+          background: #ccc;
         }
       }
 

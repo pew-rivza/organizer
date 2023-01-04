@@ -1,4 +1,4 @@
-import { AreaFullInfo } from "BW_types";
+import { AreaFullInfo } from "BW_types/stores";
 
 declare global {
   interface Window {

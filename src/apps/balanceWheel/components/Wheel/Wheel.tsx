@@ -1,32 +1,37 @@
-import React from "react";
-import { useEvent, useStore } from "effector-react";
-import { toast } from "react-toastify";
-import { nanoid } from "nanoid";
-import { Radar } from "react-chartjs-2";
-import ChartJSPluginDragData from "chartjs-plugin-dragdata";
-import { $areasFullInfo } from "BW_models/area";
-import { AreaFullInfo, EditedAreaValues, Wheel as WheelType } from "BW_types";
-import "./Wheel.scss";
+import { Icon } from "@iconify/react";
+import type { ChartData } from "chart.js";
 import {
   Chart as ChartJS,
-  RadialLinearScale,
-  PointElement,
-  LineElement,
   Filler,
+  LineElement,
+  PointElement,
+  RadialLinearScale,
   Tooltip,
 } from "chart.js";
-import { $editedAreaValues } from "BW_models/areaValue";
-import { AREA_COUNT, DATE_REGEXP, DEFAULT_AREAS } from "BW_const/index";
-import { $isNewWheel, $newDate, fetchWheelsFx } from "BW_models/wheel";
+import ChartJSPluginDragData from "chartjs-plugin-dragdata";
+import { useEvent, useStore } from "effector-react";
+import React from "react";
+import { Radar } from "react-chartjs-2";
+import { toast } from "react-toastify";
+
+import { API_ADD_WHEEL } from "BW_api/wheel";
+import { Toolbar } from "BW_components/Toolbar";
+import { AREA_COUNT, DATE_REGEXP, DEFAULT_AREAS } from "BW_const/common";
 import {
   AREA_VALUES_DATA,
   PREVIOUS_AREA_VALUES_DATA,
   WHEEL_OPTIONS,
 } from "BW_const/wheel-config";
-import { API_ADD_WHEEL } from "../../api/wheel";
-import { Toolbar } from "BW_components/Toolbar";
-import { Icon } from "@iconify/react";
-import type { ChartData } from "chart.js";
+import { $areasFullInfo } from "BW_models/area";
+import { $editedAreaValues } from "BW_models/areaValue";
+import { $isNewWheel, $newDate, fetchWheelsFx } from "BW_models/wheel";
+import {
+  AreaFullInfo,
+  EditedAreaValues,
+  Wheel as WheelType,
+} from "BW_types/stores";
+
+import "./Wheel.scss";
 
 ChartJS.register(
   RadialLinearScale,
@@ -34,7 +39,7 @@ ChartJS.register(
   LineElement,
   Filler,
   Tooltip,
-  ChartJSPluginDragData
+  ChartJSPluginDragData,
 );
 
 export const Wheel: React.FC = () => {
@@ -73,28 +78,26 @@ export const Wheel: React.FC = () => {
     const date = `${year}.${month}`;
     await API_ADD_WHEEL(date);
     toast("Новое колесо добавлено!", {
-      toastId: nanoid(4),
+      toastId: 5,
       type: "success",
     });
     fetchWheels();
   };
 
   return (
-    <React.Fragment>
-      <div className="bw_wheel">
-        {isNewWheel ? (
-          <button
-            className="bw_wheel-add icon-button"
-            onClick={addWheel}
-            disabled={!DATE_REGEXP.test(newDate)}
-          >
-            <Icon icon="material-symbols:add" />
-          </button>
-        ) : (
-          <Radar data={data} options={WHEEL_OPTIONS} datasetIdKey="id" />
-        )}
-        <Toolbar />
-      </div>
-    </React.Fragment>
+    <div className="bw_wheel">
+      {isNewWheel ? (
+        <button
+          className="bw_wheel-add icon-button"
+          onClick={addWheel}
+          disabled={!DATE_REGEXP.test(newDate)}
+        >
+          <Icon icon="material-symbols:add" />
+        </button>
+      ) : (
+        <Radar data={data} options={WHEEL_OPTIONS} datasetIdKey="id" />
+      )}
+      <Toolbar />
+    </div>
   );
 };

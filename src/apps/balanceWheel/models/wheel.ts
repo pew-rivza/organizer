@@ -1,13 +1,14 @@
 import { createEffect, createEvent, createStore } from "effector";
-import { AreaValue, Wheel } from "BW_types";
-import { FORMATTED_DEFAULT_DATE } from "BW_const/index";
+
+import { API_FETCH_WHEELS } from "BW_api/wheel";
+import { FORMATTED_DEFAULT_DATE } from "BW_const/common";
 import {
   fetchAreaValuesFx,
   updateAreaValues,
   updatePreviousAreaValues,
 } from "BW_models/areaValue";
 import { fetchTodosFx } from "BW_models/todo";
-import { API_FETCH_WHEELS } from "../api/wheel";
+import { AreaValue, Wheel } from "BW_types/stores";
 
 // Effects
 export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
@@ -16,7 +17,7 @@ export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
   const previousWheelId: number | void = wheels[wheels.length - 2]?.id;
   const areaValues: AreaValue[] = await fetchAreaValuesFx(lastWheelId);
   const previousAreaValues: AreaValue[] = await fetchAreaValuesFx(
-    previousWheelId
+    previousWheelId,
   );
   updateAreaValues(areaValues);
   updatePreviousAreaValues(previousAreaValues);
@@ -35,7 +36,7 @@ export const cancelEditedDate = createEvent();
 // Stores
 export const $wheels = createStore<Wheel[]>([]).on(
   fetchWheelsFx.doneData,
-  (_, wheels) => wheels
+  (_, wheels) => wheels,
 );
 
 export const $wheel = createStore<Wheel>({})
@@ -44,18 +45,14 @@ export const $wheel = createStore<Wheel>({})
 
 export const $isNewWheel = createStore<boolean>(false).on(
   updateIsNewWheel,
-  (_, isNewWheel) => isNewWheel
+  (_, isNewWheel) => isNewWheel,
 );
 
 export const $newDate = createStore<string>(FORMATTED_DEFAULT_DATE).on(
   updateNewDate,
-  (_, newDate) => newDate
+  (_, newDate) => newDate,
 );
 
 export const $editedDate = createStore<string | false>(false)
-  .on(updateEditedDate, (_, editedDate) => {
-    return editedDate;
-  })
-  .on(cancelEditedDate, () => {
-    return false;
-  });
+  .on(updateEditedDate, (_, editedDate) => editedDate)
+  .on(cancelEditedDate, () => false);
