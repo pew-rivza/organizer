@@ -27,6 +27,12 @@
       "BW_models/*": ["./src/apps/balanceWheel/models/*"],
       "BW_types/*": ["./src/apps/balanceWheel/types/*"],
       "BW_utils/*": ["./src/apps/balanceWheel/utils/*"],
+      "MT_subpages/*": ["./src/apps/medicationTaking/subpages/*"],
+      "MT_types/*": ["./src/apps/medicationTaking/types/*"],
+      "MT_api/*": ["./src/apps/medicationTaking/api/*"],
+      "MT_models/*": ["./src/apps/medicationTaking/models/*"],
+      "MT_const/*": ["./src/apps/medicationTaking/const/*"],
+      "MT_utils/*": ["./src/apps/medicationTaking/utils/*"],
     }
   },
   "include": ["src"]

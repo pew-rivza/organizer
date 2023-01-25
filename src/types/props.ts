@@ -1,3 +1,8 @@
+import { ReactDatePickerProps } from "react-datepicker";
+import { GroupBase, Props } from "react-select";
+
+import { Option } from "types/other";
+
 export type ConfirmationProps = {
   trigger: JSX.Element;
   question: string | JSX.Element;
@@ -5,3 +10,13 @@ export type ConfirmationProps = {
   cancelText?: string;
   onConfirm: () => void;
 };
+
+export type DatePickerProps<WithRange extends boolean | undefined = false> =
+  ReactDatePickerProps<never, WithRange> & {
+    classNames?: string[];
+    wrapperClassNames?: string[];
+    placeholder?: string;
+    month?: boolean;
+  };
+
+export type SelectProps = Props<Option, false, GroupBase<Option>>;

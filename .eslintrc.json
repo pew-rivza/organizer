@@ -24,11 +24,15 @@
         ],
         "pathGroups": [
           {
-            "pattern": "^(utils)|(components)/(.*)$",
+            "pattern": "^((utils)|(components)|(types)|(apps)|(const))/(.*)$",
             "group": "internal"
           },
           {
             "pattern": "^BW_(.*)/(.*)$",
+            "group": "internal"
+          },
+          {
+            "pattern": "^MT_(.*)/(.*)$",
             "group": "internal"
           }
         ]

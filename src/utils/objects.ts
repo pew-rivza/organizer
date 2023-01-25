@@ -1,6 +1,4 @@
-type Obj = {
-  [key: string]: any;
-};
+import { Obj } from "types/other";
 
 export function findObject<ValueType, ObjType>(
   arr: (ObjType & Obj)[],
