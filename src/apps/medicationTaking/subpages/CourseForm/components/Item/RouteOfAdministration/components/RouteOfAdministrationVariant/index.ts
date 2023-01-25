@@ -1,0 +1,1 @@
+export { RouteOfAdministrationVariant } from "./RouteOfAdministrationVariant";
