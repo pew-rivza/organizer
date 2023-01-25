@@ -3,10 +3,11 @@ import { useEvent, useStore } from "effector-react";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import MaskedInput from "react-text-mask";
 
+import { DatePicker } from "components/DatePicker";
 import { joinCn } from "utils/joinCn";
 
+import { FORMATTED_DEFAULT_DATE } from "BW_const/common";
 import {
   $editedAreaValues,
   cancelEditedAreaValues,
@@ -29,6 +30,7 @@ import {
   updateWheel,
 } from "BW_models/wheel";
 import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types/stores";
+import { getDateFromString, getStringFromDate } from "BW_utils/date";
 
 import "./Date.scss";
 
@@ -72,11 +74,14 @@ export const Date: React.FC = () => {
     editModeOff();
   };
 
-  const inputChangeHandler = (value: string): void => {
+  const inputChangeHandler = (value: Date | null): void => {
+    const stringDate = value
+      ? getStringFromDate(value)
+      : FORMATTED_DEFAULT_DATE;
     if (isNewWheel) {
-      updateNewDate(value);
+      updateNewDate(stringDate);
     } else {
-      updateEditedDate(value);
+      updateEditedDate(stringDate);
       editModeOn();
     }
   };
@@ -117,16 +122,15 @@ export const Date: React.FC = () => {
         className={prevWheelCn}
       />
       {isNewWheel || typeof editedDate === "string" ? (
-        <MaskedInput
-          type="text"
+        <DatePicker
           autoFocus
-          placeholder={newDate}
-          value={isNewWheel ? newDate : editedDate || ""}
-          guide={false}
-          mask={[/\d/, /\d/, ".", /\d/, /\d/, /\d/, /\d/]}
+          onChange={(date) => inputChangeHandler(date)}
+          selected={getDateFromString(isNewWheel ? newDate : editedDate || "")}
           onBlur={inputBlurHandler}
-          onChange={(event) => inputChangeHandler(event.target.value)}
-          className="bw_date-input"
+          classNames={["bw_date-input"]}
+          wrapperClassNames={["bw_date-input-wrapper"]}
+          month
+          popperPlacement="bottom"
         />
       ) : (
         <div className="bw_date-text" onClick={dateClickHandler}>

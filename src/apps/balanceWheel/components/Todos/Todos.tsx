@@ -6,10 +6,10 @@ import { $addableAreaId } from "BW_models/todo";
 import { $isNewWheel } from "BW_models/wheel";
 import { AreaFullInfo } from "BW_types/stores";
 
-import "./Todos.scss";
-
 import { Header } from "./components/Header";
 import { List } from "./components/List";
+
+import "./Todos.scss";
 
 export const Todos: React.FC = () => {
   const areasFullInfo = useStore<AreaFullInfo[]>($areasFullInfo);

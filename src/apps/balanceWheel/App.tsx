@@ -10,7 +10,7 @@ import { Area, Wheel as WheelType } from "BW_types/stores";
 
 import "./App.scss";
 
-export function App() {
+export const App: React.FC = () => {
   const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);
   const fetchAreas = useEvent<Area[]>(fetchAreasFx);
 
@@ -28,4 +28,4 @@ export function App() {
       </div>
     </div>
   );
-}
+};

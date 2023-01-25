@@ -4,10 +4,10 @@ import React from "react";
 import { $addableAreaId } from "BW_models/todo";
 import { ListProps } from "BW_types/props";
 
-import "./List.scss";
-
 import { AddableItem } from "./../Item/AddableItem";
 import { EditableItem } from "./../Item/EditableItem";
+
+import "./List.scss";
 
 export const List: React.FC<ListProps> = ({ todos, areaId }) => {
   const addableAreaId = useStore<number | null>($addableAreaId);
