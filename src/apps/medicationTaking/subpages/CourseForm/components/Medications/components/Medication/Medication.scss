@@ -1,0 +1,39 @@
+.mt_form_medication {
+  &.mt_form_medication {
+    padding-right: 33px;
+  }
+
+  flex-direction: column;
+  gap: 15px;
+  box-sizing: border-box;
+  position: relative;
+
+  input[type=text] {
+    flex-grow: 1;
+    width: unset;
+  }
+
+  &_chips {
+    display: flex;
+    gap: 10px;
+  }
+
+  &-remove {
+    position: absolute;
+    cursor: pointer;
+    top: 3px;
+    right: 10px;
+
+    path {
+      fill: #8c2e2e;
+    }
+  }
+
+  @media (max-width: 1170px) {
+    .mt_form_item {
+      flex-wrap: wrap;
+      gap: 7px;
+      align-items: flex-start;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+.mt_form_medications {
+  display: grid;
+  margin-top: 12px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
+  width: 100%;
+
+  &-add {
+    background: #084259;
+    margin-top: 20px;
+  }
+
+  @media (max-width: 850px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

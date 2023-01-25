@@ -1,0 +1,51 @@
+.mt_form_item {
+  display: flex;
+  align-items: center;
+
+  label {
+    display: flex;
+    gap: 5px;
+    margin-right: 10px;
+  }
+
+  &-required {
+    color: #8c2e2e;
+  }
+
+  &-inputs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  &-count {
+    max-width: 25px;
+    min-width: 25px;
+    text-align: center;
+  }
+
+  &-variant {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: 500ms;
+
+    & + .radio {
+      margin-left: 15px;
+    }
+
+    &.disabled {
+      color: #999;
+      cursor: not-allowed;
+      filter: opacity(40%) blur(0.4px);
+
+      * {
+        color: #999 !important;
+      }
+
+      [class*="-control"] {
+        border-bottom-color: #999;
+      }
+    }
+  }
+}
