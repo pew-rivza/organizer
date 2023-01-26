@@ -4,14 +4,14 @@ import React from "react";
 import { DatePicker } from "components/DatePicker";
 
 import { $changedCourse, updateChangedCourse } from "MT_models/course";
-import { Course as CourseType } from "MT_types/stores";
+import { ChangedCourse } from "MT_types/stores";
 
 import { ItemTemplate } from "./../Item/ItemTemplate";
 
 import "./Course.scss";
 
 export const Course: React.FC = () => {
-  const { start, doctor, diagnosis } = useStore<CourseType>($changedCourse);
+  const { start, doctor, diagnosis } = useStore<ChangedCourse>($changedCourse);
 
   function changeHandler<ValueType>(field: string, value: ValueType) {
     updateChangedCourse({ field, value });

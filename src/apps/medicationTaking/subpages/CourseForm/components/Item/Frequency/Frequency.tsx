@@ -2,15 +2,15 @@ import { useStore } from "effector-react";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 import { Select } from "components/Select";
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 import { findObject } from "utils/objects";
 
 import { DECLINATION } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { GroupedOptions, NullableNumber } from "MT_types/other";
+import { NullableNumber } from "MT_types/other";
 import { ItemProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/castToOptions";
 
 import { ItemTemplate } from "./../ItemTemplate";
@@ -20,14 +20,14 @@ export const Frequency: React.FC<ItemProps<NullableNumber>> = ({
   onChange,
 }) => {
   const [selectedFrequencyMeasure, setSelectedFrequencyMeasure] =
-    useState<Option | null>(null);
+    useState<SelectOption | null>(null);
 
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { frequency, frequencyCount, frequencyMeasureId } =
     changedMedications[index];
 
   const groupedOptions = useStore<GroupedOptions>($options);
-  const frequencyOptions = useMemo<Option[]>(() => {
+  const frequencyOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.frequency, DECLINATION, {
       count: frequencyCount || 0,
     });
@@ -53,14 +53,14 @@ export const Frequency: React.FC<ItemProps<NullableNumber>> = ({
     );
   };
 
-  const selectChangeHandler = (option: Option | null) => {
+  const selectChangeHandler = (option: SelectOption | null) => {
     setSelectedFrequencyMeasure(option);
     onChange("frequencyMeasureId", option?.value ? +option.value : null);
   };
 
   useEffect(() => {
     const selectedOption =
-      findObject<NullableNumber, Option>(
+      findObject<NullableNumber, SelectOption>(
         frequencyOptions,
         "value",
         frequencyMeasureId,

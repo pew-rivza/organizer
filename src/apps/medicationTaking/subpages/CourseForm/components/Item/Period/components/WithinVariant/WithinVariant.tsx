@@ -2,15 +2,15 @@ import { useStore } from "effector-react";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 import { Select } from "components/Select";
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 import { findObject } from "utils/objects";
 
 import { DECLINATION } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { GroupedOptions, NullableNumber } from "MT_types/other";
+import { NullableNumber } from "MT_types/other";
 import { PeriodItemVariantProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/castToOptions";
 
 import { ItemTemplate } from "./../../../ItemTemplate";
@@ -23,14 +23,14 @@ export const WithinVariant: React.FC<PeriodItemVariantProps> = ({
   changeHandler,
 }) => {
   const [selectedPeriodMeasure, setSelectedPeriodMeasure] =
-    useState<Option | null>(null);
+    useState<SelectOption | null>(null);
 
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { periodCount, periodMeasureId } = changedMedications[index || 0];
 
   const groupedOptions = useStore<GroupedOptions>($options);
 
-  const periodOptions = useMemo<Option[]>(() => {
+  const periodOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.period, DECLINATION, {
       count: periodCount || 0,
     });
@@ -38,7 +38,7 @@ export const WithinVariant: React.FC<PeriodItemVariantProps> = ({
 
   useEffect(() => {
     const selectedOption =
-      findObject<NullableNumber, Option>(
+      findObject<NullableNumber, SelectOption>(
         periodOptions,
         "value",
         periodMeasureId,
@@ -54,7 +54,7 @@ export const WithinVariant: React.FC<PeriodItemVariantProps> = ({
     );
   };
 
-  const selectChangeHandler = (option: Option | null) => {
+  const selectChangeHandler = (option: SelectOption | null) => {
     setSelectedPeriodMeasure(option);
     changeHandler("periodMeasureId", option?.value ? +option.value : null);
   };

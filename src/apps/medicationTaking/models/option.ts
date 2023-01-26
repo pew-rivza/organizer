@@ -1,11 +1,11 @@
 import { createEffect, createStore } from "effector";
 
 import { API_FETCH_OPTIONS } from "MT_api/option";
-import { DBOption, GroupedOptions } from "MT_types/other";
+import { GroupedOptions, Option } from "MT_types/stores";
 import { groupObjectsByKeyValue } from "MT_utils/groupObjectsByKey";
 
 // Effects
-export const fetchOptionsFx = createEffect<void, DBOption[]>(
+export const fetchOptionsFx = createEffect<void, Option[]>(
   async () => await API_FETCH_OPTIONS(),
 );
 
@@ -13,6 +13,6 @@ export const fetchOptionsFx = createEffect<void, DBOption[]>(
 export const $options = createStore<GroupedOptions>({}).on(
   fetchOptionsFx.doneData,
   (_, DBOptions) => {
-    return groupObjectsByKeyValue<DBOption>(DBOptions, "key");
+    return groupObjectsByKeyValue<Option>(DBOptions, "key");
   },
 );

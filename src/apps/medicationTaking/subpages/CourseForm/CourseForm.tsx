@@ -14,11 +14,7 @@ import { API_ADD_MEDICATIONS } from "MT_api/medication";
 import { $changedCourse } from "MT_models/course";
 import { $changedMedications } from "MT_models/medication";
 import { fetchOptionsFx } from "MT_models/option";
-import { DBOption } from "MT_types/other";
-import {
-  Course as CourseType,
-  Medication as MedicationType,
-} from "MT_types/stores";
+import { ChangedCourse, ChangedMedication, Option } from "MT_types/stores";
 
 import { Course } from "./components/Course";
 
@@ -26,9 +22,9 @@ import "./CourseForm.scss";
 import { Medications } from "./components/Medications";
 
 export const CourseForm: React.FC = () => {
-  const changedCourse = useStore<CourseType>($changedCourse);
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
-  const fetchOptions = useEvent<DBOption[]>(fetchOptionsFx);
+  const changedCourse = useStore<ChangedCourse>($changedCourse);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
+  const fetchOptions = useEvent<Option[]>(fetchOptionsFx);
 
   useEffect(() => {
     fetchOptions();

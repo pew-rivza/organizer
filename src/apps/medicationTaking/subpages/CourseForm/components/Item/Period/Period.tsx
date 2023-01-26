@@ -3,7 +3,7 @@ import React, { ChangeEventHandler } from "react";
 
 import { $changedMedications } from "MT_models/medication";
 import { ItemProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication } from "MT_types/stores";
 
 import { ItemTemplate } from "./../ItemTemplate";
 import { IntervalVariant } from "./components/IntervalVariant";
@@ -13,7 +13,7 @@ export const Period: React.FC<ItemProps<number | Date | null | boolean>> = ({
   index,
   onChange,
 }) => {
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { withinChecked } = changedMedications[index];
 
   const variantSelectHandler: ChangeEventHandler<

@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
 import { GroupBase, Props } from "react-select";
 
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 
 export type ConfirmationProps = {
   trigger: JSX.Element;
@@ -20,7 +20,7 @@ export type DatePickerProps<WithRange extends boolean | undefined = false> =
     month?: boolean;
   };
 
-export type SelectProps = Props<Option, false, GroupBase<Option>>;
+export type SelectProps = Props<SelectOption, false, GroupBase<SelectOption>>;
 
 export type ChipsProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon: string;

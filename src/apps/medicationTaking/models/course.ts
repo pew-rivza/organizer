@@ -1,12 +1,60 @@
-import { createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore } from "effector";
 
-import { Course, UpdateHandlerArgs } from "MT_types/stores";
+import { findObject } from "utils/objects";
+
+import { API_FETCH_COURSES } from "MT_api/course";
+import { $medications, fetchMedicationsFx } from "MT_models/medication";
+import {
+  ChangedCourse,
+  Course,
+  CourseFullInfo,
+  UpdateHandlerArgs,
+} from "MT_types/stores";
+
+// Effects
+export const fetchCoursesFx = createEffect<void, Course[]>(async () => {
+  const courses = await API_FETCH_COURSES();
+  fetchMedicationsFx();
+  return courses;
+});
 
 // Events
 export const updateChangedCourse = createEvent<UpdateHandlerArgs>();
 
 // Stores
-export const $changedCourse = createStore<Course>({
+export const $courses = createStore<Course[]>([]).on(
+  fetchCoursesFx.doneData,
+  (_, courses) => courses,
+);
+
+export const $coursesFullInfo = createStore<CourseFullInfo[]>([])
+  .on($courses, (prevState, courses) => {
+    return courses.map(
+      (course, i): CourseFullInfo => ({
+        ...(course as CourseFullInfo),
+        medications: prevState[i]?.medications || [],
+      }),
+    );
+  })
+  .on($medications, (prevState, medications) => {
+    const newState: CourseFullInfo[] = [...prevState].map((courseFullInfo) => ({
+      ...courseFullInfo,
+      medications: [],
+    }));
+
+    medications.forEach((medication) => {
+      const course: CourseFullInfo =
+        findObject<number, CourseFullInfo>(
+          newState,
+          "id",
+          medication.MTCourseId,
+        ) || ({} as CourseFullInfo);
+      newState[newState.indexOf(course)].medications.push(medication);
+    });
+    return newState;
+  });
+
+export const $changedCourse = createStore<ChangedCourse>({
   start: null,
   doctor: "",
   diagnosis: "",

@@ -1,7 +1,17 @@
-import { createEvent, createStore } from "effector";
+import { createEffect, createEvent, createStore } from "effector";
 
+import { API_FETCH_MEDICATIONS } from "MT_api/medication";
 import { EMPTY_MEDICATION } from "MT_const/common";
-import { Medication, UpdateHandlerArgs } from "MT_types/stores";
+import {
+  ChangedMedication,
+  Medication,
+  UpdateHandlerArgs,
+} from "MT_types/stores";
+
+// Effects
+export const fetchMedicationsFx = createEffect<void, Medication[]>(
+  async () => await API_FETCH_MEDICATIONS(),
+);
 
 // Events
 export const updateChangedMedication = createEvent<UpdateHandlerArgs>();
@@ -9,11 +19,16 @@ export const addChangedMedication = createEvent();
 export const removeChangedMedication = createEvent<number>();
 
 // Stores
-export const $changedMedications = createStore<Medication[]>([
+export const $medications = createStore<Medication[]>([]).on(
+  fetchMedicationsFx.doneData,
+  (_, medications) => medications,
+);
+
+export const $changedMedications = createStore<ChangedMedication[]>([
   { ...EMPTY_MEDICATION },
 ])
   .on(updateChangedMedication, (prevState, { index = 0, field, value }) => {
-    const newState: Medication[] = [...prevState];
+    const newState: ChangedMedication[] = [...prevState];
     newState[index][field] = value;
     return newState;
   })

@@ -1,11 +1,35 @@
-import React from "react";
+import { useEvent, useStore } from "effector-react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+
+import { $coursesFullInfo, fetchCoursesFx } from "MT_models/course";
+import { Course, CourseFullInfo } from "MT_types/stores";
 
 import "./App.scss";
 
 export const App: React.FC = () => {
+  const fetchCourses = useEvent<Course[]>(fetchCoursesFx);
+  const coursesFullInfo = useStore<CourseFullInfo[]>($coursesFullInfo);
+
+  useEffect(() => {
+    fetchCourses();
+  }, [fetchCourses]);
+
   return (
     <div data-testid="medication-taking" className="mt">
+      {coursesFullInfo.map((course) => (
+        <div key={course.id}>
+          <b>{course.diagnosis}:</b>
+          {
+            //TODO: нужно потом добавить скелетонов
+          }
+          {(course?.medications || []).map((medication) => (
+            <div key={medication.id}>{medication.name}</div>
+          ))}
+          <br />
+          <br />
+        </div>
+      ))}
       <Link to="add">Добавить курс</Link>
     </div>
   );
@@ -23,3 +47,4 @@ export const App: React.FC = () => {
 // TODO: когда выбираю период через календарь, то если дата окончания в периоде в следующем месяце, а не в том же, что и начало, то в следующем месяце число, равное началу периода, становится белым полностью
 // TODO: вот бы выбирать вариант не целясь в радиобаттон, а жмаканием на все поле
 // TODO: хотелось бы возможность копировать карточку медикейшана и вставлять в другой медикейшан
+// TODO: кстати, кнопку назад бы на форме сделать

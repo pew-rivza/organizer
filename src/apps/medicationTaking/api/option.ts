@@ -1,7 +1,7 @@
 import { OPTION_URL } from "MT_const/api";
-import { DBOption } from "MT_types/other";
+import { Option } from "MT_types/stores";
 
-export const API_FETCH_OPTIONS = (): Promise<DBOption[]> =>
+export const API_FETCH_OPTIONS = (): Promise<Option[]> =>
   fetch(OPTION_URL, {
     method: "GET",
     body: null,

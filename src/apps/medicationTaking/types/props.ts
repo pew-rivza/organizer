@@ -4,7 +4,7 @@ import React, {
   ReactElement,
 } from "react";
 
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 
 import { VisibleChips } from "MT_types/other";
 
@@ -52,8 +52,8 @@ export type ItemVariantProps = {
 export type RouteOfAdministrationItemVariantProps = ItemVariantProps & {
   selectChangeHandler: (
     field: string,
-    setStateHandler: React.Dispatch<React.SetStateAction<Option | null>>,
-  ) => (option: Option | null) => void;
+    setStateHandler: React.Dispatch<React.SetStateAction<SelectOption | null>>,
+  ) => (option: SelectOption | null) => void;
 };
 
 export type PeriodItemVariantProps = ItemVariantProps & {

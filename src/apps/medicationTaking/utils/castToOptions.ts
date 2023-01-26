@@ -1,19 +1,20 @@
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 
 import { DECLINATION, DEFAULT, DEFAULT_GENDER, GENDER } from "MT_const/common";
-import { CastConfig, CastMode, DBOption, WordGenderType } from "MT_types/other";
+import { CastConfig, CastMode, WordGenderType } from "MT_types/other";
+import { Option } from "MT_types/stores";
 import { getWordByCount } from "MT_utils/getWordByCount";
 
 export function castToOptions(
-  arr: DBOption[],
+  arr: Option[],
   mode: CastMode = DEFAULT,
   config: CastConfig = {},
-): Option[] {
+): SelectOption[] {
   switch (mode) {
     case DECLINATION:
       return (
         arr?.map(
-          (option): Option => ({
+          (option): SelectOption => ({
             value: option.id,
             label: getWordByCount(config.count || 0, option),
           }),
@@ -21,7 +22,7 @@ export function castToOptions(
       );
     case GENDER:
       return (
-        arr?.map((option): Option => {
+        arr?.map((option): SelectOption => {
           const gender: WordGenderType =
             (
               Object.keys(config.wordGendersConfig || {}) as WordGenderType[]
@@ -37,7 +38,7 @@ export function castToOptions(
     default:
       return (
         arr?.map(
-          (option): Option => ({
+          (option): SelectOption => ({
             value: option.id,
             label: option.value,
           }),

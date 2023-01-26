@@ -1,8 +1,3 @@
-export type Menu = {
-  icon: string;
-  link: string;
-}[];
-
 export type Routing = {
   path: string;
   element: JSX.Element;
@@ -14,7 +9,7 @@ export type Obj = {
   [key: string]: any;
 };
 
-export type Option = Obj & {
+export type SelectOption = Obj & {
   value: number | string;
   label: string;
 };

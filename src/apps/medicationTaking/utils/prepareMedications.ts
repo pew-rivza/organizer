@@ -1,15 +1,14 @@
 import { convertUTCDate } from "utils/date";
 
-import { PreparedMedication } from "MT_types/other";
-import { Medication } from "MT_types/stores";
+import { ChangedMedication, Medication } from "MT_types/stores";
 
 const notNull = (...values: any[]): boolean => {
   return !values.some((value) => value === null);
 };
 
 export const prepareMedication = (
-  medication: Medication,
-): PreparedMedication => {
+  medication: ChangedMedication,
+): Medication => {
   const {
     name,
     count,
@@ -33,7 +32,7 @@ export const prepareMedication = (
     comment,
   } = medication;
 
-  const preparedMedication: PreparedMedication = {
+  const preparedMedication: Medication = {
     name,
     count,
     countMeasureId,
@@ -72,7 +71,9 @@ export const prepareMedication = (
   return preparedMedication;
 };
 
-export const isValidMedications = (medications: Medication[]): boolean => {
+export const isValidMedications = (
+  medications: ChangedMedication[],
+): boolean => {
   for (let medication of medications) {
     const {
       name,

@@ -2,15 +2,15 @@ import { useStore } from "effector-react";
 import React, { useEffect, useMemo, useState } from "react";
 
 import { Select } from "components/Select";
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 import { findObject } from "utils/objects";
 
 import { DEFAULT, GENDER } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { DBOption, GroupedOptions, NullableNumber } from "MT_types/other";
+import { NullableNumber } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication, GroupedOptions, Option } from "MT_types/stores";
 import { castToOptions } from "MT_utils/castToOptions";
 
 import { ItemTemplate } from "./../../../ItemTemplate";
@@ -22,14 +22,16 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
   selected,
   index,
 }) => {
-  const [selectedInWhich, setSelectedInWhich] = useState<Option | null>(null);
-  const [selectedIn, setSelectedIn] = useState<Option | null>(null);
+  const [selectedInWhich, setSelectedInWhich] = useState<SelectOption | null>(
+    null,
+  );
+  const [selectedIn, setSelectedIn] = useState<SelectOption | null>(null);
 
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { inWhichId } = changedMedications[index || 0];
 
   const groupedOptions = useStore<GroupedOptions>($options);
-  const selectedInGenders = findObject<string | NullableNumber, DBOption>(
+  const selectedInGenders = findObject<string | NullableNumber, Option>(
     groupedOptions.in || [],
     "id",
     selectedIn?.value || null,
@@ -42,21 +44,24 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
     }),
   );
 
-  const inOptions = useMemo<Option[]>(() => {
+  const inOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.in, DEFAULT);
   }, [groupedOptions.in]);
 
   useEffect(() => {
     const selectedInWhichOption =
-      findObject<NullableNumber, Option>(inWhichOptions, "value", inWhichId) ||
-      null;
+      findObject<NullableNumber, SelectOption>(
+        inWhichOptions,
+        "value",
+        inWhichId,
+      ) || null;
 
     setSelectedInWhich(selectedInWhichOption);
   }, [inWhichId, inWhichOptions]);
 
   useEffect(() => {
     const firstInOption = groupedOptions.in?.[0] || {};
-    const selectedInOption = findObject<string | number | void, DBOption>(
+    const selectedInOption = findObject<string | number | void, Option>(
       groupedOptions.in || [],
       "id",
       selectedIn?.value,

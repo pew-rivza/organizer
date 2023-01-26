@@ -2,19 +2,15 @@ import { useStore } from "effector-react";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 import { Select } from "components/Select";
-import { Option } from "types/other";
+import { SelectOption } from "types/other";
 import { findObject } from "utils/objects";
 
 import { DECLINATION, DEFAULT, IN_BEFORE_COMPLIANCE } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import {
-  GroupedOptions,
-  InBeforeComplianceKey,
-  NullableNumber,
-} from "MT_types/other";
+import { InBeforeComplianceKey, NullableNumber } from "MT_types/other";
 import { ItemProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/castToOptions";
 
 import { ItemTemplate } from "./../ItemTemplate";
@@ -23,15 +19,17 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
   index,
   onChange,
 }) => {
-  const [selectedMealTime, setSelectedMealTime] = useState<Option | null>(null);
+  const [selectedMealTime, setSelectedMealTime] = useState<SelectOption | null>(
+    null,
+  );
   const [selectedInBeforeMeasure, setSelectedInBeforeMeasure] =
-    useState<Option | null>(null);
+    useState<SelectOption | null>(null);
 
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { inBeforeCount, inBeforeMeasureId } = changedMedications[index];
 
   const groupedOptions = useStore<GroupedOptions>($options);
-  const mealTimeOptions = useMemo<Option[]>(() => {
+  const mealTimeOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.mealTime, DEFAULT);
   }, [groupedOptions.mealTime]);
 
@@ -40,7 +38,7 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
     mealTimeOptions[0]?.label ||
     null;
 
-  const inBeforeOptions = useMemo<Option[]>(() => {
+  const inBeforeOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.inBefore, DECLINATION, {
       count: inBeforeCount || 0,
     });
@@ -48,7 +46,7 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
 
   useEffect(() => {
     const selectedOption =
-      findObject<NullableNumber, Option>(
+      findObject<NullableNumber, SelectOption>(
         inBeforeOptions,
         "value",
         inBeforeMeasureId,
@@ -64,12 +62,12 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
     );
   };
 
-  const mealTimeChangeHandler = (option: Option | null) => {
+  const mealTimeChangeHandler = (option: SelectOption | null) => {
     setSelectedMealTime(option);
     onChange("mealTimeId", option?.value ? +option.value : null);
   };
 
-  const inBeforeChangeHandler = (option: Option | null) => {
+  const inBeforeChangeHandler = (option: SelectOption | null) => {
     setSelectedInBeforeMeasure(option);
     onChange("inBeforeMeasureId", option?.value ? +option.value : null);
   };

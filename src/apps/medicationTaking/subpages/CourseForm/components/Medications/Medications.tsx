@@ -6,14 +6,14 @@ import {
   $changedMedications,
   addChangedMedication,
 } from "MT_models/medication";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication } from "MT_types/stores";
 
 import { Medication } from "./components/Medication";
 
 import "./Medications.scss";
 
 export const Medications: React.FC = () => {
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
 
   const addMedication = (): void => {
     addChangedMedication();

@@ -5,7 +5,7 @@ import { DatePicker } from "components/DatePicker";
 
 import { $changedMedications } from "MT_models/medication";
 import { PeriodItemVariantProps } from "MT_types/props";
-import { Medication as MedicationType } from "MT_types/stores";
+import { ChangedMedication } from "MT_types/stores";
 
 import { ItemTemplate } from "./../../../ItemTemplate";
 
@@ -16,7 +16,7 @@ export const IntervalVariant: React.FC<PeriodItemVariantProps> = ({
   index,
   changeHandler,
 }) => {
-  const changedMedications = useStore<MedicationType[]>($changedMedications);
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { periodDateStart, periodDateEnd } = changedMedications[index || 0];
 
   const onPeriodChange = (dates: [Date | null, Date | null]) => {
