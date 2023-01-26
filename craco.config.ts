@@ -18,6 +18,7 @@ export default {
       MT_const: resolve(__dirname, "src/apps/medicationTaking/const"),
       MT_models: resolve(__dirname, "src/apps/medicationTaking/models"),
       MT_subpages: resolve(__dirname, "src/apps/medicationTaking/subpages"),
+      MT_components: resolve(__dirname, "src/apps/medicationTaking/components"),
       MT_types: resolve(__dirname, "src/apps/medicationTaking/types"),
       MT_utils: resolve(__dirname, "src/apps/medicationTaking/utils"),
     },

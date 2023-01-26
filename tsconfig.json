@@ -28,6 +28,7 @@
       "BW_types/*": ["./src/apps/balanceWheel/types/*"],
       "BW_utils/*": ["./src/apps/balanceWheel/utils/*"],
       "MT_subpages/*": ["./src/apps/medicationTaking/subpages/*"],
+      "MT_components/*": ["./src/apps/medicationTaking/components/*"],
       "MT_types/*": ["./src/apps/medicationTaking/types/*"],
       "MT_api/*": ["./src/apps/medicationTaking/api/*"],
       "MT_models/*": ["./src/apps/medicationTaking/models/*"],

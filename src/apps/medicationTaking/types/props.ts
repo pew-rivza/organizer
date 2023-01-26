@@ -6,6 +6,8 @@ import React, {
 
 import { Option } from "types/other";
 
+import { VisibleChips } from "MT_types/other";
+
 export type ItemTemplateProps = {
   children: JSX.Element | JSX.Element[];
 };
@@ -67,3 +69,8 @@ export interface ItemProps<ValueType> {
   index: number;
   onChange: (field: string, value: ValueType) => void;
 }
+
+export type FieldChipsProps = {
+  visibleChips: VisibleChips;
+  onChoose: (field: string) => void;
+};

@@ -68,3 +68,9 @@ export interface PreparedMedication {
 export type GroupedObjects<ObjType> = {
   [key: string]: (ObjType & Obj)[];
 };
+
+export type VisibleChips = {
+  timesOfDay: boolean;
+  mealTime: boolean;
+  comment: boolean;
+};

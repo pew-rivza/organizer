@@ -1,3 +1,4 @@
+import { ButtonHTMLAttributes } from "react";
 import { ReactDatePickerProps } from "react-datepicker";
 import { GroupBase, Props } from "react-select";
 
@@ -20,3 +21,7 @@ export type DatePickerProps<WithRange extends boolean | undefined = false> =
   };
 
 export type SelectProps = Props<Option, false, GroupBase<Option>>;
+
+export type ChipsProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  icon: string;
+};
