@@ -1,12 +1,14 @@
 .mt_form_medication {
   &.mt_form_medication {
     padding-right: 33px;
+    width: unset;
   }
 
   flex-direction: column;
   gap: 15px;
   box-sizing: border-box;
   position: relative;
+  flex-grow: 1;
 
   input[type=text] {
     flex-grow: 1;
@@ -23,11 +25,27 @@
     }
   }
 
-  @media (max-width: 1170px) {
+  @media (max-width: 520px) {
     .mt_form_item {
-      flex-wrap: wrap;
-      gap: 7px;
+      flex-direction: column;
       align-items: flex-start;
+      gap: 7px 0;
+    }
+
+    input[type=text] {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 490px) {
+    .mt_form_item-variants {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px 0;
+    }
+
+    .mt_form_item-variant {
+      margin: 0;
     }
   }
 }

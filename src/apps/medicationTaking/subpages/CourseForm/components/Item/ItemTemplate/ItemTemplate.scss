@@ -12,7 +12,7 @@
     color: #8c2e2e;
   }
 
-  &-inputs {
+  &-inputs, &-variants {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -26,13 +26,18 @@
 
   &-variant {
     display: flex;
+    gap: 5px;
+    align-items: center;
+    & + & {
+      margin-left: 15px;
+    }
+  }
+
+  &-variant-content {
+    display: flex;
     align-items: center;
     gap: 5px;
     transition: 500ms;
-
-    & + .radio {
-      margin-left: 15px;
-    }
 
     &.disabled {
       color: #999;

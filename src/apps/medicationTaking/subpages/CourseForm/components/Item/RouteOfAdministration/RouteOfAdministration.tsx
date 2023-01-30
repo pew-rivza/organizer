@@ -39,21 +39,19 @@ export const RouteOfAdministration: React.FC<
   return (
     <ItemTemplate>
       <ItemTemplate.Label required>Способ&nbsp;введения</ItemTemplate.Label>
-      <ItemTemplate.InputGroup>
-        <ItemTemplate.VariantGroup name={`route-of-administration-${index}`}>
-          <RouteOfAdministrationVariant
-            selected={routeOfAdministrationChecked}
-            variantSelectHandler={variantSelectHandler}
-            selectChangeHandler={selectChangeHandler}
-          />
-          <InVariant
-            selected={!routeOfAdministrationChecked}
-            variantSelectHandler={variantSelectHandler}
-            selectChangeHandler={selectChangeHandler}
-            index={index}
-          />
-        </ItemTemplate.VariantGroup>
-      </ItemTemplate.InputGroup>
+      <ItemTemplate.VariantGroup name={`route-of-administration-${index}`}>
+        <RouteOfAdministrationVariant
+          selected={routeOfAdministrationChecked}
+          variantSelectHandler={variantSelectHandler}
+          selectChangeHandler={selectChangeHandler}
+        />
+        <InVariant
+          selected={!routeOfAdministrationChecked}
+          variantSelectHandler={variantSelectHandler}
+          selectChangeHandler={selectChangeHandler}
+          index={index}
+        />
+      </ItemTemplate.VariantGroup>
     </ItemTemplate>
   );
 };

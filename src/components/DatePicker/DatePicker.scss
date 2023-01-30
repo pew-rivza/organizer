@@ -102,7 +102,7 @@
         }
       }
 
-      &--keyboard-selected:not(&--in-range):not(&--selecting-range-start) {
+      &--keyboard-selected:not(&--in-range):not(&--selecting-range-start):not(&--in-selecting-range) {
         background: #f9f9f9;
       }
 

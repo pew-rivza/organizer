@@ -25,22 +25,20 @@ export const Period: React.FC<ItemProps<number | Date | null | boolean>> = ({
   return (
     <ItemTemplate>
       <ItemTemplate.Label required>Период</ItemTemplate.Label>
-      <ItemTemplate.InputGroup>
-        <ItemTemplate.VariantGroup name={`period-${index}`}>
-          <WithinVariant
-            variantSelectHandler={variantSelectHandler}
-            selected={withinChecked}
-            changeHandler={onChange}
-            index={index}
-          />
-          <IntervalVariant
-            variantSelectHandler={variantSelectHandler}
-            selected={!withinChecked}
-            changeHandler={onChange}
-            index={index}
-          />
-        </ItemTemplate.VariantGroup>
-      </ItemTemplate.InputGroup>
+      <ItemTemplate.VariantGroup name={`period-${index}`}>
+        <WithinVariant
+          variantSelectHandler={variantSelectHandler}
+          selected={withinChecked}
+          changeHandler={onChange}
+          index={index}
+        />
+        <IntervalVariant
+          variantSelectHandler={variantSelectHandler}
+          selected={!withinChecked}
+          changeHandler={onChange}
+          index={index}
+        />
+      </ItemTemplate.VariantGroup>
     </ItemTemplate>
   );
 };

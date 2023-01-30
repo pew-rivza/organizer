@@ -1,4 +1,5 @@
 .mt_form_medication_chips {
   display: flex;
-  gap: 10px;
+  gap: 5px 10px;
+  flex-wrap: wrap;
 }

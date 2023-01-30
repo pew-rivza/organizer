@@ -67,8 +67,9 @@ input[type=text] {
     color: #999;
   }
 
-  &:disabled {
+  &:disabled, &.disabled {
     cursor: not-allowed;
+    pointer-events: none;
   }
 }
 

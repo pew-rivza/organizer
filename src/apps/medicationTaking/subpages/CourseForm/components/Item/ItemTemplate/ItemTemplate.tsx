@@ -1,3 +1,4 @@
+import { nanoid } from "nanoid";
 import React from "react";
 
 import { joinCn } from "utils/joinCn";
@@ -24,29 +25,40 @@ ItemTemplate.InputGroup = ({ children }) => {
   return <div className="mt_form_item-inputs">{children}</div>;
 };
 
-ItemTemplate.CountInput = (props) => {
-  return <input type="text" className="mt_form_item-count" {...props} />;
+ItemTemplate.CountInput = ({ disabled, ...props }) => {
+  const cn = joinCn("mt_form_item-count", !!disabled && "disabled");
+  return <input type="text" className={cn} {...props} />;
 };
 
 ItemTemplate.Variant = ({ children, selected, isDisabled, ...props }) => {
-  const cn = joinCn("mt_form_item-variant", !!isDisabled && "disabled");
+  const id = nanoid(2);
+  const contentCn = joinCn(
+    "mt_form_item-variant-content",
+    !!isDisabled && "disabled",
+  );
 
   return (
-    <React.Fragment>
+    <div className="mt_form_item-variant">
       <div className="radio">
-        <input type="radio" checked={selected} {...props} />
+        <input type="radio" id={id} checked={selected} {...props} />
       </div>
-      <div className={cn}>{children}</div>
-    </React.Fragment>
+      {selected ? (
+        <div className={contentCn}>{children}</div>
+      ) : (
+        <label htmlFor={id} className={contentCn}>
+          {children}
+        </label>
+      )}
+    </div>
   );
 };
 
 ItemTemplate.VariantGroup = ({ children, name }) => {
   return (
-    <React.Fragment>
+    <div className="mt_form_item-variants">
       {React.Children.map(children, (child) => {
         return React.cloneElement(child, { name });
       })}
-    </React.Fragment>
+    </div>
   );
 };
