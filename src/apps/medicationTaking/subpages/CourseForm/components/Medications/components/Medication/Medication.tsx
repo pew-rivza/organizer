@@ -1,12 +1,15 @@
 import { Icon } from "@iconify/react";
-import React, { useState } from "react";
+import { useStore } from "effector-react";
+import React, { useEffect, useState } from "react";
 
 import {
+  $changedMedications,
   removeChangedMedication,
   updateChangedMedication,
 } from "MT_models/medication";
 import { VisibleChips } from "MT_types/other";
-import { MedicationProps } from "MT_types/props";
+import { MedicationFormProps } from "MT_types/props";
+import { ChangedMedication } from "MT_types/stores";
 
 import { Comment } from "./../../../Item/Comment";
 import { Count } from "./../../../Item/Count";
@@ -20,12 +23,27 @@ import { TimesOfDay } from "./../../../Item/TimesOfDay";
 import { FieldChips } from "./../FieldChips";
 import "./Medication.scss";
 
-export const Medication: React.FC<MedicationProps> = ({ index, deletable }) => {
+export const Medication: React.FC<MedicationFormProps> = ({
+  index,
+  deletable,
+}) => {
+  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
+  const changedMedication = changedMedications[index];
+  const { timesOfDayId, mealTimeId, comment } = changedMedication;
   const [visibleChips, setVisibleChips] = useState<VisibleChips>({
     timesOfDay: true,
     mealTime: true,
     comment: true,
   });
+
+  useEffect(() => {
+    setVisibleChips({
+      timesOfDay: !timesOfDayId,
+      mealTime: !mealTimeId,
+      comment: !comment,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [changedMedication]);
 
   function changeHandler<ValueType>(field: string, value: ValueType) {
     updateChangedMedication({ field, value, index });
@@ -42,6 +60,13 @@ export const Medication: React.FC<MedicationProps> = ({ index, deletable }) => {
     }));
   };
 
+  const unchooseChips = (field: string): void => {
+    setVisibleChips((prevState) => ({
+      ...prevState,
+      [field]: true,
+    }));
+  };
+
   return (
     <fieldset className="mt_form_medication">
       <legend>Медикамент</legend>
@@ -50,14 +75,26 @@ export const Medication: React.FC<MedicationProps> = ({ index, deletable }) => {
       <RouteOfAdministration index={index} onChange={changeHandler} />
       <Frequency index={index} onChange={changeHandler} />
       {!visibleChips.timesOfDay && (
-        <TimesOfDay index={index} onChange={changeHandler} />
+        <TimesOfDay
+          index={index}
+          onChange={changeHandler}
+          onDelete={unchooseChips}
+        />
       )}
       {!visibleChips.mealTime && (
-        <MealTime index={index} onChange={changeHandler} />
+        <MealTime
+          index={index}
+          onChange={changeHandler}
+          onDelete={unchooseChips}
+        />
       )}
       <Period index={index} onChange={changeHandler} />
       {!visibleChips.comment && (
-        <Comment index={index} onChange={changeHandler} />
+        <Comment
+          index={index}
+          onChange={changeHandler}
+          onDelete={unchooseChips}
+        />
       )}
 
       <FieldChips visibleChips={visibleChips} onChoose={chooseChips} />

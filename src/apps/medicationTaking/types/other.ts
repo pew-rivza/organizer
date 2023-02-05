@@ -1,20 +1,24 @@
 import { Obj } from "types/other";
 
+import { Medication } from "MT_types/stores";
+
 export type CastMode = "DECLINATION" | "GENDER" | "DEFAULT";
 
 export type CastConfig = {
   count?: number;
-  wordGendersConfig?: Obj & {
-    feminine: string | void;
-    masculine: string | void;
-    neuter: string | void;
-  };
+  wordGendersConfig?: WordGenders;
 };
 
 export type WordForms = {
   one: string;
   few: string;
   many: string;
+};
+
+export type WordGenders = Obj & {
+  masculine: string | void;
+  feminine: string | void;
+  neuter: string | void;
 };
 
 export type WordFormType = "one" | "few" | "many";
@@ -38,3 +42,38 @@ export type VisibleChips = {
   mealTime: boolean;
   comment: boolean;
 };
+
+export type CountWordFields = {
+  [key: string]: {
+    countField: string;
+    optionGroup: string;
+    measureField: string;
+  };
+};
+
+export type WithoutPeriodKey = "WITHOUT_PERIOD_KEY";
+export type WithPeriodKey = "WITH_PERIOD_KEY";
+export type WithPeriodValue = {
+  [key: string]: Medication[];
+};
+export type GroupedMedicationsByPeriod = {
+  WITHOUT_PERIOD_KEY?: Medication[];
+  WITH_PERIOD_KEY?: WithPeriodValue;
+};
+
+export type Periods = "дней" | "недель" | "месяцев" | "лет";
+export type PeriodFunctions = "Date" | "Month" | "FullYear";
+export type DateFunctionsCompliance = {
+  [key in Periods]: {
+    function: PeriodFunctions;
+    coefficient: number;
+    minus?: number;
+  };
+};
+export type DateFunctions =
+  | "setDate"
+  | "setMonth"
+  | "setFullYear"
+  | "getDate"
+  | "getMonth"
+  | "getFullYear";

@@ -12,7 +12,19 @@ export type Option = {
   neuter: string;
 };
 
-export type GroupedOptions = Record<string, Option[]>;
+type OptionGroup =
+  | "dosageForm"
+  | "routeOfAdministration"
+  | "inWhich"
+  | "in"
+  | "times"
+  | "frequency"
+  | "timesOfDay"
+  | "mealTime"
+  | "inBefore"
+  | "period";
+
+export type GroupedOptions = Record<string | OptionGroup, Option[]>;
 
 export interface ChangedMedication {
   id?: number;

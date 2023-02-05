@@ -19,3 +19,15 @@ export const API_ADD_MEDICATIONS = (
       "Content-Type": "application/json",
     },
   }).then((response) => response.json());
+
+export const API_UPDATE_MEDICATIONS = (
+  medications: Medication[],
+  courseId: number | null,
+): Promise<Medication[]> =>
+  fetch(MEDICATION_URL, {
+    method: "PUT",
+    body: JSON.stringify({ medications, courseId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());

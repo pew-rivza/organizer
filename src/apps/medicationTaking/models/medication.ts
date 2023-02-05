@@ -17,11 +17,25 @@ export const fetchMedicationsFx = createEffect<void, Medication[]>(
 export const updateChangedMedication = createEvent<UpdateHandlerArgs>();
 export const addChangedMedication = createEvent();
 export const removeChangedMedication = createEvent<number>();
+export const cancelChangedMedications = createEvent();
+export const setChangedMedications = createEvent<ChangedMedication[]>();
 
 // Stores
 export const $medications = createStore<Medication[]>([]).on(
   fetchMedicationsFx.doneData,
-  (_, medications) => medications,
+  (_, medications) => {
+    return medications.map((medication) => {
+      return {
+        ...medication,
+        periodDateStart: medication.periodDateStart
+          ? new Date(medication.periodDateStart as unknown as string)
+          : null,
+        periodDateEnd: medication.periodDateEnd
+          ? new Date(medication.periodDateEnd as unknown as string)
+          : null,
+      };
+    });
+  },
 );
 
 export const $changedMedications = createStore<ChangedMedication[]>([
@@ -39,4 +53,6 @@ export const $changedMedications = createStore<ChangedMedication[]>([
     const newState = [...prevState];
     newState.splice(index, 1);
     return newState;
-  });
+  })
+  .on(cancelChangedMedications, () => [{ ...EMPTY_MEDICATION }])
+  .on(setChangedMedications, (_, changedMedications) => changedMedications);

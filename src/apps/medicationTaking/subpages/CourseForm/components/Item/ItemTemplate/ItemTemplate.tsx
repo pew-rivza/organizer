@@ -1,3 +1,4 @@
+import { Icon } from "@iconify/react";
 import { nanoid } from "nanoid";
 import React from "react";
 
@@ -12,9 +13,16 @@ export const ItemTemplate: React.FC<ItemTemplateProps> &
   return <div className="mt_form_item">{children}</div>;
 };
 
-ItemTemplate.Label = ({ children, required }) => {
+ItemTemplate.Label = ({ children, required, onDelete }) => {
   return (
-    <label>
+    <label className="mt_form_item-label">
+      {!required && (
+        <Icon
+          icon="radix-icons:cross-2"
+          className="mt_form_item-delete"
+          onClick={() => onDelete?.()}
+        />
+      )}
       {required && <span className="mt_form_item-required">*</span>}
       {children}
     </label>

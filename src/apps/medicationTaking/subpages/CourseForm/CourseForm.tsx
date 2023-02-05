@@ -1,68 +1,72 @@
-import { Icon } from "@iconify/react";
 import { useEvent, useStore } from "effector-react";
 import React, { useEffect } from "react";
-import { toast } from "react-toastify";
+import { useParams } from "react-router-dom";
+
+import { findObject } from "utils/objects";
 
 import {
-  isValidMedications,
-  prepareMedication,
-} from "apps/medicationTaking/utils/prepareMedications";
-import { convertUTCDate } from "utils/date";
-
-import { API_ADD_COURSE } from "MT_api/course";
-import { API_ADD_MEDICATIONS } from "MT_api/medication";
-import { $changedCourse } from "MT_models/course";
-import { $changedMedications } from "MT_models/medication";
+  $coursesFullInfo,
+  fetchCoursesFx,
+  setChangedCourse,
+} from "MT_models/course";
+import { setChangedMedications } from "MT_models/medication";
 import { fetchOptionsFx } from "MT_models/option";
-import { ChangedCourse, ChangedMedication, Option } from "MT_types/stores";
+import {
+  ChangedCourse,
+  ChangedMedication,
+  CourseFullInfo,
+  Course as CourseType,
+  Option,
+} from "MT_types/stores";
+import { prepareMedicationToFrontend } from "MT_utils/prepare";
 
 import { Course } from "./components/Course";
+import { Toolbar } from "./components/Toolbar";
 
 import "./CourseForm.scss";
 import { Medications } from "./components/Medications";
 
 export const CourseForm: React.FC = () => {
-  const changedCourse = useStore<ChangedCourse>($changedCourse);
-  const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const fetchOptions = useEvent<Option[]>(fetchOptionsFx);
+  const fetchCourses = useEvent<CourseType[]>(fetchCoursesFx);
+  const coursesFullInfo = useStore<CourseFullInfo[]>($coursesFullInfo);
+  const { id } = useParams();
 
   useEffect(() => {
+    fetchCourses();
     fetchOptions();
-  }, [fetchOptions]);
+  }, [fetchCourses, fetchOptions]);
 
-  const addCourse = async () => {
-    const { start, doctor, diagnosis } = changedCourse;
-    if (
-      start &&
-      doctor &&
-      diagnosis &&
-      isValidMedications(changedMedications)
-    ) {
-      const medications = changedMedications.map(prepareMedication);
-      const addedCourse = await API_ADD_COURSE({
-        ...changedCourse,
-        start: convertUTCDate(start),
+  useEffect(() => {
+    if (id) {
+      const editedCourse = findObject<number, CourseFullInfo>(
+        coursesFullInfo,
+        "id",
+        +id,
+      );
+      const {
+        start = null,
+        doctor = "",
+        diagnosis = "",
+      } = (editedCourse || {}) as ChangedCourse;
+      const preparedMedications: ChangedMedication[] = (
+        editedCourse?.medications || []
+      ).map(prepareMedicationToFrontend);
+
+      setChangedCourse({
+        id: +id,
+        start: start ? new Date(start) : null,
+        doctor,
+        diagnosis,
       });
 
-      await API_ADD_MEDICATIONS(medications, addedCourse.id || null);
-
-      toast("Новый курс добавлен!", {
-        toastId: 6,
-        type: "success",
-      });
-    } else {
-      toast("Заполните обязательные поля", {
-        toastId: 7,
-        type: "warning",
-      });
+      setChangedMedications(preparedMedications);
     }
-  };
+  }, [coursesFullInfo, id]);
 
   return (
     <React.Fragment>
-      <button className="mt_form-save icon-button" onClick={addCourse}>
-        <Icon icon="uil:save" />
-      </button>
+      <Toolbar />
       <div className="mt_form">
         <Course />
         <Medications />

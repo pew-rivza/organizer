@@ -6,7 +6,8 @@ import React, {
 
 import { SelectOption } from "types/other";
 
-import { VisibleChips } from "MT_types/other";
+import { GroupedMedicationsByPeriod, VisibleChips } from "MT_types/other";
+import { CourseFullInfo, Medication } from "MT_types/stores";
 
 export type ItemTemplateProps = {
   children: JSX.Element | JSX.Element[];
@@ -23,6 +24,7 @@ export type ItemTemplateSubComponents = {
 type LabelProps = {
   children: string;
   required?: boolean;
+  onDelete?: () => void;
 };
 
 type InputGroupProps = {
@@ -60,7 +62,7 @@ export type PeriodItemVariantProps = ItemVariantProps & {
   changeHandler: (field: string, value: number | Date | null) => void;
 };
 
-export type MedicationProps = {
+export type MedicationFormProps = {
   index: number;
   deletable: boolean;
 };
@@ -68,9 +70,38 @@ export type MedicationProps = {
 export interface ItemProps<ValueType> {
   index: number;
   onChange: (field: string, value: ValueType) => void;
+  onDelete?: (field: string) => void;
 }
 
 export type FieldChipsProps = {
   visibleChips: VisibleChips;
   onChoose: (field: string) => void;
+};
+
+export type CourseProps = {
+  course: CourseFullInfo;
+};
+
+export type MedicationProps = {
+  medication: Medication;
+};
+
+export type MedicationsProps = {
+  medications: Medication[];
+  courseStart: Date | null;
+  withoutPeriodCourseEnd: Date;
+};
+
+export type WithoutPeriodMedicationsProps = {
+  groupedMedications: GroupedMedicationsByPeriod;
+  courseStart: Date | null;
+  withoutPeriodCourseEnd: Date;
+};
+
+export type WithPeriodMedicationsProps = {
+  groupedMedications: GroupedMedicationsByPeriod;
+};
+
+export type ToolbarProps = {
+  courseId: number;
 };

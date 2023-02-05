@@ -41,6 +41,7 @@ export const RouteOfAdministration: React.FC<
       <ItemTemplate.Label required>Способ&nbsp;введения</ItemTemplate.Label>
       <ItemTemplate.VariantGroup name={`route-of-administration-${index}`}>
         <RouteOfAdministrationVariant
+          index={index}
           selected={routeOfAdministrationChecked}
           variantSelectHandler={variantSelectHandler}
           selectChangeHandler={selectChangeHandler}

@@ -7,17 +7,28 @@ import { ChangedMedication } from "MT_types/stores";
 
 import { ItemTemplate } from "./../ItemTemplate";
 
-export const Comment: React.FC<ItemProps<string>> = ({ index, onChange }) => {
+export const Comment: React.FC<ItemProps<string>> = ({
+  index,
+  onChange,
+  onDelete,
+}) => {
   const changedMedications = useStore<ChangedMedication[]>($changedMedications);
   const { comment } = changedMedications[index];
 
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange("comment", e.target.value);
+  const inputChangeHandler = (e?: ChangeEvent<HTMLInputElement>) => {
+    onChange("comment", e ? e.target.value : "");
+  };
+
+  const deleteField = () => {
+    inputChangeHandler();
+    onDelete?.("comment");
   };
 
   return (
     <ItemTemplate>
-      <ItemTemplate.Label>Комментарий</ItemTemplate.Label>
+      <ItemTemplate.Label onDelete={deleteField}>
+        Комментарий
+      </ItemTemplate.Label>
       <input type="text" value={comment} onChange={inputChangeHandler} />
     </ItemTemplate>
   );

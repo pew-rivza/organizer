@@ -28,6 +28,12 @@ export const navigation: Navigation = [
         title: "Прием лекарств: добавление курса",
         inMenu: false,
       },
+      {
+        link: "/medication-taking/edit/:id",
+        element: <CourseForm />,
+        title: "Прием лекарств: редактирование курса",
+        inMenu: false,
+      },
     ],
   },
   {

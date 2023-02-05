@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";
@@ -11,7 +12,7 @@ import { $options } from "MT_models/option";
 import { NullableNumber } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions, Option } from "MT_types/stores";
-import { castToOptions } from "MT_utils/castToOptions";
+import { castToOptions } from "MT_utils/options";
 
 import { ItemTemplate } from "./../../../ItemTemplate";
 
@@ -22,6 +23,8 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
   selected,
   index,
 }) => {
+  const { id } = useParams();
+
   const [selectedInWhich, setSelectedInWhich] = useState<SelectOption | null>(
     null,
   );
@@ -74,6 +77,19 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
       }),
     );
   }, [groupedOptions, selectedIn]);
+
+  useEffect(() => {
+    if (id && typeof index === "number") {
+      const inId: number = changedMedications[index].inId as number;
+
+      inId &&
+        selectChangeHandler(
+          "inId",
+          setSelectedIn,
+        )(findObject<number, SelectOption>(inOptions, "value", inId) || null);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, inOptions]);
 
   return (
     <ItemTemplate.Variant

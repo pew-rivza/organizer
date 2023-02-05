@@ -11,7 +11,7 @@ import { $options } from "MT_models/option";
 import { NullableNumber } from "MT_types/other";
 import { PeriodItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
-import { castToOptions } from "MT_utils/castToOptions";
+import { castToOptions } from "MT_utils/options";
 
 import { ItemTemplate } from "./../../../ItemTemplate";
 

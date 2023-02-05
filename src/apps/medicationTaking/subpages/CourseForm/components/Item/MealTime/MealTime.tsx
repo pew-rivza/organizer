@@ -1,5 +1,6 @@
 import { useStore } from "effector-react";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { useParams } from "react-router-dom";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";
@@ -11,14 +12,17 @@ import { $options } from "MT_models/option";
 import { InBeforeComplianceKey, NullableNumber } from "MT_types/other";
 import { ItemProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
-import { castToOptions } from "MT_utils/castToOptions";
+import { castToOptions } from "MT_utils/options";
 
 import { ItemTemplate } from "./../ItemTemplate";
 
 export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
   index,
   onChange,
+  onDelete,
 }) => {
+  const { id } = useParams();
+
   const [selectedMealTime, setSelectedMealTime] = useState<SelectOption | null>(
     null,
   );
@@ -55,10 +59,10 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
     setSelectedInBeforeMeasure(selectedOption);
   }, [inBeforeMeasureId, inBeforeOptions]);
 
-  const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+  const inputChangeHandler = (e?: ChangeEvent<HTMLInputElement>) => {
     onChange(
       "inBeforeCount",
-      e.target.value === "" || !+e.target.value ? null : +e.target.value,
+      !e || e.target.value === "" || !+e.target.value ? null : +e.target.value,
     );
   };
 
@@ -72,9 +76,33 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
     onChange("inBeforeMeasureId", option?.value ? +option.value : null);
   };
 
+  useEffect(() => {
+    if (id) {
+      const mealTimeId: number = changedMedications[index].mealTimeId as number;
+      mealTimeId &&
+        mealTimeChangeHandler(
+          findObject<number, SelectOption>(
+            mealTimeOptions,
+            "value",
+            mealTimeId,
+          ) || null,
+        );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id, mealTimeOptions]);
+
+  const deleteField = () => {
+    mealTimeChangeHandler(null);
+    inputChangeHandler();
+    inBeforeChangeHandler(null);
+    onDelete?.("mealTime");
+  };
+
   return (
     <ItemTemplate>
-      <ItemTemplate.Label>Время приема</ItemTemplate.Label>
+      <ItemTemplate.Label onDelete={deleteField}>
+        Время приема
+      </ItemTemplate.Label>
       <ItemTemplate.InputGroup>
         <Select
           value={selectedMealTime}
