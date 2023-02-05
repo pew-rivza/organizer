@@ -7,6 +7,7 @@ import { SelectProps } from "types/props";
 import "./Select.scss";
 
 export const Select: React.FC<SelectProps> = (props) => {
+  // noinspection JSUnusedGlobalSymbols
   return (
     <ReactSelect
       noOptionsMessage={() => "Ничего\u00A0не\u00A0найдено"}

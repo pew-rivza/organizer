@@ -1,23 +1,21 @@
-.mt_course {
-  &-header {
-    background: #92a69a;
-    color: #f9f9f9;
-    padding: 10px;
-    font-weight: 700;
-  }
+.mt_course-header {
+  background: #92a69a;
+  color: #f9f9f9;
+  padding: 10px;
+  font-weight: 700;
+}
 
-  &-subheader {
-    padding-top: 5px;
-    font-size: 12px;
-    opacity: 0.8;
-    font-weight: 400;
-    color: #f9f9f9;
-  }
+.mt_course-subheader {
+  padding-top: 5px;
+  font-size: 12px;
+  opacity: 0.8;
+  font-weight: 400;
+  color: #f9f9f9;
+}
 
-  &-period {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: #f9f9f9;
-  }
+.mt_course-period {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #f9f9f9;
 }
