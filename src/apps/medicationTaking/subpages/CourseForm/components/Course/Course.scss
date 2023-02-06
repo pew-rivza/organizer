@@ -1,0 +1,7 @@
+.mt_form_course {
+  gap: 20px;
+
+  .mt_form_item:not(:nth-child(2)) {
+    flex-grow: 1;
+  }
+}

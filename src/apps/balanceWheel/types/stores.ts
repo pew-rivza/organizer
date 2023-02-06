@@ -34,10 +34,7 @@ export interface Todo {
   checked: boolean;
 }
 
-export interface AreaFullInfo {
-  id: number;
-  name: string;
-  icon: string;
+export interface AreaFullInfo extends Area {
   value: number;
   previousValue: number;
   todos: Todo[];

@@ -14,6 +14,13 @@ export default {
       BW_models: resolve(__dirname, "src/apps/balanceWheel/models"),
       BW_types: resolve(__dirname, "src/apps/balanceWheel/types"),
       BW_utils: resolve(__dirname, "src/apps/balanceWheel/utils"),
+      MT_api: resolve(__dirname, "src/apps/medicationTaking/api"),
+      MT_const: resolve(__dirname, "src/apps/medicationTaking/const"),
+      MT_models: resolve(__dirname, "src/apps/medicationTaking/models"),
+      MT_subpages: resolve(__dirname, "src/apps/medicationTaking/subpages"),
+      MT_components: resolve(__dirname, "src/apps/medicationTaking/components"),
+      MT_types: resolve(__dirname, "src/apps/medicationTaking/types"),
+      MT_utils: resolve(__dirname, "src/apps/medicationTaking/utils"),
     },
   },
 };

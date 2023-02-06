@@ -1,0 +1,12 @@
+.mt_form_medications {
+  display: flex;
+  margin-top: 12px;
+  gap: 12px 20px;
+  width: 100%;
+  flex-wrap: wrap;
+
+  &-add {
+    background: #084259;
+    margin-top: 20px;
+  }
+}

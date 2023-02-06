@@ -1,8 +1,8 @@
-import { TODOS_URL } from "BW_const/api";
+import { TODO_URL } from "BW_const/api";
 import { Todo } from "BW_types/stores";
 
 export const API_FETCH_TODOS = (wheelId: number | void): Promise<Todo[]> =>
-  fetch(`${TODOS_URL}${wheelId || -1}`, {
+  fetch(`${TODO_URL}${wheelId || -1}`, {
     method: "GET",
     body: null,
     headers: {},
@@ -12,7 +12,7 @@ export const API_UPDATE_TODO = (
   todoId: number | void,
   data: { name?: string; checked?: boolean },
 ): Promise<void> =>
-  fetch(TODOS_URL, {
+  fetch(TODO_URL, {
     method: "PUT",
     body: JSON.stringify({ data, todoId }),
     headers: {
@@ -21,7 +21,7 @@ export const API_UPDATE_TODO = (
   }).then((response) => response.json());
 
 export const API_DELETE_TODO = (todoId: number | void): Promise<void> =>
-  fetch(TODOS_URL, {
+  fetch(TODO_URL, {
     method: "DELETE",
     body: JSON.stringify({ todoId }),
     headers: {
@@ -34,7 +34,7 @@ export const API_ADD_TODO = (
   areaId: number | null,
   value: string,
 ): Promise<Todo> =>
-  fetch(TODOS_URL, {
+  fetch(TODO_URL, {
     method: "POST",
     body: JSON.stringify({ wheelId, areaId, value }),
     headers: {

@@ -1,0 +1,81 @@
+.select {
+  [class*="-control"] {
+    background: transparent;
+    cursor: pointer;
+    border: 0 solid #999;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    min-height: 17px;
+    height: 17px;
+    box-shadow: none;
+    flex-wrap: nowrap;
+
+    &:hover {
+      border-color: #999;
+    }
+
+    [class*="-ValueContainer"] {
+      padding: 0;
+      height: 17px;
+      cursor: text;
+      min-width: 30px;
+      width: max-content;
+      max-width: 100px;
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      [class*="-placeholder"] {
+        margin: 0;
+        color: #999;
+        font-size: 12px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+      }
+
+      [class*="-singleValue"] {
+        margin: 0;
+      }
+
+      [class*="-Input"] {
+        height: 17px;
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    [class*="-IndicatorsContainer"] {
+      height: 17px;
+
+      [class*="-indicatorSeparator"] {
+        width: 0;
+        background-color: #999;
+        margin-bottom: 1px;
+        margin-top: 0;
+      }
+
+      svg {
+        height: 10px;
+        width: 10px;
+        margin: 0 0 0 5px;
+      }
+    }
+  }
+
+  [class*="-menu"] {
+    width: inherit;
+    margin-bottom: 0;
+    border-radius: 0;
+    box-shadow: 2px 2px 5px #777;
+
+    [class*="-MenuList"] {
+      padding: 0;
+
+      [class*="-option"] {
+        padding: 8px;
+      }
+    }
+  }
+}

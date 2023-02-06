@@ -1,6 +1,7 @@
 .bw_date {
   display: flex;
   align-items: center;
+  justify-content: center;
 
   &-icon {
     cursor: pointer;
@@ -17,25 +18,16 @@
   }
 
   &-text {
-    width: 80px;
+    width: 79px;
     text-align: center;
   }
 
-  &-input {
-    width: 60px;
-    height: 17px;
-    box-sizing: border-box;
-    background: transparent;
-    border: 0;
+  //noinspection CssUnusedSymbol
+  &-input.bw_date-input {
     text-align: center;
-    position: static;
-    padding: 0;
-    margin: 0 10px;
-    transition: 100ms;
+  }
 
-    &:focus-visible {
-      border-bottom: 1px solid #999;
-      outline: none;
-    }
+  &-input-wrapper {
+    margin: 0 14px;
   }
 }

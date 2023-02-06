@@ -6,9 +6,10 @@
   "importOrder": [
     "^((utils)|(components)|(types)|(apps)|(const))/(.*)$",
     "^BW_(.*)/(.*)$",
-    "^[./](.*)[(scss)]$",
-    "^[./](.*)$"
+    "^MT_(.*)/(.*)$",
+    "^[./](.*)[^(scss)]$",
+    "^[./](.*)[(scss)]$"
   ],
   "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "importOrderSortSpecifiers": false
 }

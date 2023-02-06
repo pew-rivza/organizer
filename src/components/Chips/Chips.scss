@@ -1,0 +1,17 @@
+.chips {
+  background: #d9c8a9;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  svg {
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+
+    path {
+      fill: #f9f9f9;
+    }
+  }
+}

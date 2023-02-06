@@ -1,0 +1,134 @@
+.datepicker {
+  text-align: center;
+  max-width: 72px;
+
+  //noinspection CssUnusedSymbol
+  &.month {
+    max-width: 51px;
+  }
+
+  &.range {
+    min-width: 157px;
+    max-width: 157px;
+  }
+}
+
+//noinspection CssUnusedSymbol
+.datepicker_input-wrapper {
+  width: unset;
+
+  //noinspection CssUnusedSymbol
+  &.month {
+    max-width: 51px;
+  }
+}
+
+//noinspection CssUnusedSymbol
+.datepicker_calendar {
+  .react-datepicker {
+    border: 0;
+    background: #f9f9f9;
+    border-radius: 0;
+    box-shadow: 2px 2px 5px #777;
+    &__header {
+      border-radius: 0;
+      border: 1px solid #92A69A;
+      border-bottom: 0;
+      background: #92A69A;
+    }
+
+    &__month {
+      margin: 0;
+      padding: 0.4rem;
+      border: 1px solid #92a69a;
+      border-top: 0;
+    }
+
+    &__current-month, &-year-header {
+      color: #f9f9f9;
+      font-size: 13px;
+      font-weight: 400;
+    }
+
+    &__navigation {
+      &:hover {
+        opacity: 1;
+
+        //noinspection CssUnusedSymbol
+        .react-datepicker__navigation-icon:before {
+          border-color: #f9f9f9;
+        }
+      }
+    }
+
+    &__navigation-icon {
+      &--next:before {
+        left: -3px;
+      }
+
+      &--previous:before {
+        right: -3px;
+      }
+
+      &:before {
+        border-color: #f9f9f9;
+        border-width: 2px 2px 0 0;
+        height: 7px;
+        width: 7px;
+      }
+    }
+
+    &__day-name {
+      color: #f9f9f9;
+    }
+
+    &__day, &__month-text {
+      color: #555;
+      border-radius: 0;
+      transition: 200ms;
+
+      &:hover {
+        background: transparent;
+        box-shadow: 1px 1px 0 #D9C8A9, -1px -1px 0 #D9C8A9, 1px -1px 0 #D9C8A9, -1px 1px 0 #D9C8A9;
+      }
+
+      &--outside-month {
+        color: #ccc;
+        pointer-events: none;
+      }
+
+      &--selected, &--in-range, &--selecting-range-start, &--in-selecting-range {
+        background: #92a69a;
+        color: #f9f9f9;
+
+        &:hover {
+          background: #92a69a;
+          box-shadow: none;
+        }
+      }
+
+      &--keyboard-selected:not(&--in-range):not(&--selecting-range-start):not(&--in-selecting-range) {
+        background: #f9f9f9;
+      }
+
+      &--today {
+        text-decoration: underline;
+      }
+    }
+
+    &__month-text {
+      padding: 6px 0;
+    }
+  }
+
+  //noinspection CssUnusedSymbol
+  .react-datepicker__month--selected {
+    background: #92a69a !important;
+    color: #f9f9f9;
+
+    &:hover {
+      background: #92a69a;
+      box-shadow: none;
+    }
+  }
+}

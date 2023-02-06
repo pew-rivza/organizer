@@ -1,0 +1,1 @@
+export { IntervalVariant } from "./IntervalVariant";

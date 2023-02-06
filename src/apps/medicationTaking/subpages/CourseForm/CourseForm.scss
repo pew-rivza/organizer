@@ -1,0 +1,21 @@
+.mt_form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+
+  fieldset {
+    border: 1px solid #92a69a;
+    padding: 10px 15px 18px;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    box-sizing: border-box;
+
+    legend {
+      color: #92a69a;
+    }
+  }
+}
