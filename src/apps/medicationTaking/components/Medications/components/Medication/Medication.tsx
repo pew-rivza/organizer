@@ -63,18 +63,11 @@ export const Medication: React.FC<MedicationProps> = ({ medication }) => {
   };
 
   const timesWord = (): string => {
-    return getWordByCount(
-      medication.frequency || 0,
-      groupedOptions.times[0] as WordForms,
-    );
+    return getWordByCount(frequency || 0, groupedOptions.times[0] as WordForms);
   };
 
   const { masculine, feminine, neuter } =
-    findObject<number, Option>(
-      groupedOptions.in,
-      "id",
-      medication?.inId || 0,
-    ) || {};
+    findObject<number, Option>(groupedOptions.in, "id", inId || 0) || {};
 
   const mealTime: InBeforeComplianceKey = valueWord(
     "mealTime",
@@ -93,12 +86,12 @@ export const Medication: React.FC<MedicationProps> = ({ medication }) => {
   const timesOfDay: string = (timesOfDayId && valueWord("timesOfDay")) || "";
 
   const inBeforePreposition: string =
-    (mealTime && IN_BEFORE_COMPLIANCE[mealTime]) || "";
+    (mealTime && inBeforeCount && IN_BEFORE_COMPLIANCE[mealTime]) || "";
 
   const inBefore: string =
     (inBeforeCount &&
       inBeforeMeasureId &&
-      `${medication.inBeforeCount} ${countWord("inBefore")}`) ||
+      `${inBeforeCount} ${countWord("inBefore")}`) ||
     "";
 
   const computedMealTime: string =
