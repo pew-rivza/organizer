@@ -1,0 +1,28 @@
+.bw_todos_index {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 5px;
+  margin-bottom: 10px;
+
+  &-positive {
+    color: #92a69a;
+  };
+
+  &-negative {
+    color: #8c2e2e;
+  }
+
+  &-previous {
+    color: #ccc;
+  }
+
+  svg {
+    height: 17px;
+    width: 17px;
+
+    path {
+      fill: #46858c;
+    }
+  }
+}
