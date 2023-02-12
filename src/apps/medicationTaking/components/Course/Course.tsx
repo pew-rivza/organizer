@@ -1,12 +1,14 @@
 import { useStore } from "effector-react";
 import React from "react";
 
+import { getValuesByField } from "utils/objects";
+
 import { Medications } from "MT_components/Medications";
 import { Toolbar } from "MT_components/Toolbar";
 import { $options } from "MT_models/option";
 import { CourseProps } from "MT_types/props";
 import { GroupedOptions, Medication } from "MT_types/stores";
-import { getCourseEndsWithoutPeriod, getValuesByField } from "MT_utils/period";
+import { getCourseEndsWithoutPeriod } from "MT_utils/period";
 
 import "./Course.scss";
 

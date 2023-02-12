@@ -13,6 +13,7 @@ export type WordForms = {
   one: string;
   few: string;
   many: string;
+  nominativeOne: string;
 };
 
 export type WordGenders = Obj & {
@@ -21,7 +22,7 @@ export type WordGenders = Obj & {
   neuter: string | void;
 };
 
-export type WordFormType = "one" | "few" | "many";
+export type WordFormType = "nominativeOne" | "one" | "few" | "many";
 export type WordGenderType = "masculine" | "feminine" | "neuter";
 export type NullableNumber = number | null;
 

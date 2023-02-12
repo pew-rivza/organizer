@@ -42,7 +42,7 @@ export const navigation: Navigation = [
     link: "/calendar",
     element: <Calendar />,
     title: "Календарь",
-    inMenu: false,
+    inMenu: true,
   },
   {
     icon: "material-symbols:home-outline",

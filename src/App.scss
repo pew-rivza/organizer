@@ -2,7 +2,10 @@
 
 :root {
   --toastify-color-success: #92a69a;
-  --toastify-color-warning: #D9C8A9
+  --toastify-color-warning: #D9C8A9;
+
+  --fc-today-bg-color: rgba(146, 166, 154, 0.3);
+  --fc-border-color: #92a69a;
 }
 
 * {
@@ -141,5 +144,19 @@ input[type=text] {
     &:checked:after {
       opacity: 1;
     }
+  }
+}
+
+.react-tooltip {
+  background: #46858c;
+  opacity: 0.7;
+  border-radius: 0;
+  padding: 7px 10px;
+  z-index: 1;
+  pointer-events: unset;
+
+  * {
+    color: #f9f9f9;
+    font-size: 12px;
   }
 }

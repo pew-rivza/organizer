@@ -1,0 +1,1 @@
+export { MedicationIcon } from "./MedicationIcon";

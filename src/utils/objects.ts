@@ -15,3 +15,10 @@ export function findAllObjects<ValueType, ObjType>(
 ): (ObjType & Obj)[] {
   return arr.filter((obj) => obj[field] === value);
 }
+
+export function getValuesByField<ObjType, ValueType>(
+  objectsArray: (Obj & ObjType)[],
+  field: string,
+): ValueType[] {
+  return objectsArray.map((obj) => obj[field]).filter(Boolean);
+}
