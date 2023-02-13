@@ -1,6 +1,8 @@
 import { useStore } from "effector-react";
 import React from "react";
 
+import { dateFormatter } from "const/common";
+
 import { $calendarData } from "CR_models/calendar";
 import { DayData } from "CR_types/other";
 import { CalendarIconsProps } from "CR_types/props";
@@ -15,7 +17,6 @@ export const CalendarIcons: React.FC<CalendarIconsProps> = ({
   disabled,
 }) => {
   const calendarData = useStore<CalendarData>($calendarData);
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
   const id = dateFormatter.format(date);
   const dayData: DayData =
     calendarData?.[date.getFullYear()]?.[date.getMonth()]?.[date.getDate()];
@@ -33,6 +34,7 @@ export const CalendarIcons: React.FC<CalendarIconsProps> = ({
   );
 };
 
-// TODO: вынести dateFormatted в глобальные константы
-// TODO: сделать вывод тудушек колеса в верхнем тулбаре
+// TODO: отрефакторить весь код календаря, кроме дня
+// TODO: оформить страницу дня
 // TODO: реализовать чек лекарств и чтобы они зачеркивались в тултипе
+// TODO: сделать вывод тудушек колеса в верхнем тулбаре

@@ -1,6 +1,7 @@
 import { useStore } from "effector-react";
 import React from "react";
 
+import { dateFormatter } from "const/common";
 import { getValuesByField } from "utils/objects";
 
 import { Medications } from "MT_components/Medications";
@@ -14,8 +15,6 @@ import "./Course.scss";
 
 export const Course: React.FC<CourseProps> = ({ course }) => {
   const groupedOptions = useStore<GroupedOptions>($options);
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
-
   const periodStarts: number[] = getValuesByField<Medication, Date>(
     course.medications,
     "periodDateStart",

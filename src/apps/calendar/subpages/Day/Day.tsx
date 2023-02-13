@@ -2,6 +2,8 @@ import { useEvent, useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { dateFormatter } from "const/common";
+
 import { fetchCoursesFx } from "MT_models/course";
 import { $options, fetchOptionsFx } from "MT_models/option";
 import { MedicationInfo } from "MT_types/other";
@@ -17,7 +19,6 @@ import "./Day.scss";
 
 export const Day: React.FC = () => {
   const calendarData = useStore<CalendarData>($calendarData);
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
   const { timestamp } = useParams();
   const date: Date | null = timestamp ? new Date(+timestamp) : null;
   const dayData: DayData | null = date

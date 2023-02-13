@@ -36,7 +36,6 @@ export const $calendarData = createStore<CalendarData>({}).on(
         [];
 
       takingDates.forEach((date) => {
-        // TODO: вынести в отдельную функцию
         newState[date.getFullYear()] = newState[date.getFullYear()] || {};
         newState[date.getFullYear()][date.getMonth()] =
           newState[date.getFullYear()][date.getMonth()] || {};

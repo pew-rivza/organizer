@@ -4,6 +4,7 @@ import ExternalDatePicker, { registerLocale } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import MaskedInput from "react-text-mask";
 
+import { dateFormatter } from "const/common";
 import { DatePickerProps } from "types/props";
 import { joinCn } from "utils/joinCn";
 
@@ -18,8 +19,6 @@ export function DatePicker<WithRange extends boolean | undefined = false>({
   wrapperClassNames = [],
   ...props
 }: DatePickerProps<WithRange>) {
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
-
   const CustomInput = forwardRef<
     HTMLInputElement & MaskedInput,
     React.DetailedHTMLProps<
