@@ -8,6 +8,8 @@ import { Navigation } from "types/other";
 
 import { CourseForm } from "MT_subpages/CourseForm";
 
+import { Day } from "CR_subpages/Day";
+
 export const navigation: Navigation = [
   {
     icon: "carbon:chart-radar",
@@ -43,6 +45,14 @@ export const navigation: Navigation = [
     element: <Calendar />,
     title: "Календарь",
     inMenu: true,
+    subpages: [
+      {
+        link: "/calendar/:timestamp",
+        element: <Day />,
+        title: "Календарь: карточка дня",
+        inMenu: false,
+      },
+    ],
   },
   {
     icon: "material-symbols:home-outline",

@@ -3,11 +3,8 @@ import { useStore } from "effector-react";
 import React from "react";
 import { Tooltip } from "react-tooltip";
 
-import { MedicationItem } from "apps/calendar/types/other";
-import { WordForms } from "apps/medicationTaking/types/other";
-import { getWordByCount } from "apps/medicationTaking/utils/options";
-
 import { $options } from "MT_models/option";
+import { MedicationInfo } from "MT_types/other";
 import { GroupedOptions } from "MT_types/stores";
 
 import { OTHER } from "CR_const/common";
@@ -27,6 +24,7 @@ export const MedicationIcon: React.FC<MedicationIconProps> = ({
       <div id={`medication-${id}`}>
         <Icon icon={"game-icons:medicines"} />
       </div>
+
       {!disabled && (
         <Tooltip anchorId={`medication-${id}`}>
           {Object.keys(groupedMedications).map((timesOfDay) => {
@@ -38,20 +36,21 @@ export const MedicationIcon: React.FC<MedicationIconProps> = ({
                   </div>
                 )}
                 {groupedMedications[timesOfDay].map(
-                  (medication: MedicationItem) => {
-                    const frequencyMeasure = getWordByCount(
-                      medication.frequency,
-                      groupedOptions.times[0] as WordForms,
-                    );
+                  (medication: MedicationInfo) => {
+                    const {
+                      name,
+                      count,
+                      nominativeCountMeasure,
+                      frequency,
+                      times,
+                    } = medication;
                     return (
                       <div
                         key={`medications-list-${id}-${medication.id}`}
                         className="cr_day_icons-medication-item"
                       >
-                        {medication.name} {medication.count}{" "}
-                        {medication.measure}{" "}
-                        {timesOfDay === OTHER &&
-                          `${medication.frequency} ${frequencyMeasure}`}
+                        {name} {count} {nominativeCountMeasure}{" "}
+                        {timesOfDay === OTHER && `${frequency} ${times}`}
                       </div>
                     );
                   },

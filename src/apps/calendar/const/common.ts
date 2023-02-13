@@ -5,7 +5,7 @@ export const AFTERNOON: TimesOfDay = "день";
 export const EVENING: TimesOfDay = "вечер";
 export const NIGHT: TimesOfDay = "ночь";
 export const BEFORE_BEDTIME: TimesOfDay = "перед сном";
-export const OTHER: TimesOfDay = "другое";
+export const OTHER: TimesOfDay = "за весь день";
 
 export const MORNING_KEY: string = "утром";
 export const AFTERNOON_KEY: string = "днем";

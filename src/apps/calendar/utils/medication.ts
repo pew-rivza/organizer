@@ -3,9 +3,9 @@ import { findObject } from "utils/objects";
 
 import { $courses } from "MT_models/course";
 import { $options } from "MT_models/option";
-import { Periods, WordForms } from "MT_types/other";
+import { MedicationInfo, Periods } from "MT_types/other";
 import { Course, GroupedOptions, Medication, Option } from "MT_types/stores";
-import { getWordByCount } from "MT_utils/options";
+import { getMedicationInfo } from "MT_utils/getMedicationInfo";
 
 import {
   AFTERNOON,
@@ -16,7 +16,7 @@ import {
   OTHER,
   TIMES_OF_DAY_COMPLIANCE,
 } from "CR_const/common";
-import { GroupedMedications, MedicationItem } from "CR_types/other";
+import { GroupedMedications } from "CR_types/other";
 
 export const getMedicationStart = (medication: Medication): Date | void => {
   const courseStart = findObject<number, Course>(
@@ -85,27 +85,12 @@ export const getGroupedMedications = (
     [OTHER]: [],
   };
 
-  medications.forEach((medication) => {
-    const { count, name, id, frequency } = medication;
-    const timesOfDay = findObject<number, Option>(
-      groupedOptions.timesOfDay,
-      "id",
-      medication.timesOfDayId || 0,
-    )?.value;
-    const wordForms: WordForms = findObject(
-      groupedOptions.dosageForm,
-      "id",
-      medication.countMeasureId,
-    ) as WordForms;
-
-    const measure = getWordByCount(medication.count || 0, wordForms, true);
-    const medicationInfo: MedicationItem = {
-      id: id || 0,
-      count: count || 0,
-      name,
-      measure,
-      frequency: frequency || 0,
-    };
+  medications.forEach((medication: Medication) => {
+    const medicationInfo: MedicationInfo = getMedicationInfo(
+      medication,
+      groupedOptions,
+    );
+    const { timesOfDay } = medicationInfo;
 
     if (timesOfDay) {
       groupedMedications[TIMES_OF_DAY_COMPLIANCE[timesOfDay]].push(

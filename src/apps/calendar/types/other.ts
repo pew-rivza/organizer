@@ -1,18 +1,12 @@
 import { Obj } from "types/other";
 
+import { MedicationInfo } from "MT_types/other";
 import { Medication } from "MT_types/stores";
 
 export type DayData = { medications: Medication[] };
-export type MedicationItem = {
-  id: number;
-  name: string;
-  count: number;
-  measure: string;
-  frequency: number;
-};
 export type TimesOfDay = string &
-  ("утро" | "день" | "вечер" | "ночь" | "перед сном" | "другое");
+  ("утро" | "день" | "вечер" | "ночь" | "перед сном" | "за весь день");
 
 export type GroupedMedications = Obj & {
-  [timesOfDay: string]: MedicationItem[];
+  [timesOfDay: string]: MedicationInfo[];
 };

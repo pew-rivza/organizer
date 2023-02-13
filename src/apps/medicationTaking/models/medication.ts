@@ -28,10 +28,10 @@ export const $medications = createStore<Medication[]>([]).on(
       return {
         ...medication,
         periodDateStart: medication.periodDateStart
-          ? new Date(medication.periodDateStart as unknown as string)
+          ? new Date(medication.periodDateStart)
           : null,
         periodDateEnd: medication.periodDateEnd
-          ? new Date(medication.periodDateEnd as unknown as string)
+          ? new Date(medication.periodDateEnd)
           : null,
       };
     });

@@ -31,7 +31,8 @@ export const QualityIndex: React.FC = () => {
 
   return (
     <div className="bw_todos_index">
-      <Icon icon="mdi:lq" /> <span className={cn}>{qualityIndex}</span>{" "}
+      <Icon icon="mdi:lq" />
+      {!!qualityIndex && <span className={cn}>{qualityIndex}</span>}{" "}
       {!!previousQualityIndex && (
         <span className="bw_todos_index-previous">{previousQualityIndex}</span>
       )}

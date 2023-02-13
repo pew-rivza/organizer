@@ -78,3 +78,22 @@ export type DateFunctions =
   | "getDate"
   | "getMonth"
   | "getFullYear";
+
+export type MedicationInfo = {
+  id: number;
+  name: string;
+  count: number;
+  countMeasure: string;
+  nominativeCountMeasure: string;
+  routeOfAdministration: string;
+  frequency: number;
+  times: string;
+  frequencyCount: number | string;
+  frequencyMeasure: string;
+  timesOfDay: string;
+  inBeforePreposition: string;
+  inBefore: string;
+  mealTime: string;
+  period: string;
+  comment: string;
+};
