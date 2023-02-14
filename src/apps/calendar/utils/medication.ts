@@ -9,14 +9,19 @@ import { getMedicationInfo } from "MT_utils/getMedicationInfo";
 
 import {
   AFTERNOON,
+  ALL_DAY,
   BEFORE_BEDTIME,
   EVENING,
   MORNING,
   NIGHT,
-  OTHER,
   TIMES_OF_DAY_COMPLIANCE,
 } from "CR_const/common";
-import { GroupedMedications } from "CR_types/other";
+import {
+  DayDataKey,
+  GroupedMedications,
+  TimesOfDayNominative,
+} from "CR_types/other";
+import { CalendarData } from "CR_types/stores";
 
 export const getMedicationStart = (medication: Medication): Date | void => {
   const courseStart = findObject<number, Course>(
@@ -36,54 +41,74 @@ export const getMedicationEnd = (
   medication: Medication,
   start: Date | void,
 ): Date | void => {
+  const measure: Periods = findObject<number, Option>(
+    $options.getState().period,
+    "id",
+    medication.periodMeasureId || 0,
+  )?.many as Periods;
+
   return (
     start &&
     (medication.periodDateEnd
       ? medication.periodDateEnd
-      : addToDate(
-          start,
-          medication.periodCount || 0,
-          findObject<number, Option>(
-            $options.getState().period,
-            "id",
-            medication.periodMeasureId || 0,
-          )?.many as Periods,
-        ))
+      : addToDate(start, medication.periodCount || 0, measure))
   );
 };
 
 export const getTakingDates = (
   count: number,
   measure: Periods,
-  start: Date,
-  end: Date,
+  start?: Date | void,
+  end?: Date | void,
 ): Date[] => {
-  let currentDate = start;
-  const takingDates = [start];
+  let currentDate: Date | void = start;
+  const takingDates: Date[] = [];
 
-  while (currentDate.getTime() <= end.getTime()) {
-    const newDate = addToDate(currentDate, count, measure, false);
-    if (newDate.getTime() <= end.getTime()) {
-      takingDates.push(newDate);
-    }
-    currentDate = newDate;
+  if (!(currentDate && end)) {
+    return takingDates;
+  }
+
+  while (currentDate?.getTime() <= end?.getTime()) {
+    takingDates.push(currentDate);
+    currentDate = addToDate(currentDate, count, measure, false);
   }
 
   return takingDates;
+};
+
+const pushMedicationInfo = (
+  groupedMedications: GroupedMedications,
+  medicationInfo: MedicationInfo,
+  fields: TimesOfDayNominative[],
+) => {
+  const newGroupedMedications = { ...groupedMedications };
+
+  fields.forEach((field) => {
+    newGroupedMedications[field].push(medicationInfo);
+  });
+
+  return newGroupedMedications;
 };
 
 export const getGroupedMedications = (
   medications: Medication[],
   groupedOptions: GroupedOptions,
 ): GroupedMedications => {
-  const groupedMedications: GroupedMedications = {
+  let groupedMedications: GroupedMedications = {
     [MORNING]: [],
     [AFTERNOON]: [],
     [EVENING]: [],
     [NIGHT]: [],
     [BEFORE_BEDTIME]: [],
-    [OTHER]: [],
-  };
+    [ALL_DAY]: [],
+  } as GroupedMedications;
+
+  const timesOfDayList: TimesOfDayNominative[] = [
+    MORNING,
+    EVENING,
+    AFTERNOON,
+    NIGHT,
+  ];
 
   medications.forEach((medication: Medication) => {
     const medicationInfo: MedicationInfo = getMedicationInfo(
@@ -98,30 +123,19 @@ export const getGroupedMedications = (
       );
     } else {
       switch (medication.frequency) {
-        case 1: {
-          groupedMedications[MORNING].push(medicationInfo);
-          break;
-        }
-        case 2: {
-          groupedMedications[MORNING].push(medicationInfo);
-          groupedMedications[EVENING].push(medicationInfo);
-          break;
-        }
-        case 3: {
-          groupedMedications[MORNING].push(medicationInfo);
-          groupedMedications[AFTERNOON].push(medicationInfo);
-          groupedMedications[EVENING].push(medicationInfo);
-          break;
-        }
+        case 1:
+        case 2:
+        case 3:
         case 4: {
-          groupedMedications[MORNING].push(medicationInfo);
-          groupedMedications[AFTERNOON].push(medicationInfo);
-          groupedMedications[EVENING].push(medicationInfo);
-          groupedMedications[NIGHT].push(medicationInfo);
+          groupedMedications = pushMedicationInfo(
+            groupedMedications,
+            medicationInfo,
+            timesOfDayList.slice(0, medication.frequency),
+          );
           break;
         }
         default: {
-          groupedMedications[OTHER].push(medicationInfo);
+          groupedMedications[ALL_DAY].push(medicationInfo);
           break;
         }
       }
@@ -129,4 +143,29 @@ export const getGroupedMedications = (
   });
 
   return groupedMedications;
+};
+
+export const fillCalendarData = (
+  calendarData: CalendarData,
+  takingDates: Date[],
+  date: Date,
+  field: DayDataKey,
+): CalendarData => {
+  const filledCalendarData = { ...calendarData };
+
+  filledCalendarData[date.getFullYear()] =
+    filledCalendarData[date.getFullYear()] || {};
+  filledCalendarData[date.getFullYear()][date.getMonth()] =
+    filledCalendarData[date.getFullYear()][date.getMonth()] || {};
+  filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] =
+    filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] ||
+    {};
+  filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
+    field
+  ] =
+    filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
+      field
+    ] || [];
+
+  return filledCalendarData;
 };

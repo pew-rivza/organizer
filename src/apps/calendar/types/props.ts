@@ -5,6 +5,14 @@ export type CalendarIconsProps = {
   disabled: boolean;
 };
 
+export type IconTemplateProps = {
+  disabled: boolean;
+  prefix: string;
+  id: string;
+  icon: string;
+  children: JSX.Element | JSX.Element[];
+};
+
 export type MedicationIconProps = {
   id: string;
   medications: Medication[];

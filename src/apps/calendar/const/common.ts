@@ -1,22 +1,23 @@
-import { TimesOfDay } from "CR_types/other";
+import { TimesOfDay, TimesOfDayNominative } from "CR_types/other";
 
-export const MORNING: TimesOfDay = "утро";
-export const AFTERNOON: TimesOfDay = "день";
-export const EVENING: TimesOfDay = "вечер";
-export const NIGHT: TimesOfDay = "ночь";
-export const BEFORE_BEDTIME: TimesOfDay = "перед сном";
-export const OTHER: TimesOfDay = "за весь день";
+export const MORNING: TimesOfDayNominative = "утро";
+export const AFTERNOON: TimesOfDayNominative = "день";
+export const EVENING: TimesOfDayNominative = "вечер";
+export const NIGHT: TimesOfDayNominative = "ночь";
+export const BEFORE_BEDTIME: TimesOfDayNominative = "перед сном";
+export const ALL_DAY: TimesOfDayNominative = "в течение дня";
 
-export const MORNING_KEY: string = "утром";
-export const AFTERNOON_KEY: string = "днем";
-export const EVENING_KEY: string = "вечером";
-export const NIGHT_KEY: string = "ночью";
-export const BEFORE_BEDTIME_KEY: string = "перед сном";
+export const MORNING_KEY: TimesOfDay = "утром";
+export const AFTERNOON_KEY: TimesOfDay = "днем";
+export const EVENING_KEY: TimesOfDay = "вечером";
+export const NIGHT_KEY: TimesOfDay = "ночью";
+export const BEFORE_BEDTIME_KEY: TimesOfDay = "перед сном";
 
-export const TIMES_OF_DAY_COMPLIANCE = {
-  [MORNING_KEY]: MORNING,
-  [AFTERNOON_KEY]: AFTERNOON_KEY,
-  [EVENING_KEY]: EVENING,
-  [NIGHT_KEY]: NIGHT,
-  [BEFORE_BEDTIME_KEY]: BEFORE_BEDTIME,
-};
+export const TIMES_OF_DAY_COMPLIANCE: Record<TimesOfDay, TimesOfDayNominative> =
+  {
+    [MORNING_KEY]: MORNING,
+    [AFTERNOON_KEY]: AFTERNOON,
+    [EVENING_KEY]: EVENING,
+    [NIGHT_KEY]: NIGHT,
+    [BEFORE_BEDTIME_KEY]: BEFORE_BEDTIME,
+  };

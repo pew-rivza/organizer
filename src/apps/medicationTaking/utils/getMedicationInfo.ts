@@ -10,6 +10,8 @@ import {
 import { GroupedOptions, Medication, Option } from "MT_types/stores";
 import { getWordByCount, getWordByGender } from "MT_utils/options";
 
+import { TimesOfDay } from "CR_types/other";
+
 export const getMedicationInfo = (
   medication: Medication,
   groupedOptions: GroupedOptions,
@@ -83,10 +85,11 @@ export const getMedicationInfo = (
     (inWhichId && inId && `в ${genderWord("inWhich")} ${valueWord("in")}`) ||
     "";
 
-  const computedFrequencyCount: number | string =
-    (frequencyCount !== 1 && frequencyCount) || "";
+  const computedFrequencyCount: string =
+    (frequencyCount !== 1 && `${frequencyCount}`) || "";
 
-  const timesOfDay: string = (timesOfDayId && valueWord("timesOfDay")) || "";
+  const timesOfDay: TimesOfDay = ((timesOfDayId && valueWord("timesOfDay")) ||
+    "") as TimesOfDay;
 
   const inBeforePreposition: string =
     (mealTime && inBeforeCount && IN_BEFORE_COMPLIANCE[mealTime]) || "";
@@ -111,11 +114,11 @@ export const getMedicationInfo = (
   return {
     id: id || 0,
     name,
-    count: count || 0,
+    count: (count && count.toString()) || "",
     countMeasure: countWord("count"),
     nominativeCountMeasure: countWord("count", true),
     routeOfAdministration: routeOfAdministration || whichIn,
-    frequency: frequency || 0,
+    frequency: (frequency && frequency.toString()) || "",
     times: timesWord(),
     frequencyCount: computedFrequencyCount,
     frequencyMeasure: countWord("frequency"),

@@ -2,6 +2,8 @@ import { Obj } from "types/other";
 
 import { Medication } from "MT_types/stores";
 
+import { TimesOfDay } from "CR_types/other";
+
 export type CastMode = "DECLINATION" | "GENDER" | "DEFAULT";
 
 export type CastConfig = {
@@ -82,15 +84,15 @@ export type DateFunctions =
 export type MedicationInfo = {
   id: number;
   name: string;
-  count: number;
+  count: string;
   countMeasure: string;
   nominativeCountMeasure: string;
   routeOfAdministration: string;
-  frequency: number;
+  frequency: string;
   times: string;
-  frequencyCount: number | string;
+  frequencyCount: string;
   frequencyMeasure: string;
-  timesOfDay: string;
+  timesOfDay: TimesOfDay;
   inBeforePreposition: string;
   inBefore: string;
   mealTime: string;

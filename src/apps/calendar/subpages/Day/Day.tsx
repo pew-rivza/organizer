@@ -9,7 +9,7 @@ import { $options, fetchOptionsFx } from "MT_models/option";
 import { MedicationInfo } from "MT_types/other";
 import { Course as CourseType, GroupedOptions, Option } from "MT_types/stores";
 
-import { OTHER } from "CR_const/common";
+import { ALL_DAY } from "CR_const/common";
 import { $calendarData } from "CR_models/calendar";
 import { DayData } from "CR_types/other";
 import { CalendarData } from "CR_types/stores";
@@ -72,7 +72,7 @@ export const Day: React.FC = () => {
                         {name} {count} {nominativeCountMeasure}{" "}
                         {routeOfAdministration} {inBeforePreposition} {inBefore}{" "}
                         {mealTime}{" "}
-                        {timesOfDay === OTHER && `${frequency} ${times}`}{" "}
+                        {timesOfDay === ALL_DAY && `${frequency} ${times}`}{" "}
                         {comment}
                       </div>
                     );

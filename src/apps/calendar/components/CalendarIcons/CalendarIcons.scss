@@ -14,15 +14,4 @@
       fill: #46858c;
     }
   }
-
-  &-medication {
-    &-header {
-      margin-bottom: 2px;
-      font-weight: 700;
-    }
-
-    &-item + &-header {
-      margin-top: 5px;
-    }
-  }
 }

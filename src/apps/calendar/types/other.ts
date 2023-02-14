@@ -4,9 +4,13 @@ import { MedicationInfo } from "MT_types/other";
 import { Medication } from "MT_types/stores";
 
 export type DayData = { medications: Medication[] };
+export type DayDataKey = "medications";
+
+export type TimesOfDayNominative = string &
+  ("утро" | "день" | "вечер" | "ночь" | "перед сном" | "в течение дня");
 export type TimesOfDay = string &
-  ("утро" | "день" | "вечер" | "ночь" | "перед сном" | "за весь день");
+  ("утром" | "днем" | "вечером" | "ночью" | "перед сном");
 
 export type GroupedMedications = Obj & {
-  [timesOfDay: string]: MedicationInfo[];
+  [timesOfDay in TimesOfDayNominative]: MedicationInfo[];
 };

@@ -1,13 +1,15 @@
 import { createStore } from "effector";
 
-import { findObject } from "utils/objects";
+import { findObject, mergeDeep } from "utils/objects";
 
 import { $medications } from "MT_models/medication";
 import { $options } from "MT_models/option";
 import { Periods } from "MT_types/other";
+import { Option } from "MT_types/stores";
 
 import { CalendarData } from "CR_types/stores";
 import {
+  fillCalendarData,
   getMedicationEnd,
   getMedicationStart,
   getTakingDates,
@@ -15,43 +17,34 @@ import {
 
 export const $calendarData = createStore<CalendarData>({}).on(
   $medications,
-  (_, medications) => {
-    const newState: CalendarData = {};
+  (prevState, medications) => {
+    let newState: CalendarData = {};
 
     medications.forEach((medication) => {
       const start: Date | void = getMedicationStart(medication);
       const end: Date | void = getMedicationEnd(medication, start);
       const count: number | null = medication.frequencyCount;
-      const measure = findObject(
+      const measure = findObject<number, Option>(
         $options.getState().frequency,
         "id",
-        medication.frequencyMeasureId,
+        medication.frequencyMeasureId || 0,
       )?.many as Periods;
 
-      const takingDates =
-        (!!start &&
-          !!end &&
-          !!count &&
-          getTakingDates(count, measure, start, end)) ||
-        [];
+      const takingDates: Date[] = getTakingDates(
+        count || 0,
+        measure,
+        start,
+        end,
+      );
 
       takingDates.forEach((date) => {
-        newState[date.getFullYear()] = newState[date.getFullYear()] || {};
-        newState[date.getFullYear()][date.getMonth()] =
-          newState[date.getFullYear()][date.getMonth()] || {};
-        newState[date.getFullYear()][date.getMonth()][date.getDate()] =
-          newState[date.getFullYear()][date.getMonth()][date.getDate()] || {};
-        newState[date.getFullYear()][date.getMonth()][
-          date.getDate()
-        ].medications =
-          newState[date.getFullYear()][date.getMonth()][date.getDate()]
-            .medications || [];
-
+        newState = fillCalendarData(newState, takingDates, date, "medications");
         newState[date.getFullYear()][date.getMonth()][
           date.getDate()
         ].medications.push(medication);
       });
     });
-    return newState;
+
+    return { ...mergeDeep(prevState, newState) };
   },
 );
