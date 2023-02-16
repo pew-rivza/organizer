@@ -1,4 +1,4 @@
-import { createStore } from "effector";
+import { createEvent, createStore } from "effector";
 
 import { findObject, mergeDeep } from "utils/objects";
 
@@ -14,6 +14,15 @@ import {
   getMedicationStart,
   getTakingDates,
 } from "CR_utils/medication";
+
+// Events
+export const updateCurrentDate = createEvent<Date | null>();
+
+// Stores
+export const $currentDate = createStore<Date | null>(null).on(
+  updateCurrentDate,
+  (_, currentDate) => currentDate,
+);
 
 export const $calendarData = createStore<CalendarData>({}).on(
   $medications,

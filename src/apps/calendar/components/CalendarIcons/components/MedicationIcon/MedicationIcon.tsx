@@ -4,7 +4,7 @@ import React from "react";
 import { $options } from "MT_models/option";
 import { GroupedOptions } from "MT_types/stores";
 
-import { $checkedMedications } from "CR_models/calendar";
+import { $checkedMedications } from "CR_models/medication";
 import { TimesOfDayNominative } from "CR_types/other";
 import { MedicationIconProps } from "CR_types/props";
 import { CheckedMedications } from "CR_types/stores";

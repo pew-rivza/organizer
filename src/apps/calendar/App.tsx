@@ -10,24 +10,30 @@ import { Course as CourseType, Option } from "MT_types/stores";
 
 import { CalendarIcons } from "CR_components/CalendarIcons";
 import { calendarConfig } from "CR_const/calendarConfig";
+import { fetchCheckedMedicationsFx } from "CR_models/medication";
+import { CheckedMedications } from "CR_types/stores";
 
 import "./App.scss";
 
 export const App: React.FC = () => {
   const fetchCourses = useEvent<CourseType[]>(fetchCoursesFx);
   const fetchOptions = useEvent<Option[]>(fetchOptionsFx);
+  const fetchCheckedMedications = useEvent<CheckedMedications[]>(
+    fetchCheckedMedicationsFx,
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchCourses();
     fetchOptions();
-  }, [fetchCourses, fetchOptions]);
+    fetchCheckedMedications();
+  }, [fetchCheckedMedications, fetchCourses, fetchOptions]);
 
   const DayCellContent: React.FC<DayCellContentArg> = (dayCell) => {
     const { date, isOther } = dayCell;
 
     return (
-      <div className="cr_day">
+      <div className="cr_day_cell">
         <div>{dayCell.dayNumberText}</div>
         <CalendarIcons date={date} disabled={isOther} />
       </div>
@@ -47,6 +53,10 @@ export const App: React.FC = () => {
   );
 };
 
-// TODO: оформить страницу дня
-// TODO: реализовать чек лекарств и чтобы они зачеркивались в тултипе
+// TODO: отрефакторить затронутый код
+// TODO: вынести вызов фетчей в общее для всего приложения место
+// TODO: разобраться переходами на страницы дня на активных и дизейблед днях
+// TODO: при удалении медикейшана удалять его чеки в календаре, и при удалении курса тоже
+// TODO: сделать кнопку назад
 // TODO: сделать вывод тудушек колеса в верхнем тулбаре
+// TODO: сделать адаптив
