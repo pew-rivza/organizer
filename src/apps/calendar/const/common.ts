@@ -1,4 +1,8 @@
-import { TimesOfDay, TimesOfDayNominative } from "CR_types/other";
+import {
+  GroupedMedications,
+  TimesOfDay,
+  TimesOfDayNominative,
+} from "CR_types/other";
 
 export const MORNING: TimesOfDayNominative = "утро";
 export const AFTERNOON: TimesOfDayNominative = "день";
@@ -21,3 +25,31 @@ export const TIMES_OF_DAY_COMPLIANCE: Record<TimesOfDay, TimesOfDayNominative> =
     [NIGHT_KEY]: NIGHT,
     [BEFORE_BEDTIME_KEY]: BEFORE_BEDTIME,
   };
+
+export const TIMES_OF_DAY_ICONS_COMPLIANCE: Record<
+  TimesOfDayNominative,
+  string
+> = {
+  [MORNING]: "carbon:sunrise",
+  [AFTERNOON]: "fluent-mdl2:sunny",
+  [EVENING]: "carbon:sunset",
+  [NIGHT]: "material-symbols:nights-stay-outline",
+  [BEFORE_BEDTIME]: "mdi:bed-outline",
+  [ALL_DAY]: "ic:baseline-access-time",
+};
+
+export const EMPTY_GROUPED_MEDICATIONS: GroupedMedications = {
+  [MORNING]: [],
+  [AFTERNOON]: [],
+  [EVENING]: [],
+  [NIGHT]: [],
+  [BEFORE_BEDTIME]: [],
+  [ALL_DAY]: [],
+};
+
+export const TIMES_OF_DAY_LIST: TimesOfDayNominative[] = [
+  MORNING,
+  EVENING,
+  AFTERNOON,
+  NIGHT,
+];
