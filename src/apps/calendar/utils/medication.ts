@@ -8,20 +8,17 @@ import { Course, GroupedOptions, Medication, Option } from "MT_types/stores";
 import { getMedicationInfo } from "MT_utils/getMedicationInfo";
 
 import {
-  AFTERNOON,
   ALL_DAY,
-  BEFORE_BEDTIME,
-  EVENING,
-  MORNING,
-  NIGHT,
+  EMPTY_GROUPED_MEDICATIONS,
   TIMES_OF_DAY_COMPLIANCE,
+  TIMES_OF_DAY_LIST,
 } from "CR_const/common";
 import {
   DayDataKey,
   GroupedMedications,
   TimesOfDayNominative,
 } from "CR_types/other";
-import { CalendarData } from "CR_types/stores";
+import { CalendarData, CheckedMedications } from "CR_types/stores";
 
 export const getMedicationStart = (medication: Medication): Date | void => {
   const courseStart = findObject<number, Course>(
@@ -80,35 +77,37 @@ const pushMedicationInfo = (
   groupedMedications: GroupedMedications,
   medicationInfo: MedicationInfo,
   fields: TimesOfDayNominative[],
-) => {
-  const newGroupedMedications = { ...groupedMedications };
+  checkedMedications: CheckedMedications[],
+  currentDate: Date | null,
+): GroupedMedications => {
+  const newGroupedMedications: GroupedMedications = { ...groupedMedications };
 
   fields.forEach((field) => {
-    newGroupedMedications[field].push(medicationInfo);
+    const checked = checkedMedications.find((checkedMedication) => {
+      return (
+        checkedMedication.medicationId === medicationInfo.id &&
+        checkedMedication.timesOfDay === field &&
+        checkedMedication.date.getTime() === currentDate?.getTime()
+      );
+    });
+    newGroupedMedications[field].push({
+      ...medicationInfo,
+      checked: !!checked,
+      checkedId: checked?.id,
+    });
   });
-
   return newGroupedMedications;
 };
 
 export const getGroupedMedications = (
   medications: Medication[],
   groupedOptions: GroupedOptions,
+  checkedMedications: CheckedMedications[],
+  currentDate: Date | null,
 ): GroupedMedications => {
-  let groupedMedications: GroupedMedications = {
-    [MORNING]: [],
-    [AFTERNOON]: [],
-    [EVENING]: [],
-    [NIGHT]: [],
-    [BEFORE_BEDTIME]: [],
-    [ALL_DAY]: [],
-  } as GroupedMedications;
-
-  const timesOfDayList: TimesOfDayNominative[] = [
-    MORNING,
-    EVENING,
-    AFTERNOON,
-    NIGHT,
-  ];
+  let groupedMedications: GroupedMedications = JSON.parse(
+    JSON.stringify(EMPTY_GROUPED_MEDICATIONS),
+  );
 
   medications.forEach((medication: Medication) => {
     const medicationInfo: MedicationInfo = getMedicationInfo(
@@ -118,8 +117,12 @@ export const getGroupedMedications = (
     const { timesOfDay } = medicationInfo;
 
     if (timesOfDay) {
-      groupedMedications[TIMES_OF_DAY_COMPLIANCE[timesOfDay]].push(
+      groupedMedications = pushMedicationInfo(
+        groupedMedications,
         medicationInfo,
+        [TIMES_OF_DAY_COMPLIANCE[timesOfDay]],
+        checkedMedications,
+        currentDate,
       );
     } else {
       switch (medication.frequency) {
@@ -130,12 +133,20 @@ export const getGroupedMedications = (
           groupedMedications = pushMedicationInfo(
             groupedMedications,
             medicationInfo,
-            timesOfDayList.slice(0, medication.frequency),
+            TIMES_OF_DAY_LIST.slice(0, medication.frequency),
+            checkedMedications,
+            currentDate,
           );
           break;
         }
         default: {
-          groupedMedications[ALL_DAY].push(medicationInfo);
+          groupedMedications = pushMedicationInfo(
+            groupedMedications,
+            medicationInfo,
+            [ALL_DAY],
+            checkedMedications,
+            currentDate,
+          );
           break;
         }
       }
