@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Chips } from "components/Chips";
-
 import { FieldChipsProps } from "MT_types/props";
+
+import { Chips } from "components/Chips";
 
 import "./FieldChips.scss";
 

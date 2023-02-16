@@ -1,7 +1,8 @@
-import { Icon } from "@iconify/react";
-import { useEvent, useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { Icon } from "@iconify/react";
+import { useEvent, useStore } from "effector-react";
 
 import { Course } from "MT_components/Course";
 import { $coursesFullInfo, fetchCoursesFx } from "MT_models/course";

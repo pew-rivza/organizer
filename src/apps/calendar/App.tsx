@@ -1,8 +1,9 @@
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { DayCellContentArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 import { useEvent } from "effector-react";
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 
 import { fetchCoursesFx } from "MT_models/course";
 import { fetchOptionsFx } from "MT_models/option";
@@ -53,10 +54,10 @@ export const App: React.FC = () => {
   );
 };
 
-// TODO: отрефакторить затронутый код
 // TODO: вынести вызов фетчей в общее для всего приложения место
 // TODO: разобраться переходами на страницы дня на активных и дизейблед днях
 // TODO: при удалении медикейшана удалять его чеки в календаре, и при удалении курса тоже
 // TODO: сделать кнопку назад
 // TODO: сделать вывод тудушек колеса в верхнем тулбаре
 // TODO: сделать адаптив
+// TODO: настроить проверку import/order в eslint

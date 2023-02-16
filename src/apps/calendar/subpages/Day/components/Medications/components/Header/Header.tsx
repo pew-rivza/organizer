@@ -1,5 +1,6 @@
-import { Icon } from "@iconify/react";
 import React from "react";
+
+import { Icon } from "@iconify/react";
 
 import { TIMES_OF_DAY_ICONS_COMPLIANCE } from "CR_const/common";
 import { MedicationHeaderDayProps } from "CR_types/props";

@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Icon } from "@iconify/react";
 import { useStore } from "effector-react";
-import React from "react";
 
 import {
   $changedMedications,

@@ -1,7 +1,8 @@
-import { Icon } from "@iconify/react";
-import { useEvent, useStore } from "effector-react";
 import React from "react";
 import { toast } from "react-toastify";
+
+import { Icon } from "@iconify/react";
+import { useEvent, useStore } from "effector-react";
 
 import { API_UPDATE_AREA_VALUES } from "BW_api/areaValue";
 import { API_DELETE_WHEEL, API_UPDATE_DATE } from "BW_api/wheel";

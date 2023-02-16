@@ -1,8 +1,8 @@
-import type { ChartOptions } from "chart.js";
-
 import { updateEditedAreaValues } from "BW_models/areaValue";
 import { editModeOn } from "BW_models/common";
 import { DragData } from "BW_types/other";
+
+import type { ChartOptions } from "chart.js";
 
 export const WHEEL_OPTIONS: ChartOptions<"radar"> & DragData = {
   plugins: {

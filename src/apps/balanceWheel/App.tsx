@@ -1,5 +1,6 @@
-import { useEvent } from "effector-react";
 import React, { useEffect } from "react";
+
+import { useEvent } from "effector-react";
 
 import { Date } from "BW_components/Date";
 import { Todos } from "BW_components/Todos";

@@ -1,5 +1,6 @@
-import { Icon } from "@iconify/react";
 import React from "react";
+
+import { Icon } from "@iconify/react";
 
 import { updateAddableAreaId } from "BW_models/todo";
 import { HeaderProps } from "BW_types/props";

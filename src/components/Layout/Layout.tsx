@@ -1,8 +1,8 @@
-import { Icon } from "@iconify/react";
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import { Icon } from "@iconify/react";
 import { navigation } from "const/navigation";
 
 import "./Layout.scss";

@@ -1,5 +1,4 @@
 import { createEffect, createEvent, createStore } from "effector";
-
 import { findObject } from "utils/objects";
 
 import { API_FETCH_COURSES } from "MT_api/course";

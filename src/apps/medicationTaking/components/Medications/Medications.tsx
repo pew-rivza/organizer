@@ -6,8 +6,9 @@ import { GroupedMedicationsByPeriod } from "MT_types/other";
 import { MedicationsProps } from "MT_types/props";
 import { groupMedicationsByPeriod } from "MT_utils/groupObjects";
 
-import "./Medications.scss";
 import { WithoutPeriodMedications } from "./components/WithoutPeriodMedications";
+
+import "./Medications.scss";
 
 export const Medications: React.FC<MedicationsProps> = ({
   medications,

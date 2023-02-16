@@ -1,8 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
 
 :root {
   --toastify-color-success: #92a69a;
-  --toastify-color-warning: #D9C8A9;
+  --toastify-color-warning: #d9c8a9;
 
   --fc-today-bg-color: rgba(146, 166, 154, 0.3);
   --fc-border-color: #92a69a;
@@ -55,7 +55,7 @@ button {
   }
 }
 
-input[type=text] {
+input[type="text"] {
   width: 100%;
   height: 17px;
   box-sizing: border-box;
@@ -71,7 +71,8 @@ input[type=text] {
     color: #999;
   }
 
-  &:disabled, &.disabled {
+  &:disabled,
+  &.disabled {
     cursor: not-allowed;
     pointer-events: none;
   }

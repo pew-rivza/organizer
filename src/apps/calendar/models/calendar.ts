@@ -1,5 +1,4 @@
 import { createEvent, createStore } from "effector";
-
 import { findObject, mergeDeep } from "utils/objects";
 
 import { $medications } from "MT_models/medication";

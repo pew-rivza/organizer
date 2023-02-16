@@ -1,8 +1,8 @@
-import { useStore } from "effector-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { Select } from "components/Select";
+import { useStore } from "effector-react";
 import { SelectOption } from "types/other";
 import { findObject } from "utils/objects";
 

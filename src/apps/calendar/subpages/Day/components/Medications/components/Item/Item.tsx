@@ -1,5 +1,6 @@
-import { useEvent, useStore } from "effector-react";
 import React, { ChangeEvent } from "react";
+
+import { useEvent, useStore } from "effector-react";
 
 import {
   API_CHECK_MEDICATION,

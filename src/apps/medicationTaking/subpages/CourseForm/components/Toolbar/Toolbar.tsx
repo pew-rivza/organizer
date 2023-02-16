@@ -1,9 +1,9 @@
-import { Icon } from "@iconify/react";
-import { useStore } from "effector-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import { Icon } from "@iconify/react";
+import { useStore } from "effector-react";
 import { convertUTCDate } from "utils/date";
 
 import { API_ADD_COURSE, API_UPDATE_COURSE } from "MT_api/course";

@@ -1,5 +1,6 @@
-import { useStore } from "effector-react";
 import React from "react";
+
+import { useStore } from "effector-react";
 
 import { $options } from "MT_models/option";
 import { GroupedOptions } from "MT_types/stores";

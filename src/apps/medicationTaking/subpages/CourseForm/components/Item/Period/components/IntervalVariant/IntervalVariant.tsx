@@ -1,7 +1,7 @@
-import { useStore } from "effector-react";
 import React from "react";
 
 import { DatePicker } from "components/DatePicker";
+import { useStore } from "effector-react";
 
 import { $changedMedications } from "MT_models/medication";
 import { PeriodItemVariantProps } from "MT_types/props";

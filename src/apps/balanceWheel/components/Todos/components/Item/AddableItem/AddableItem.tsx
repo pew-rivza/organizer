@@ -1,6 +1,7 @@
-import { useStore } from "effector-react";
 import React, { useRef, useState } from "react";
 import MaskedInput from "react-text-mask";
+
+import { useStore } from "effector-react";
 
 import { API_ADD_TODO } from "BW_api/todo";
 import { $addableAreaId, updateAddableAreaId } from "BW_models/todo";

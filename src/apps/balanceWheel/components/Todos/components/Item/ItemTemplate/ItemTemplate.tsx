@@ -1,7 +1,8 @@
-import { Icon } from "@iconify/react";
-import { useEvent, useStore } from "effector-react";
 import React, { KeyboardEvent } from "react";
 import MaskedInput from "react-text-mask";
+
+import { Icon } from "@iconify/react";
+import { useEvent, useStore } from "effector-react";
 
 import { API_UPDATE_TODO } from "BW_api/todo";
 import { ENTER_CODE, ESCAPE_CODE } from "BW_const/common";

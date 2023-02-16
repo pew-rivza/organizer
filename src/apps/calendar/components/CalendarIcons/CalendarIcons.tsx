@@ -1,7 +1,7 @@
-import { useStore } from "effector-react";
 import React from "react";
 
 import { dateFormatter } from "const/common";
+import { useStore } from "effector-react";
 
 import { $calendarData } from "CR_models/calendar";
 import { DayData } from "CR_types/other";

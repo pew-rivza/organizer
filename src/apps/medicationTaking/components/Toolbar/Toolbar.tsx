@@ -1,8 +1,9 @@
-import { Icon } from "@iconify/react";
-import { useEvent } from "effector-react";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+
+import { Icon } from "@iconify/react";
+import { useEvent } from "effector-react";
 
 import { API_DELETE_COURSE } from "MT_api/course";
 import { fetchCoursesFx } from "MT_models/course";

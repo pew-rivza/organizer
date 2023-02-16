@@ -1,6 +1,6 @@
-import { useStore } from "effector-react";
 import React, { ChangeEventHandler } from "react";
 
+import { useStore } from "effector-react";
 import { SelectOption } from "types/other";
 
 import { $changedMedications } from "MT_models/medication";

@@ -1,11 +1,12 @@
-import { Icon } from "@iconify/react";
-import { useStore } from "effector-react";
 import React from "react";
 
-import { joinCn } from "utils/joinCn";
+import { Icon } from "@iconify/react";
+import { useStore } from "effector-react";
 
 import { $areasFullInfo } from "BW_models/area";
 import { AreaFullInfo } from "BW_types/stores";
+
+import { joinCn } from "utils/joinCn";
 
 import "./QualityIndex.scss";
 

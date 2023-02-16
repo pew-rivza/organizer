@@ -1,5 +1,6 @@
-import { useStore } from "effector-react";
 import React, { ChangeEvent } from "react";
+
+import { useStore } from "effector-react";
 
 import { $changedMedications } from "MT_models/medication";
 import { ItemProps } from "MT_types/props";

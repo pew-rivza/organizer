@@ -1,11 +1,10 @@
-import { Icon } from "@iconify/react";
-import { useEvent, useStore } from "effector-react";
 import React from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
+import { Icon } from "@iconify/react";
 import { DatePicker } from "components/DatePicker";
-import { joinCn } from "utils/joinCn";
+import { useEvent, useStore } from "effector-react";
 
 import { FORMATTED_DEFAULT_DATE } from "BW_const/common";
 import {
@@ -31,6 +30,8 @@ import {
 } from "BW_models/wheel";
 import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types/stores";
 import { getDateFromString, getStringFromDate } from "BW_utils/date";
+
+import { joinCn } from "utils/joinCn";
 
 import "./Date.scss";
 

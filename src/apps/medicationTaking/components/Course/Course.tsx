@@ -1,7 +1,7 @@
-import { useStore } from "effector-react";
 import React from "react";
 
 import { dateFormatter } from "const/common";
+import { useStore } from "effector-react";
 import { getValuesByField } from "utils/objects";
 
 import { Medications } from "MT_components/Medications";

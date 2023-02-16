@@ -10,7 +10,7 @@
   position: relative;
   flex-grow: 1;
 
-  input[type=text] {
+  input[type="text"] {
     flex-grow: 1;
     width: unset;
   }
@@ -32,7 +32,7 @@
       gap: 7px 0;
     }
 
-    input[type=text] {
+    input[type="text"] {
       width: 100%;
     }
   }

@@ -1,7 +1,7 @@
-import { useEvent, useStore } from "effector-react";
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import { useEvent, useStore } from "effector-react";
 import { findObject } from "utils/objects";
 
 import {
@@ -21,10 +21,10 @@ import {
 import { prepareMedicationToFrontend } from "MT_utils/prepare";
 
 import { Course } from "./components/Course";
+import { Medications } from "./components/Medications";
 import { Toolbar } from "./components/Toolbar";
 
 import "./CourseForm.scss";
-import { Medications } from "./components/Medications";
 
 export const CourseForm: React.FC = () => {
   const fetchOptions = useEvent<Option[]>(fetchOptionsFx);

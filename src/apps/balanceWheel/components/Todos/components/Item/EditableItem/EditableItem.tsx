@@ -1,6 +1,7 @@
-import { useEvent, useStore } from "effector-react";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+
+import { useEvent, useStore } from "effector-react";
 
 import { API_DELETE_TODO, API_UPDATE_TODO } from "BW_api/todo";
 import { fetchTodosFx } from "BW_models/todo";

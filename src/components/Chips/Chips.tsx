@@ -1,6 +1,6 @@
-import { Icon } from "@iconify/react";
 import React from "react";
 
+import { Icon } from "@iconify/react";
 import { ChipsProps } from "types/props";
 
 import "./Chips.scss";

@@ -1,10 +1,11 @@
-import { Icon } from "@iconify/react";
 import React from "react";
 import { Tooltip } from "react-tooltip";
 
-import { joinCn } from "utils/joinCn";
+import { Icon } from "@iconify/react";
 
 import { IconTemplateProps } from "CR_types/props";
+
+import { joinCn } from "utils/joinCn";
 
 export const IconTemplate: React.FC<IconTemplateProps> = ({
   id,
