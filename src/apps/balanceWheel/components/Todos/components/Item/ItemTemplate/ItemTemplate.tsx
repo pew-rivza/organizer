@@ -43,7 +43,7 @@ export const ItemTemplate: React.FC<ItemTemplateProps> = ({
 
   return (
     <div className="bw_todos_item">
-      <div className="bw_todos_item-checkbox">
+      <div className="bw_todos_item-checkbox checkbox">
         <input
           type="checkbox"
           onChange={toggleTodo}

@@ -1,6 +1,6 @@
 import { Obj } from "types/other";
 
-import { DayData } from "CR_types/other";
+import { DayData, TimesOfDayNominative } from "CR_types/other";
 
 export interface CalendarData extends Obj {
   [year: number]: {
@@ -8,4 +8,11 @@ export interface CalendarData extends Obj {
       [day: number]: DayData;
     };
   };
+}
+
+export interface CheckedMedications extends Obj {
+  id: number;
+  date: Date;
+  timesOfDay: TimesOfDayNominative;
+  medicationId: number;
 }

@@ -98,4 +98,6 @@ export type MedicationInfo = {
   mealTime: string;
   period: string;
   comment: string;
+  checked?: boolean;
+  checkedId?: number;
 };

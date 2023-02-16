@@ -148,6 +148,82 @@ input[type=text] {
   }
 }
 
+.checkbox {
+  height: 16px;
+  width: 16px;
+
+  &:hover {
+    input[type="checkbox"]:before {
+      background: rgba(217, 200, 169, 0.5);
+    }
+  }
+
+  & input[type="checkbox"] {
+    cursor: pointer;
+    margin: 0;
+    position: relative;
+    width: 0;
+
+    &:before {
+      background: transparent;
+      border: 1px solid #d9c8a9;
+      content: "";
+      height: 14px;
+      left: 0;
+      position: absolute;
+      top: 0;
+      transition: 500ms;
+      width: 14px;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible:before {
+      opacity: 0.5;
+      background: rgba(217, 200, 169, 0.5);
+    }
+
+    &:after {
+      border: solid #f9f9f9;
+      border-width: 0 2px 2px 0;
+      content: "";
+      height: 9px;
+      left: 5px;
+      opacity: 0;
+      position: absolute;
+      top: 1px;
+      transform: rotate(45deg);
+      transition: 500ms;
+      width: 4px;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+
+      &:before {
+        border-color: #ccc;
+        background: #ececec;
+      }
+
+      &:checked:before {
+        background: #ccc;
+      }
+    }
+
+    &:checked:focus-visible:before {
+      background: #d9c8a9;
+    }
+    &:checked:before {
+      background: #d9c8a9;
+    }
+    &:checked:after {
+      opacity: 1;
+    }
+  }
+}
+
 .react-tooltip {
   background: #46858c;
   opacity: 0.7;
