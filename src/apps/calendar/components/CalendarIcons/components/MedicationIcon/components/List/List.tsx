@@ -3,11 +3,11 @@ import React from "react";
 import { MedicationInfo } from "MT_types/other";
 
 import { ALL_DAY } from "CR_const/common";
-import { MedicationListProps } from "CR_types/props";
+import { MedicationListIconProps } from "CR_types/props";
 
 import { Item } from "./../Item";
 
-export const List: React.FC<MedicationListProps> = ({
+export const List: React.FC<MedicationListIconProps> = ({
   timesOfDay,
   medications,
 }) => {

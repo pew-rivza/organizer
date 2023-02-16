@@ -1,0 +1,8 @@
+.cr_day_medications-list {
+  border: solid #92a69a;
+  border-width: 0 1px;
+
+  &:last-child {
+    border-bottom-width: 1px;
+  }
+}

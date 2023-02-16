@@ -2,9 +2,9 @@ import React from "react";
 
 import { joinCn } from "utils/joinCn";
 
-import { MedicationItemProps } from "CR_types/props";
+import { MedicationItemIconProps } from "CR_types/props";
 
-export const Item: React.FC<MedicationItemProps> = ({
+export const Item: React.FC<MedicationItemIconProps> = ({
   medication,
   isAllDay,
 }) => {

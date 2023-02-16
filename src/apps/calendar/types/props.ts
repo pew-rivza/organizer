@@ -22,16 +22,30 @@ export type MedicationIconProps = {
   disabled: boolean;
 };
 
-export type MedicationsProps = {
-  medications: Medication[];
-};
-
-export type MedicationItemProps = {
+export type MedicationItemIconProps = {
   medication: MedicationInfo;
   isAllDay: boolean;
 };
 
-export type MedicationListProps = {
+export type MedicationListIconProps = {
   timesOfDay: TimesOfDayNominative;
   medications: MedicationInfo[];
+};
+
+export type MedicationsDayProps = {
+  medications: Medication[];
+};
+
+export type MedicationItemDayProps = {
+  medication: MedicationInfo;
+  timesOfDay: TimesOfDayNominative;
+};
+
+export type MedicationHeaderDayProps = {
+  timesOfDay: TimesOfDayNominative;
+};
+
+export type MedicationsGroupDayProps = {
+  medications: MedicationInfo[];
+  timesOfDay: TimesOfDayNominative;
 };
