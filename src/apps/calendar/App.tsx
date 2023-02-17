@@ -28,16 +28,16 @@ export const App: React.FC = () => {
       <FullCalendar
         {...calendarConfig}
         dayCellContent={DayCellContent}
-        select={(day) => {
-          navigate(day.start.getTime().toString());
+        dateClick={(info) => {
+          if (!info.dayEl.className.includes("fc-day-other")) {
+            navigate(info.date.getTime().toString());
+          }
         }}
       />
     </div>
   );
 };
 
-// TODO: вынести вызов фетчей в общее для всего приложения место
-// TODO: разобраться переходами на страницы дня на активных и дизейблед днях
 // TODO: при удалении медикейшана удалять его чеки в календаре, и при удалении курса тоже
 // TODO: сделать кнопку назад
 // TODO: сделать вывод тудушек колеса в верхнем тулбаре

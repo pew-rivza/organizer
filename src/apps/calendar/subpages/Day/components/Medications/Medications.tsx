@@ -37,6 +37,7 @@ export const Medications: React.FC<MedicationsDayProps> = ({ medications }) => {
     <div className="cr_day_medications">
       {timesOfDayList.map((timesOfDay) => (
         <Group
+          key={timesOfDay}
           medications={groupedMedications[timesOfDay]}
           timesOfDay={timesOfDay}
         />

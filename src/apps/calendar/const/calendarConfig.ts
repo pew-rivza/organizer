@@ -14,5 +14,4 @@ export const calendarConfig: CalendarOptions | Readonly<CalendarOptions> = {
     end: "",
   },
   titleFormat: { year: "numeric", month: "numeric" },
-  selectable: true,
 };
