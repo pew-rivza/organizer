@@ -43,6 +43,7 @@ button {
   &.icon-button {
     line-height: 0;
     padding: 5px;
+    border: 0;
 
     svg {
       width: 20px;
@@ -152,6 +153,8 @@ input[type="text"] {
 .checkbox {
   height: 16px;
   width: 16px;
+  min-width: 16px;
+  min-height: 16px;
 
   &:hover {
     input[type="checkbox"]:before {
@@ -225,7 +228,7 @@ input[type="text"] {
   }
 }
 
-.react-tooltip {
+.react-tooltip.react-tooltip {
   background: #46858c;
   opacity: 0.7;
   border-radius: 0;

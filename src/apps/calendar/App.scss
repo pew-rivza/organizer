@@ -1,5 +1,7 @@
 .cr {
-  margin-bottom: 20px;
+  height: 100%;
+  padding-bottom: 20px;
+  box-sizing: border-box;
 
   &_day_cell {
     display: flex;
@@ -75,6 +77,45 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    &.fc-prev-button, &.fc-next-button, &.fc-today-button, &.fc-wheel-button {
+      &:before {
+        height: 20px;
+      }
+      .fc-icon {
+        display: none;
+      }
+    }
+
+    &.fc-prev-button {
+      &:before {
+        content: url('https://api.iconify.design/material-symbols/arrow-back-ios-new.svg?color=%23555&width=20&height=20');
+      }
+    }
+
+    &.fc-next-button {
+      &:before {
+        content: url('https://api.iconify.design/material-symbols/arrow-forward-ios.svg?color=%23555&width=20&height=20');
+      }
+    }
+
+    &.fc-today-button {
+      &:before {
+        content: url('https://api.iconify.design/fluent-mdl2/goto-today.svg?color=%23555&width=20&height=20');
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        border: 0;
+        background: transparent;
+      }
+    }
+
+    &.fc-wheel-button {
+      &:before {
+        content: url('https://api.iconify.design/carbon/chart-radar.svg?color=%23555&width=20&height=20');
+      }
     }
   }
 

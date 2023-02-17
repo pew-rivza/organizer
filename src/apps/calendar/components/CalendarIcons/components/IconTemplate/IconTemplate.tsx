@@ -22,7 +22,11 @@ export const IconTemplate: React.FC<IconTemplateProps> = ({
         <Icon icon={icon} className={iconCn} />
       </div>
 
-      {!disabled && <Tooltip anchorId={`${prefix}-${id}`}>{children}</Tooltip>}
+      {!disabled && (
+        <Tooltip anchorId={`${prefix}-${id}`} clickable>
+          {children}
+        </Tooltip>
+      )}
     </div>
   );
 };

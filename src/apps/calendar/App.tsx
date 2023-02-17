@@ -52,6 +52,4 @@ export const App: React.FC = () => {
 };
 
 // TODO: сделать вывод тудушек колеса в верхнем тулбаре
-// TODO: сделать адаптив
 // TODO: настроить проверку import/order в eslint
-// TODO: разобраться с преттиером опять на примере файла src/apps/calendar/subpages/Day/components/DayDate/DayDate.tsx

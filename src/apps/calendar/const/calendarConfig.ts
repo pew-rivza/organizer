@@ -9,9 +9,26 @@ export const calendarConfig: CalendarOptions | Readonly<CalendarOptions> = {
   firstDay: 1,
   dayMaxEventRows: 4,
   headerToolbar: {
-    start: "",
+    start: "wheel",
     center: "prev title next",
-    end: "",
+    end: "today",
   },
+  height: "100%",
   titleFormat: { year: "numeric", month: "numeric" },
+  buttonHints: {
+    today: "",
+    prev: "",
+    next: "",
+  },
+  buttonIcons: {
+    today: "chevron-left",
+  },
+  customButtons: {
+    wheel: {
+      icon: "chevron-left",
+      click: () => {
+        console.log("hello!");
+      },
+    },
+  },
 };

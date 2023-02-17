@@ -1,7 +1,7 @@
 .cr_day_medications-item {
   display: flex;
   gap: 0 7px;
-  align-items: center;
+  align-items: flex-start;
   padding: 10px 10px 0;
 
   &:last-child {
