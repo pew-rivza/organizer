@@ -49,3 +49,6 @@ export type MedicationsGroupDayProps = {
   medications: MedicationInfo[];
   timesOfDay: TimesOfDayNominative;
 };
+
+export type DayDateProps = { date: Date | null };
+export type DayToolbarProps = { date: Date | null };

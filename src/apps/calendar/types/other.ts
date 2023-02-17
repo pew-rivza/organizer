@@ -14,3 +14,5 @@ export type TimesOfDay = string &
 export type GroupedMedications = Obj & {
   [timesOfDay in TimesOfDayNominative]: MedicationInfo[];
 };
+
+export type DayParams = { timestamp: string };

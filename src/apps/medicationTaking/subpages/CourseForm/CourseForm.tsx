@@ -6,6 +6,7 @@ import { findObject } from "utils/objects";
 
 import { $coursesFullInfo, setChangedCourse } from "MT_models/course";
 import { setChangedMedications } from "MT_models/medication";
+import { CourseParams } from "MT_types/other";
 import {
   ChangedCourse,
   ChangedMedication,
@@ -21,33 +22,31 @@ import "./CourseForm.scss";
 
 export const CourseForm: React.FC = () => {
   const coursesFullInfo = useStore<CourseFullInfo[]>($coursesFullInfo);
-  const { id } = useParams();
+  const { id } = useParams() as CourseParams;
 
   useEffect(() => {
-    if (id) {
-      const editedCourse = findObject<number, CourseFullInfo>(
-        coursesFullInfo,
-        "id",
-        +id,
-      );
-      const {
-        start = null,
-        doctor = "",
-        diagnosis = "",
-      } = (editedCourse || {}) as ChangedCourse;
-      const preparedMedications: ChangedMedication[] = (
-        editedCourse?.medications || []
-      ).map(prepareMedicationToFrontend);
+    const editedCourse = findObject<number, CourseFullInfo>(
+      coursesFullInfo,
+      "id",
+      +id,
+    );
+    const {
+      start = null,
+      doctor = "",
+      diagnosis = "",
+    } = (editedCourse || {}) as ChangedCourse;
+    const preparedMedications: ChangedMedication[] = (
+      editedCourse?.medications || []
+    ).map(prepareMedicationToFrontend);
 
-      setChangedCourse({
-        id: +id,
-        start: start ? new Date(start) : null,
-        doctor,
-        diagnosis,
-      });
+    setChangedCourse({
+      id: +id,
+      start: start ? new Date(start) : null,
+      doctor,
+      diagnosis,
+    });
 
-      setChangedMedications(preparedMedications);
-    }
+    setChangedMedications(preparedMedications);
   }, [coursesFullInfo, id]);
 
   return (

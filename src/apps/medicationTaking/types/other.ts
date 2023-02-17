@@ -101,3 +101,5 @@ export type MedicationInfo = {
   checked?: boolean;
   checkedId?: number;
 };
+
+export type CourseParams = { id: string };

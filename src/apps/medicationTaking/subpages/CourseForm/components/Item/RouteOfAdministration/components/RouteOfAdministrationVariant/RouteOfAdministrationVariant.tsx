@@ -9,6 +9,7 @@ import { findObject } from "utils/objects";
 import { DEFAULT } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
+import { CourseParams } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -19,7 +20,7 @@ export const RouteOfAdministrationVariant: React.FC<
   RouteOfAdministrationItemVariantProps
 > = ({ variantSelectHandler, selectChangeHandler, name, selected, index }) => {
   const changedMedications = useStore<ChangedMedication[]>($changedMedications);
-  const { id } = useParams();
+  const { id } = useParams() as CourseParams;
   const [selectedRouteOfAdministration, setSelectedRouteOfAdministration] =
     useState<SelectOption | null>(null);
 
@@ -29,7 +30,7 @@ export const RouteOfAdministrationVariant: React.FC<
   }, [groupedOptions.routeOfAdministration]);
 
   useEffect(() => {
-    if (id && typeof index === "number") {
+    if (typeof index === "number") {
       const routeOfAdministrationId: number = changedMedications[index]
         .routeOfAdministrationId as number;
 

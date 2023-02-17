@@ -4,9 +4,11 @@ import { useNavigate } from "react-router-dom";
 import { Icon } from "@iconify/react";
 import { dateFormatter } from "const/common";
 
-import "./Date.scss";
+import { DayDateProps } from "CR_types/props";
 
-export const DayDate: React.FC<{ date: Date | null }> = ({ date }) => {
+import "./DayDate.scss";
+
+export const DayDate: React.FC<DayDateProps> = ({ date }) => {
   const navigate = useNavigate();
 
   const nextDate: Date | null = date ? new Date(date?.getTime()) : null;
