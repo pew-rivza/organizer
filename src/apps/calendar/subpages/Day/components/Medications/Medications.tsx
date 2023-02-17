@@ -1,10 +1,11 @@
 import React from "react";
 
+import { useStore } from "effector-react";
+
 import {
   GroupedMedications,
   TimesOfDayNominative,
 } from "apps/calendar/types/other";
-import { useStore } from "effector-react";
 
 import { $options } from "MT_models/option";
 import { GroupedOptions } from "MT_types/stores";

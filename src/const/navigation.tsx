@@ -1,15 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { BalanceWheel } from "apps/balanceWheel";
 import { Calendar } from "apps/calendar";
+import { MedicationTaking } from "apps/medicationTaking";
 import { Navigation } from "types/other";
 
 import { CourseForm } from "MT_subpages/CourseForm";
 
 import { Day } from "CR_subpages/Day";
-
-import { BalanceWheel } from "apps/balanceWheel";
-import { MedicationTaking } from "apps/medicationTaking";
 
 export const navigation: Navigation = [
   {

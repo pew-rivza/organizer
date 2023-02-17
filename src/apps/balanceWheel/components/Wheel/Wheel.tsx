@@ -3,6 +3,15 @@ import { Radar } from "react-chartjs-2";
 import { toast } from "react-toastify";
 
 import { Icon } from "@iconify/react";
+import type { ChartData } from "chart.js";
+import {
+  Chart as ChartJS,
+  Filler,
+  LineElement,
+  PointElement,
+  RadialLinearScale,
+  Tooltip,
+} from "chart.js";
 import ChartJSPluginDragData from "chartjs-plugin-dragdata";
 import { useEvent, useStore } from "effector-react";
 
@@ -22,16 +31,6 @@ import {
   EditedAreaValues,
   Wheel as WheelType,
 } from "BW_types/stores";
-
-import type { ChartData } from "chart.js";
-import {
-  Chart as ChartJS,
-  Filler,
-  LineElement,
-  PointElement,
-  RadialLinearScale,
-  Tooltip,
-} from "chart.js";
 
 import "./Wheel.scss";
 

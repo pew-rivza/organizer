@@ -1,10 +1,11 @@
 import React from "react";
 import Skeleton from "react-loading-skeleton";
-import "react-loading-skeleton/dist/skeleton.css";
 
 import { Icon } from "@iconify/react";
-import { DatePicker } from "components/DatePicker";
 import { useEvent, useStore } from "effector-react";
+
+import { DatePicker } from "components/DatePicker";
+import { joinCn } from "utils/joinCn";
 
 import { FORMATTED_DEFAULT_DATE } from "BW_const/common";
 import {
@@ -31,9 +32,8 @@ import {
 import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types/stores";
 import { getDateFromString, getStringFromDate } from "BW_utils/date";
 
-import { joinCn } from "utils/joinCn";
-
 import "./Date.scss";
+import "react-loading-skeleton/dist/skeleton.css";
 
 export const Date: React.FC = () => {
   const wheels = useStore<Wheel[]>($wheels);

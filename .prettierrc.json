@@ -4,13 +4,14 @@
   "semi": true,
   "trailingComma": "all",
   "importOrder": [
-    "^react.*$",
-    "^[^(BW_)(MT_)(CR_).]*$",
+    "^react.*(?<!(css))$",
+    "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(\\.)).*(?<!(css))$",
+    "^(?=(apps)|(components)|(const)|(types)|(utils)).*$",
     "^BW_.*$",
     "^MT_.*$",
     "^CR_.*$",
-    "^.*(?<!scss)$",
-    "^.*scss$",
+    "^.*(?<!css)$",
+    "^.*css$",
     ".*"
   ],
   "importOrderSeparation": true

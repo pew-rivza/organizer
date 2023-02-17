@@ -2,6 +2,7 @@ import React from "react";
 import ReactSelect from "react-select";
 
 import { Icon } from "@iconify/react";
+
 import { SelectProps } from "types/props";
 
 import "./Select.scss";

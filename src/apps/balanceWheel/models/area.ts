@@ -1,4 +1,5 @@
 import { createEffect, createStore } from "effector";
+
 import { findAllObjects } from "utils/objects";
 
 import { API_FETCH_AREAS } from "BW_api/area";

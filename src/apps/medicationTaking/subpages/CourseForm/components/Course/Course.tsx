@@ -1,7 +1,8 @@
 import React from "react";
 
-import { DatePicker } from "components/DatePicker";
 import { useStore } from "effector-react";
+
+import { DatePicker } from "components/DatePicker";
 
 import { $changedCourse, updateChangedCourse } from "MT_models/course";
 import { ChangedCourse } from "MT_types/stores";

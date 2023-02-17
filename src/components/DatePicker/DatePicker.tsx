@@ -1,15 +1,15 @@
 import React, { forwardRef } from "react";
 import ExternalDatePicker, { registerLocale } from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
 import MaskedInput from "react-text-mask";
 
-import { dateFormatter } from "const/common";
 import ru from "date-fns/locale/ru";
-import { DatePickerProps } from "types/props";
 
+import { dateFormatter } from "const/common";
+import { DatePickerProps } from "types/props";
 import { joinCn } from "utils/joinCn";
 
 import "./DatePicker.scss";
+import "react-datepicker/dist/react-datepicker.css";
 
 registerLocale("ru", ru);
 

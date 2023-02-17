@@ -3,9 +3,9 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { nanoid } from "nanoid";
 
-import { ItemTemplateProps, ItemTemplateSubComponents } from "MT_types/props";
-
 import { joinCn } from "utils/joinCn";
+
+import { ItemTemplateProps, ItemTemplateSubComponents } from "MT_types/props";
 
 import "./ItemTemplate.scss";
 

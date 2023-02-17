@@ -3,10 +3,10 @@ import React from "react";
 import { Icon } from "@iconify/react";
 import { useStore } from "effector-react";
 
+import { joinCn } from "utils/joinCn";
+
 import { $areasFullInfo } from "BW_models/area";
 import { AreaFullInfo } from "BW_types/stores";
-
-import { joinCn } from "utils/joinCn";
 
 import "./QualityIndex.scss";
 

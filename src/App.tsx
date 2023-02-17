@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import "react-toastify/dist/ReactToastify.css";
-import "react-tooltip/dist/react-tooltip.css";
+
+import { useEvent } from "effector-react";
 
 import { Layout } from "components/Layout";
-import { useEvent } from "effector-react";
 import { Routing } from "types/other";
 import { getRoutings } from "utils/navigation";
 import { findObject } from "utils/objects";
@@ -21,6 +20,8 @@ import { fetchCheckedMedicationsFx } from "CR_models/medication";
 import { CheckedMedications } from "CR_types/stores";
 
 import "./App.scss";
+import "react-toastify/dist/ReactToastify.css";
+import "react-tooltip/dist/react-tooltip.css";
 
 const App: React.FC = () => {
   const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);

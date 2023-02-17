@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import { useStore } from "effector-react";
+
 import { findObject } from "utils/objects";
 
 import { $coursesFullInfo, setChangedCourse } from "MT_models/course";
