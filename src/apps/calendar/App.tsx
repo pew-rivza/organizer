@@ -1,34 +1,16 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 
 import { DayCellContentArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
-import { useEvent } from "effector-react";
-
-import { fetchCoursesFx } from "MT_models/course";
-import { fetchOptionsFx } from "MT_models/option";
-import { Course as CourseType, Option } from "MT_types/stores";
 
 import { CalendarIcons } from "CR_components/CalendarIcons";
 import { calendarConfig } from "CR_const/calendarConfig";
-import { fetchCheckedMedicationsFx } from "CR_models/medication";
-import { CheckedMedications } from "CR_types/stores";
 
 import "./App.scss";
 
 export const App: React.FC = () => {
-  const fetchCourses = useEvent<CourseType[]>(fetchCoursesFx);
-  const fetchOptions = useEvent<Option[]>(fetchOptionsFx);
-  const fetchCheckedMedications = useEvent<CheckedMedications[]>(
-    fetchCheckedMedicationsFx,
-  );
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchCourses();
-    fetchOptions();
-    fetchCheckedMedications();
-  }, [fetchCheckedMedications, fetchCourses, fetchOptions]);
 
   const DayCellContent: React.FC<DayCellContentArg> = (dayCell) => {
     const { date, isOther } = dayCell;
