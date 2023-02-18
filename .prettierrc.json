@@ -11,7 +11,8 @@
     "^MT_.*$",
     "^CR_.*$",
     "^.*(?<!css)$",
-    "^.*css$",
+    "^.*(?<!s)css$",
+    "^.*scss$",
     ".*"
   ],
   "importOrderSeparation": true

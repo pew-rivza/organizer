@@ -8,8 +8,9 @@ import { dateFormatter } from "const/common";
 import { DatePickerProps } from "types/props";
 import { joinCn } from "utils/joinCn";
 
-import "./DatePicker.scss";
 import "react-datepicker/dist/react-datepicker.css";
+
+import "./DatePicker.scss";
 
 registerLocale("ru", ru);
 
