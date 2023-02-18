@@ -5,6 +5,7 @@ export type Option = {
   id: number;
   value: string;
   one: string;
+  nominativeOne: string;
   few: string;
   many: string;
   feminine: string;
@@ -76,12 +77,17 @@ export interface Medication {
 
 export interface Course {
   id?: number;
-  start: Date | null;
+  start: string;
   doctor: string;
   diagnosis: string;
 }
 
-export interface ChangedCourse extends Course {}
+export interface ChangedCourse {
+  id?: number;
+  start: Date | null;
+  doctor: string;
+  diagnosis: string;
+}
 
 export type UpdateHandlerArgs = {
   field: string;
@@ -89,6 +95,10 @@ export type UpdateHandlerArgs = {
   index?: number;
 };
 
-export interface CourseFullInfo extends Course {
+export interface CourseFullInfo {
+  id?: number;
+  start: Date | null;
+  doctor: string;
+  diagnosis: string;
   medications: Medication[];
 }

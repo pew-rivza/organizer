@@ -1,0 +1,10 @@
+.cr_day_date {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > div {
+    width: 90px;
+    text-align: center;
+  }
+}

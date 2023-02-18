@@ -1,5 +1,6 @@
-import { useEvent } from "effector-react";
 import React, { useEffect } from "react";
+
+import { useEvent } from "effector-react";
 
 import { Date } from "BW_components/Date";
 import { Todos } from "BW_components/Todos";
@@ -17,7 +18,8 @@ export const App: React.FC = () => {
   useEffect(() => {
     fetchWheels();
     fetchAreas();
-  }, [fetchAreas, fetchWheels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div data-testid="balance-wheel" className="bw">

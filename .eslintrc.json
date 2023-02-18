@@ -14,27 +14,24 @@
     "import/order": [
       1,
       {
-        "groups": [
-          "external",
-          "builtin",
-          "internal",
-          "sibling",
-          "parent",
-          "index"
-        ],
+        "groups": ["external", "internal", ["sibling", "parent"], "unknown"],
         "pathGroups": [
+          { "pattern": "^react.*(?<!(css))$", "group": "external" },
           {
-            "pattern": "^((utils)|(components)|(types)|(apps)|(const))/(.*)$",
-            "group": "internal"
+            "pattern": "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(\\.)).*(?<!(css))$",
+            "group": "external"
           },
           {
-            "pattern": "^BW_(.*)/(.*)$",
+            "pattern": "^(?=(apps)|(components)|(const)|(types)|(utils)).*$",
             "group": "internal"
           },
-          {
-            "pattern": "^MT_(.*)/(.*)$",
-            "group": "internal"
-          }
+          { "pattern": "^BW_.*$", "group": "internal" },
+          { "pattern": "^MT_.*$", "group": "internal" },
+          { "pattern": "^CR_.*$", "group": "internal" },
+          { "pattern": "^.*(?<!css)$", "group": "parent" },
+          { "pattern": "^.*(?<!s)css$", "group": "sibling" },
+          { "pattern": "^.*scss$", "group": "sibling" },
+          { "pattern": ".*", "group": "unknown" }
         ]
       }
     ]

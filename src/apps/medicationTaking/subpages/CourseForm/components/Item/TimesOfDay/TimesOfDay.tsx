@@ -1,6 +1,7 @@
-import { useStore } from "effector-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { useStore } from "effector-react";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";
@@ -9,7 +10,7 @@ import { findObject } from "utils/objects";
 import { DEFAULT } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { NullableNumber } from "MT_types/other";
+import { CourseParams, NullableNumber } from "MT_types/other";
 import { ItemProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -22,7 +23,7 @@ export const TimesOfDay: React.FC<ItemProps<NullableNumber>> = ({
   onDelete,
 }) => {
   const changedMedications = useStore<ChangedMedication[]>($changedMedications);
-  const { id } = useParams();
+  const { id } = useParams() as CourseParams;
 
   const [selectedTimesOfDay, setSelectedTimesOfDay] =
     useState<SelectOption | null>(null);
@@ -38,19 +39,17 @@ export const TimesOfDay: React.FC<ItemProps<NullableNumber>> = ({
   };
 
   useEffect(() => {
-    if (id) {
-      const timesOfDayId: number = changedMedications[index]
-        .timesOfDayId as number;
+    const timesOfDayId: number = changedMedications[index]
+      .timesOfDayId as number;
 
-      timesOfDayId &&
-        selectChangeHandler(
-          findObject<number, SelectOption>(
-            timesOfDayOptions,
-            "value",
-            timesOfDayId,
-          ) || null,
-        );
-    }
+    timesOfDayId &&
+      selectChangeHandler(
+        findObject<number, SelectOption>(
+          timesOfDayOptions,
+          "value",
+          timesOfDayId,
+        ) || null,
+      );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id, timesOfDayOptions]);
 

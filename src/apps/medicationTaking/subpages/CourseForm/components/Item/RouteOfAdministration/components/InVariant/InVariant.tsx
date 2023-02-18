@@ -1,6 +1,7 @@
-import { useStore } from "effector-react";
 import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "react-router-dom";
+
+import { useStore } from "effector-react";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";
@@ -9,7 +10,7 @@ import { findObject } from "utils/objects";
 import { DEFAULT, GENDER } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { NullableNumber } from "MT_types/other";
+import { CourseParams, NullableNumber } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions, Option } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -23,7 +24,7 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
   selected,
   index,
 }) => {
-  const { id } = useParams();
+  const { id } = useParams() as CourseParams;
 
   const [selectedInWhich, setSelectedInWhich] = useState<SelectOption | null>(
     null,
@@ -79,7 +80,7 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
   }, [groupedOptions, selectedIn]);
 
   useEffect(() => {
-    if (id && typeof index === "number") {
+    if (typeof index === "number") {
       const inId: number = changedMedications[index].inId as number;
 
       inId &&

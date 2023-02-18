@@ -13,17 +13,14 @@
   }
 }
 
-//noinspection CssUnusedSymbol
 .datepicker_input-wrapper {
   width: unset;
 
-  //noinspection CssUnusedSymbol
   &.month {
     max-width: 51px;
   }
 }
 
-//noinspection CssUnusedSymbol
 .datepicker_calendar {
   .react-datepicker {
     border: 0;
@@ -32,9 +29,9 @@
     box-shadow: 2px 2px 5px #777;
     &__header {
       border-radius: 0;
-      border: 1px solid #92A69A;
+      border: 1px solid #92a69a;
       border-bottom: 0;
-      background: #92A69A;
+      background: #92a69a;
     }
 
     &__month {
@@ -44,7 +41,8 @@
       border-top: 0;
     }
 
-    &__current-month, &-year-header {
+    &__current-month,
+    &-year-header {
       color: #f9f9f9;
       font-size: 13px;
       font-weight: 400;
@@ -54,7 +52,6 @@
       &:hover {
         opacity: 1;
 
-        //noinspection CssUnusedSymbol
         .react-datepicker__navigation-icon:before {
           border-color: #f9f9f9;
         }
@@ -82,14 +79,16 @@
       color: #f9f9f9;
     }
 
-    &__day, &__month-text {
+    &__day,
+    &__month-text {
       color: #555;
       border-radius: 0;
       transition: 200ms;
 
       &:hover {
         background: transparent;
-        box-shadow: 1px 1px 0 #D9C8A9, -1px -1px 0 #D9C8A9, 1px -1px 0 #D9C8A9, -1px 1px 0 #D9C8A9;
+        box-shadow: 1px 1px 0 #d9c8a9, -1px -1px 0 #d9c8a9, 1px -1px 0 #d9c8a9,
+          -1px 1px 0 #d9c8a9;
       }
 
       &--outside-month {
@@ -97,7 +96,10 @@
         pointer-events: none;
       }
 
-      &--selected, &--in-range, &--selecting-range-start, &--in-selecting-range {
+      &--selected,
+      &--in-range,
+      &--selecting-range-start,
+      &--in-selecting-range {
         background: #92a69a;
         color: #f9f9f9;
 
@@ -107,7 +109,9 @@
         }
       }
 
-      &--keyboard-selected:not(&--in-range):not(&--selecting-range-start):not(&--in-selecting-range) {
+      &--keyboard-selected:not(&--in-range):not(&--selecting-range-start):not(
+          &--in-selecting-range
+        ) {
         background: #f9f9f9;
       }
 
@@ -121,7 +125,6 @@
     }
   }
 
-  //noinspection CssUnusedSymbol
   .react-datepicker__month--selected {
     background: #92a69a !important;
     color: #f9f9f9;

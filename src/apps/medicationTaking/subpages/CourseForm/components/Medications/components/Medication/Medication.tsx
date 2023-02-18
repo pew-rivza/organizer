@@ -1,6 +1,7 @@
+import React, { useEffect, useState } from "react";
+
 import { Icon } from "@iconify/react";
 import { useStore } from "effector-react";
-import React, { useEffect, useState } from "react";
 
 import {
   $changedMedications,
@@ -19,8 +20,8 @@ import { Name } from "./../../../Item/Name";
 import { Period } from "./../../../Item/Period";
 import { RouteOfAdministration } from "./../../../Item/RouteOfAdministration";
 import { TimesOfDay } from "./../../../Item/TimesOfDay";
-
 import { FieldChips } from "./../FieldChips";
+
 import "./Medication.scss";
 
 export const Medication: React.FC<MedicationFormProps> = ({

@@ -1,19 +1,21 @@
-import { useStore } from "effector-react";
 import React from "react";
+
+import { useStore } from "effector-react";
+
+import { dateFormatter } from "const/common";
+import { getValuesByField } from "utils/objects";
 
 import { Medications } from "MT_components/Medications";
 import { Toolbar } from "MT_components/Toolbar";
 import { $options } from "MT_models/option";
 import { CourseProps } from "MT_types/props";
 import { GroupedOptions, Medication } from "MT_types/stores";
-import { getCourseEndsWithoutPeriod, getValuesByField } from "MT_utils/period";
+import { getCourseEndsWithoutPeriod } from "MT_utils/period";
 
 import "./Course.scss";
 
 export const Course: React.FC<CourseProps> = ({ course }) => {
   const groupedOptions = useStore<GroupedOptions>($options);
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
-
   const periodStarts: number[] = getValuesByField<Medication, Date>(
     course.medications,
     "periodDateStart",

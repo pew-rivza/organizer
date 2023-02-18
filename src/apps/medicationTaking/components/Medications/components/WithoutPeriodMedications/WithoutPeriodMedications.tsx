@@ -1,5 +1,7 @@
 import React from "react";
 
+import { dateFormatter } from "const/common";
+
 import { WITH_PERIOD_KEY, WITHOUT_PERIOD_KEY } from "MT_const/common";
 import { WithoutPeriodMedicationsProps } from "MT_types/props";
 
@@ -8,8 +10,6 @@ import { Medication } from "./../Medication";
 export const WithoutPeriodMedications: React.FC<
   WithoutPeriodMedicationsProps
 > = ({ groupedMedications, courseStart, withoutPeriodCourseEnd }) => {
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
-
   return courseStart && groupedMedications[WITHOUT_PERIOD_KEY]?.length ? (
     <React.Fragment>
       {groupedMedications[WITH_PERIOD_KEY] && (
@@ -18,7 +18,7 @@ export const WithoutPeriodMedications: React.FC<
           {dateFormatter.format(withoutPeriodCourseEnd)}
         </div>
       )}
-      <ul>
+      <ul className="dashed-list">
         {groupedMedications[WITHOUT_PERIOD_KEY].map((medication) => (
           <Medication key={medication.id} medication={medication} />
         ))}

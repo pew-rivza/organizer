@@ -21,6 +21,13 @@ export default {
       MT_components: resolve(__dirname, "src/apps/medicationTaking/components"),
       MT_types: resolve(__dirname, "src/apps/medicationTaking/types"),
       MT_utils: resolve(__dirname, "src/apps/medicationTaking/utils"),
+      CR_api: resolve(__dirname, "src/apps/calendar/api"),
+      CR_components: resolve(__dirname, "src/apps/calendar/components"),
+      CR_const: resolve(__dirname, "src/apps/calendar/const"),
+      CR_models: resolve(__dirname, "src/apps/calendar/models"),
+      CR_types: resolve(__dirname, "src/apps/calendar/types"),
+      CR_utils: resolve(__dirname, "src/apps/calendar/utils"),
+      CR_subpages: resolve(__dirname, "src/apps/calendar/subpages"),
     },
   },
 };

@@ -1,5 +1,6 @@
-import { useStore } from "effector-react";
 import React from "react";
+
+import { useStore } from "effector-react";
 
 import { $areasFullInfo } from "BW_models/area";
 import { $addableAreaId } from "BW_models/todo";
@@ -8,6 +9,7 @@ import { AreaFullInfo } from "BW_types/stores";
 
 import { Header } from "./components/Header";
 import { List } from "./components/List";
+import { QualityIndex } from "./components/QualityIndex";
 
 import "./Todos.scss";
 
@@ -18,6 +20,8 @@ export const Todos: React.FC = () => {
 
   return isNewWheel ? null : (
     <div className="bw_todos">
+      <QualityIndex />
+
       {areasFullInfo.map((area) => {
         const renderList: boolean =
           !!area.todos.length || area.id === addableAreaId;

@@ -1,3 +1,4 @@
+import { dateFormatter } from "const/common";
 import { Obj } from "types/other";
 
 import { WITH_PERIOD_KEY, WITHOUT_PERIOD_KEY } from "MT_const/common";
@@ -25,8 +26,6 @@ export function groupObjectsByKeyValue<ObjType>(
 export const groupMedicationsByPeriod = (
   medications: MedicationType[],
 ): GroupedMedicationsByPeriod => {
-  const dateFormatter: Intl.DateTimeFormat = new Intl.DateTimeFormat("ru");
-
   return medications.reduce<GroupedMedicationsByPeriod>(
     (groupedMedications, medication) => {
       const { periodCount, periodDateStart, periodDateEnd } = medication;

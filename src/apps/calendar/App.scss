@@ -1,0 +1,129 @@
+.cr {
+  height: 100%;
+  padding-bottom: 20px;
+  box-sizing: border-box;
+
+  .fc-daygrid-day-number {
+    z-index: auto;
+    width: 100%;
+  }
+
+  .fc-col-header-cell {
+    background: #92a69a;
+    padding: 7.75px 0;
+
+    * {
+      color: #f9f9f9;
+      font-weight: 400;
+    }
+  }
+
+  .fc-toolbar-title {
+    font-size: 13px;
+    font-weight: 400;
+    width: 79px;
+    text-align: center;
+  }
+
+  .fc-toolbar-chunk {
+    display: flex;
+    align-items: center;
+  }
+
+  .fc-direction-ltr .fc-toolbar > * > :not(:first-child) {
+    margin-left: 0;
+  }
+
+  .fc-button {
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+
+    &:hover {
+      background: transparent;
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      opacity: 1;
+    }
+
+    &:focus {
+      box-shadow: 0 0 0 0;
+    }
+
+    &:not(:disabled):active {
+      background-color: transparent;
+
+      &:focus {
+        box-shadow: 0 0 0 0;
+      }
+    }
+
+    .fc-icon {
+      font-size: 27px;
+      height: 20px;
+      width: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &.fc-prev-button,
+    &.fc-next-button,
+    &.fc-today-button,
+    &.fc-wheel-button {
+      &:before {
+        height: 20px;
+      }
+      .fc-icon {
+        display: none;
+      }
+    }
+
+    &.fc-prev-button {
+      &:before {
+        content: url("https://api.iconify.design/material-symbols/arrow-back-ios-new.svg?color=%23555&width=20&height=20");
+      }
+    }
+
+    &.fc-next-button {
+      &:before {
+        content: url("https://api.iconify.design/material-symbols/arrow-forward-ios.svg?color=%23555&width=20&height=20");
+      }
+    }
+
+    &.fc-today-button {
+      &:before {
+        content: url("https://api.iconify.design/fluent-mdl2/goto-today.svg?color=%23555&width=20&height=20");
+      }
+
+      &:disabled {
+        opacity: 0.3;
+        border: 0;
+        background: transparent;
+      }
+    }
+
+    &.fc-wheel-button {
+      &:before {
+        content: url("https://api.iconify.design/carbon/chart-radar.svg?color=%23555&width=20&height=20");
+      }
+    }
+  }
+
+  .fc-toolbar.fc-header-toolbar {
+    margin-bottom: 20px;
+  }
+
+  td {
+    cursor: pointer;
+
+    &.fc-day-other {
+      cursor: default;
+    }
+  }
+}

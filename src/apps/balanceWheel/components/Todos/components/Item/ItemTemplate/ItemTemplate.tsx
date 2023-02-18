@@ -1,11 +1,12 @@
-import { Icon } from "@iconify/react";
-import { useEvent, useStore } from "effector-react";
 import React, { KeyboardEvent } from "react";
 import MaskedInput from "react-text-mask";
 
+import { Icon } from "@iconify/react";
+import { useEvent, useStore } from "effector-react";
+
 import { API_UPDATE_TODO } from "BW_api/todo";
 import { ENTER_CODE, ESCAPE_CODE } from "BW_const/common";
-import { fetchTodosFx } from "BW_models/todo";
+import { fetchWheelTodosFx } from "BW_models/todo";
 import { $wheel } from "BW_models/wheel";
 import { ItemTemplateProps } from "BW_types/props";
 import { Todo, Wheel } from "BW_types/stores";
@@ -19,7 +20,7 @@ export const ItemTemplate: React.FC<ItemTemplateProps> = ({
   onClick,
   toolbar,
 }) => {
-  const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
+  const fetchTodos = useEvent<number | void, Todo[]>(fetchWheelTodosFx);
   const wheel = useStore<Wheel>($wheel);
 
   const todoKeyDownHandler = async (event: KeyboardEvent<HTMLInputElement>) => {
@@ -43,7 +44,7 @@ export const ItemTemplate: React.FC<ItemTemplateProps> = ({
 
   return (
     <div className="bw_todos_item">
-      <div className="bw_todos_item-checkbox">
+      <div className="bw_todos_item-checkbox checkbox">
         <input
           type="checkbox"
           onChange={toggleTodo}

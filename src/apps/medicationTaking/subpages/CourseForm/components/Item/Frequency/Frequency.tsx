@@ -1,5 +1,6 @@
-import { useStore } from "effector-react";
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
+
+import { useStore } from "effector-react";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";

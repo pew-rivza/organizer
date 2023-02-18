@@ -1,7 +1,16 @@
 import { TODO_URL } from "BW_const/api";
 import { Todo } from "BW_types/stores";
 
-export const API_FETCH_TODOS = (wheelId: number | void): Promise<Todo[]> =>
+export const API_FETCH_TODOS = (): Promise<Todo[]> =>
+  fetch(TODO_URL, {
+    method: "GET",
+    body: null,
+    headers: {},
+  }).then((response) => response.json());
+
+export const API_FETCH_WHEEL_TODOS = (
+  wheelId: number | void,
+): Promise<Todo[]> =>
   fetch(`${TODO_URL}${wheelId || -1}`, {
     method: "GET",
     body: null,

@@ -34,6 +34,13 @@
       "MT_models/*": ["./src/apps/medicationTaking/models/*"],
       "MT_const/*": ["./src/apps/medicationTaking/const/*"],
       "MT_utils/*": ["./src/apps/medicationTaking/utils/*"],
+      "CR_subpages/*": ["./src/apps/calendar/subpages/*"],
+      "CR_components/*": ["./src/apps/calendar/components/*"],
+      "CR_types/*": ["./src/apps/calendar/types/*"],
+      "CR_api/*": ["./src/apps/calendar/api/*"],
+      "CR_models/*": ["./src/apps/calendar/models/*"],
+      "CR_const/*": ["./src/apps/calendar/const/*"],
+      "CR_utils/*": ["./src/apps/calendar/utils/*"]
     }
   },
   "include": ["src"]

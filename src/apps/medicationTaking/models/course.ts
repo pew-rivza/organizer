@@ -33,11 +33,9 @@ export const $courses = createStore<Course[]>([]).on(
 export const $coursesFullInfo = createStore<CourseFullInfo[]>([])
   .on($courses, (prevState, courses) => {
     return courses.map((course, i): CourseFullInfo => {
-      const startDate: Date = course.start
-        ? new Date(course.start as unknown as string)
-        : new Date();
+      const startDate: Date = new Date(course.start);
       return {
-        ...(course as CourseFullInfo),
+        ...course,
         start: startDate,
         medications: prevState[i]?.medications || [],
       };

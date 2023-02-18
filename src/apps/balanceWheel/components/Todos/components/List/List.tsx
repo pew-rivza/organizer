@@ -1,5 +1,6 @@
-import { useStore } from "effector-react";
 import React from "react";
+
+import { useStore } from "effector-react";
 
 import { $addableAreaId } from "BW_models/todo";
 import { ListProps } from "BW_types/props";

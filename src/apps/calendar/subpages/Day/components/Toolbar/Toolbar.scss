@@ -1,0 +1,12 @@
+.cr_day_toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+  }
+}

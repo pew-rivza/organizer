@@ -1,3 +1,7 @@
+import React from "react";
+import { Radar } from "react-chartjs-2";
+import { toast } from "react-toastify";
+
 import { Icon } from "@iconify/react";
 import type { ChartData } from "chart.js";
 import {
@@ -10,9 +14,6 @@ import {
 } from "chart.js";
 import ChartJSPluginDragData from "chartjs-plugin-dragdata";
 import { useEvent, useStore } from "effector-react";
-import React from "react";
-import { Radar } from "react-chartjs-2";
-import { toast } from "react-toastify";
 
 import { API_ADD_WHEEL } from "BW_api/wheel";
 import { Toolbar } from "BW_components/Toolbar";

@@ -2,6 +2,8 @@ import { Obj } from "types/other";
 
 import { Medication } from "MT_types/stores";
 
+import { TimesOfDay } from "CR_types/other";
+
 export type CastMode = "DECLINATION" | "GENDER" | "DEFAULT";
 
 export type CastConfig = {
@@ -13,6 +15,7 @@ export type WordForms = {
   one: string;
   few: string;
   many: string;
+  nominativeOne: string;
 };
 
 export type WordGenders = Obj & {
@@ -21,7 +24,7 @@ export type WordGenders = Obj & {
   neuter: string | void;
 };
 
-export type WordFormType = "one" | "few" | "many";
+export type WordFormType = "nominativeOne" | "one" | "few" | "many";
 export type WordGenderType = "masculine" | "feminine" | "neuter";
 export type NullableNumber = number | null;
 
@@ -77,3 +80,26 @@ export type DateFunctions =
   | "getDate"
   | "getMonth"
   | "getFullYear";
+
+export type MedicationInfo = {
+  id: number;
+  name: string;
+  count: string;
+  countMeasure: string;
+  nominativeCountMeasure: string;
+  routeOfAdministration: string;
+  frequency: string;
+  times: string;
+  frequencyCount: string;
+  frequencyMeasure: string;
+  timesOfDay: TimesOfDay;
+  inBeforePreposition: string;
+  inBefore: string;
+  mealTime: string;
+  period: string;
+  comment: string;
+  checked?: boolean;
+  checkedId?: number;
+};
+
+export type CourseParams = { id: string };

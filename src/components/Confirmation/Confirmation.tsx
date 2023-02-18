@@ -1,6 +1,7 @@
-import { Icon } from "@iconify/react";
 import React from "react";
 import Popup from "reactjs-popup";
+
+import { Icon } from "@iconify/react";
 
 import { ConfirmationProps } from "types/props";
 

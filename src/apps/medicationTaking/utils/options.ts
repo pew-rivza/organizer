@@ -48,13 +48,17 @@ export function castToOptions(
   }
 }
 
-export const getWordByCount = (count: number, forms: WordForms): string => {
+export const getWordByCount = (
+  count: number,
+  forms: WordForms,
+  isNominative: boolean = false,
+): string => {
   let form: WordFormType;
   const countMod100: number = count % 100;
 
   switch (countMod100 % 10) {
     case 1: {
-      form = "one";
+      form = isNominative ? "nominativeOne" : "one";
       break;
     }
     case 2:

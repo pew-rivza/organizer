@@ -1,0 +1,20 @@
+.cr_day_icons-medication {
+  &-header {
+    margin-bottom: 2px;
+    font-weight: 700;
+  }
+
+  ul + &-header {
+    margin-top: 5px;
+  }
+
+  &-item.checked {
+    text-decoration: line-through;
+  }
+
+  ul.dashed-list {
+    li + li {
+      margin-top: 3px;
+    }
+  }
+}

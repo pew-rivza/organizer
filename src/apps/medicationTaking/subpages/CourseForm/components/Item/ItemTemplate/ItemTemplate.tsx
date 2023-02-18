@@ -1,6 +1,7 @@
+import React from "react";
+
 import { Icon } from "@iconify/react";
 import { nanoid } from "nanoid";
-import React from "react";
 
 import { joinCn } from "utils/joinCn";
 
