@@ -13,17 +13,14 @@
   }
 }
 
-//noinspection CssUnusedSymbol
 .datepicker_input-wrapper {
   width: unset;
 
-  //noinspection CssUnusedSymbol
   &.month {
     max-width: 51px;
   }
 }
 
-//noinspection CssUnusedSymbol
 .datepicker_calendar {
   .react-datepicker {
     border: 0;
@@ -55,7 +52,6 @@
       &:hover {
         opacity: 1;
 
-        //noinspection CssUnusedSymbol
         .react-datepicker__navigation-icon:before {
           border-color: #f9f9f9;
         }
@@ -129,7 +125,6 @@
     }
   }
 
-  //noinspection CssUnusedSymbol
   .react-datepicker__month--selected {
     background: #92a69a !important;
     color: #f9f9f9;
