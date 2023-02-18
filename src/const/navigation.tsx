@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { BalanceWheel } from "apps/balanceWheel";
 import { Calendar } from "apps/calendar";
 import { MedicationTaking } from "apps/medicationTaking";
+import { VirtualWardrobe } from "apps/virtualWardrobe";
 import { Navigation } from "types/other";
 
 import { CourseForm } from "MT_subpages/CourseForm";
@@ -11,6 +12,21 @@ import { CourseForm } from "MT_subpages/CourseForm";
 import { Day } from "CR_subpages/Day";
 
 export const navigation: Navigation = [
+  {
+    icon: "material-symbols:calendar-month-outline-sharp",
+    link: "/calendar",
+    element: <Calendar />,
+    title: "Календарь",
+    inMenu: true,
+    subpages: [
+      {
+        link: "/calendar/:timestamp",
+        element: <Day />,
+        title: "Календарь: карточка дня",
+        inMenu: false,
+      },
+    ],
+  },
   {
     icon: "carbon:chart-radar",
     link: "/balance-wheel",
@@ -40,19 +56,11 @@ export const navigation: Navigation = [
     ],
   },
   {
-    icon: "material-symbols:calendar-month-outline-sharp",
-    link: "/calendar",
-    element: <Calendar />,
-    title: "Календарь",
+    icon: "mdi:wardrobe-outline",
+    link: "/virtual-wardrobe",
+    element: <VirtualWardrobe />,
+    title: "Виртуальный гардероб",
     inMenu: true,
-    subpages: [
-      {
-        link: "/calendar/:timestamp",
-        element: <Day />,
-        title: "Календарь: карточка дня",
-        inMenu: false,
-      },
-    ],
   },
   {
     icon: "material-symbols:home-outline",
@@ -62,7 +70,6 @@ export const navigation: Navigation = [
     index: true,
     inMenu: false,
   },
-  { icon: "mdi:wardrobe-outline", link: "/virtual-wardrobe", inMenu: false },
   {
     icon: "material-symbols:check-box-outline-sharp",
     link: "/check-lists",

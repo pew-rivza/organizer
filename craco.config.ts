@@ -28,6 +28,13 @@ export default {
       CR_types: resolve(__dirname, "src/apps/calendar/types"),
       CR_utils: resolve(__dirname, "src/apps/calendar/utils"),
       CR_subpages: resolve(__dirname, "src/apps/calendar/subpages"),
+      VW_api: resolve(__dirname, "src/apps/virtualWardrobe/api"),
+      VW_components: resolve(__dirname, "src/apps/virtualWardrobe/components"),
+      VW_const: resolve(__dirname, "src/apps/virtualWardrobe/const"),
+      VW_models: resolve(__dirname, "src/apps/virtualWardrobe/models"),
+      VW_types: resolve(__dirname, "src/apps/virtualWardrobe/types"),
+      VW_utils: resolve(__dirname, "src/apps/virtualWardrobe/utils"),
+      VW_subpages: resolve(__dirname, "src/apps/virtualWardrobe/subpages"),
     },
   },
 };

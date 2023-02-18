@@ -5,10 +5,11 @@
   "trailingComma": "all",
   "importOrder": [
     "^react.*(?<!(css))$",
-    "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(\\.)).*(?<!(css))$",
+    "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(VW_)|(\\.)).*(?<!(css))$",
     "^(?=(apps)|(components)|(const)|(types)|(utils)).*$",
     "^BW_.*$",
     "^MT_.*$",
+    "^VW_.*$",
     "^CR_.*$",
     "^.*(?<!css)$",
     "^.*(?<!s)css$",
