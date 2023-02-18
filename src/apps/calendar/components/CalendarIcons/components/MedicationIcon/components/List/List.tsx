@@ -16,15 +16,17 @@ export const List: React.FC<MedicationListIconProps> = ({
       {!!medications.length && (
         <div className="cr_day_icons-medication-header">{timesOfDay}</div>
       )}
-      {medications.map((medication: MedicationInfo) => {
-        return (
-          <Item
-            key={`medications-list-${timesOfDay}-${medication.id}`}
-            medication={medication}
-            isAllDay={timesOfDay === ALL_DAY}
-          />
-        );
-      })}
+      <ul className="dashed-list">
+        {medications.map((medication: MedicationInfo) => {
+          return (
+            <Item
+              key={`medications-list-${timesOfDay}-${medication.id}`}
+              medication={medication}
+              isAllDay={timesOfDay === ALL_DAY}
+            />
+          );
+        })}
+      </ul>
     </React.Fragment>
   );
 };

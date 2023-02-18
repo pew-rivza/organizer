@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { DayCellContentArg } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
 
-import { CalendarIcons } from "CR_components/CalendarIcons";
+import { WheelTodos } from "CR_components/WheelTodos";
 import { calendarConfig } from "CR_const/calendarConfig";
 
 import "./App.scss";
@@ -15,21 +14,11 @@ export const App: React.FC = () => {
   const [searchParams] = useSearchParams();
   const month: string = searchParams.get("month") || "";
   const year: string = searchParams.get("year") || "";
-
-  const DayCellContent: React.FC<DayCellContentArg> = (dayCell) => {
-    const { date, isOther } = dayCell;
-
-    return (
-      <div className="cr_day_cell">
-        <div>{dayCell.dayNumberText}</div>
-        <CalendarIcons date={date} disabled={isOther} />
-      </div>
-    );
-  };
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (calendarRef.current) {
-      const date = year && month ? new Date(+year, +month) : new Date();
+      const date: Date = year && month ? new Date(+year, +month) : new Date();
       calendarRef.current.getApi().gotoDate(date);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -40,16 +29,23 @@ export const App: React.FC = () => {
       <FullCalendar
         {...calendarConfig}
         ref={calendarRef}
-        dayCellContent={DayCellContent}
         dateClick={(info) => {
           if (!info.dayEl.className.includes("fc-day-other")) {
             navigate(info.date.getTime().toString());
           }
         }}
+        customButtons={{
+          wheel: {
+            icon: "chevron-left",
+            click: () => {
+              setIsOpen((prevState) => !prevState);
+            },
+          },
+        }}
       />
+      <WheelTodos isOpen={isOpen} />
     </div>
   );
 };
 
-// TODO: сделать вывод тудушек колеса в верхнем тулбаре
 // TODO: настроить проверку import/order в eslint

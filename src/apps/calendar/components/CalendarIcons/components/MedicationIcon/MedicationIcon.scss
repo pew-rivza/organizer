@@ -4,11 +4,17 @@
     font-weight: 700;
   }
 
-  &-item + &-header {
+  ul + &-header {
     margin-top: 5px;
   }
 
   &-item.checked {
     text-decoration: line-through;
+  }
+
+  ul.dashed-list {
+    li + li {
+      margin-top: 3px;
+    }
   }
 }

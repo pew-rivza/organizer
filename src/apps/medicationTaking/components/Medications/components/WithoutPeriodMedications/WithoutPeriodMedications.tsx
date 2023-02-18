@@ -18,7 +18,7 @@ export const WithoutPeriodMedications: React.FC<
           {dateFormatter.format(withoutPeriodCourseEnd)}
         </div>
       )}
-      <ul>
+      <ul className="dashed-list">
         {groupedMedications[WITHOUT_PERIOD_KEY].map((medication) => (
           <Medication key={medication.id} medication={medication} />
         ))}

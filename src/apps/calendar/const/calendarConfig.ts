@@ -2,6 +2,8 @@ import { CalendarOptions } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
 
+import { DayCell } from "CR_components/DayCell";
+
 export const calendarConfig: CalendarOptions | Readonly<CalendarOptions> = {
   plugins: [interactionPlugin, dayGridPlugin],
   initialView: "dayGridMonth",
@@ -23,12 +25,5 @@ export const calendarConfig: CalendarOptions | Readonly<CalendarOptions> = {
   buttonIcons: {
     today: "chevron-left",
   },
-  customButtons: {
-    wheel: {
-      icon: "chevron-left",
-      click: () => {
-        console.log("hello!");
-      },
-    },
-  },
+  dayCellContent: DayCell,
 };

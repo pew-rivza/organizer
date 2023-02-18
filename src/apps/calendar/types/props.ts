@@ -52,3 +52,5 @@ export type MedicationsGroupDayProps = {
 
 export type DayDateProps = { date: Date | null };
 export type DayToolbarProps = { date: Date | null };
+
+export type WheelTodosProps = { isOpen: boolean };

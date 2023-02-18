@@ -13,7 +13,7 @@ export const WithPeriodMedications: React.FC<WithPeriodMedicationsProps> = ({
       {Object.keys(groupedMedications[WITH_PERIOD_KEY] || {}).map((period) => (
         <React.Fragment key={period}>
           <div className="mt_course_medications-period">{period}</div>
-          <ul>
+          <ul className="dashed-list">
             {(groupedMedications[WITH_PERIOD_KEY]?.[period] || []).map(
               (medication) => (
                 <Medication key={medication.id} medication={medication} />

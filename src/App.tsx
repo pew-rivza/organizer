@@ -8,26 +8,21 @@ import { Routing } from "types/other";
 import { getRoutings } from "utils/navigation";
 import { findObject } from "utils/objects";
 
-import { fetchAreasFx } from "BW_models/area";
-import { fetchWheelsFx } from "BW_models/wheel";
-import { Area, Wheel as WheelType } from "BW_types/stores";
-
 import { fetchCoursesFx } from "MT_models/course";
 import { fetchOptionsFx } from "MT_models/option";
-import { Course as CourseType, Option } from "MT_types/stores";
+import { Course, Option } from "MT_types/stores";
 
 import { fetchCheckedMedicationsFx } from "CR_models/medication";
 import { CheckedMedications } from "CR_types/stores";
 
-import "./App.scss";
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";
 
+import "./App.scss";
+
 const App: React.FC = () => {
-  const fetchWheels = useEvent<WheelType[]>(fetchWheelsFx);
-  const fetchAreas = useEvent<Area[]>(fetchAreasFx);
   const fetchOptions = useEvent<Option[]>(fetchOptionsFx);
-  const fetchCourses = useEvent<CourseType[]>(fetchCoursesFx);
+  const fetchCourses = useEvent<Course[]>(fetchCoursesFx);
   const fetchCheckedMedications = useEvent<CheckedMedications[]>(
     fetchCheckedMedicationsFx,
   );
@@ -48,8 +43,6 @@ const App: React.FC = () => {
   }, [currentRouting]);
 
   useEffect(() => {
-    fetchWheels();
-    fetchAreas();
     fetchCourses();
     fetchOptions();
     fetchCheckedMedications();

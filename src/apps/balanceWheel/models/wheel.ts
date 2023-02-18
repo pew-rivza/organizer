@@ -7,7 +7,7 @@ import {
   updateAreaValues,
   updatePreviousAreaValues,
 } from "BW_models/areaValue";
-import { fetchTodosFx } from "BW_models/todo";
+import { fetchWheelTodosFx } from "BW_models/todo";
 import { AreaValue, Wheel } from "BW_types/stores";
 
 // Effects
@@ -22,7 +22,7 @@ export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
   updateAreaValues(areaValues);
   updatePreviousAreaValues(previousAreaValues);
   updateIsNewWheel(false);
-  await fetchTodosFx(lastWheelId);
+  await fetchWheelTodosFx(lastWheelId);
   return wheels;
 });
 

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { useEvent, useStore } from "effector-react";
 
 import { API_DELETE_TODO, API_UPDATE_TODO } from "BW_api/todo";
-import { fetchTodosFx } from "BW_models/todo";
+import { fetchWheelTodosFx } from "BW_models/todo";
 import { $wheel } from "BW_models/wheel";
 import { EditableItemProps } from "BW_types/props";
 import { Todo, Wheel } from "BW_types/stores";
@@ -13,7 +13,7 @@ import { ItemTemplate } from "./../ItemTemplate";
 
 export const EditableItem: React.FC<EditableItemProps> = ({ todo }) => {
   const [editedTodo, setEditedTodo] = useState<string | false>(false);
-  const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
+  const fetchTodos = useEvent<number | void, Todo[]>(fetchWheelTodosFx);
   const wheel = useStore<Wheel>($wheel);
   const todoEditMode: boolean = typeof editedTodo === "string";
 

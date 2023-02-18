@@ -3,13 +3,6 @@
   padding-bottom: 20px;
   box-sizing: border-box;
 
-  &_day_cell {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 100%;
-  }
-
   .fc-daygrid-day-number {
     z-index: auto;
     width: 100%;

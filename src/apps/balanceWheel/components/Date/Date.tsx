@@ -16,7 +16,7 @@ import {
   updatePreviousAreaValues,
 } from "BW_models/areaValue";
 import { editModeOff, editModeOn } from "BW_models/common";
-import { fetchTodosFx } from "BW_models/todo";
+import { fetchWheelTodosFx } from "BW_models/todo";
 import {
   $editedDate,
   $isNewWheel,
@@ -32,8 +32,9 @@ import {
 import { AreaValue, EditedAreaValues, Todo, Wheel } from "BW_types/stores";
 import { getDateFromString, getStringFromDate } from "BW_utils/date";
 
-import "./Date.scss";
 import "react-loading-skeleton/dist/skeleton.css";
+
+import "./Date.scss";
 
 export const Date: React.FC = () => {
   const wheels = useStore<Wheel[]>($wheels);
@@ -48,7 +49,7 @@ export const Date: React.FC = () => {
   const fetchAreaValues = useEvent<number | void, AreaValue[]>(
     fetchAreaValuesFx,
   );
-  const fetchTodos = useEvent<number | void, Todo[]>(fetchTodosFx);
+  const fetchTodos = useEvent<number | void, Todo[]>(fetchWheelTodosFx);
   const [wheelYear, wheelMonth]: string[] = wheel.date?.split(".") || [];
   const formattedDate: string = `${wheelMonth}.${wheelYear}`;
 
