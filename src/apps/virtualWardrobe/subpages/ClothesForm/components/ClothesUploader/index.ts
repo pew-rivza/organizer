@@ -1,1 +1,0 @@
-export { ClothesUploader } from "./ClothesUploader"

@@ -105,6 +105,7 @@ export const Date: React.FC = () => {
     "bw_date-icon",
     isFirstWheel || !wheel.date ? "disabled" : "",
   );
+  // TODO: проблемы с одним колесом и наверняка с нулем тоже
   const nextWheelCn: string = joinCn(
     "bw_date-icon",
     isNewWheel || !wheel.date ? "disabled" : "",

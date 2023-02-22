@@ -26,4 +26,5 @@ export const calendarConfig: CalendarOptions | Readonly<CalendarOptions> = {
     today: "chevron-left",
   },
   dayCellContent: DayCell,
+  fixedWeekCount: false,
 };

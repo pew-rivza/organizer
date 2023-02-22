@@ -1,5 +1,5 @@
 import React from "react";
-import Uploader, { ImageListType } from "react-images-uploading";
+import ImageUploader, { ImageListType } from "react-images-uploading";
 
 import { Icon } from "@iconify/react";
 import { useStore } from "effector-react";
@@ -9,12 +9,12 @@ import { joinCn } from "utils/joinCn";
 import { $changedClothes, updateChangedClothes } from "VW_models/clothes";
 import { ChangedClothes } from "VW_types/stores";
 
-import "./ClothesUploader.scss";
+import "./Uploader.scss";
 
-export const ClothesUploader: React.FC = () => {
+export const Uploader: React.FC = () => {
   const changedClothes = useStore<ChangedClothes>($changedClothes);
 
-  const onChange = (imageList: ImageListType) => {
+  const onChange = (imageList: ImageListType): void => {
     updateChangedClothes({
       ...changedClothes,
       image: imageList[0],
@@ -22,7 +22,7 @@ export const ClothesUploader: React.FC = () => {
   };
 
   return (
-    <Uploader
+    <ImageUploader
       value={changedClothes.image ? [changedClothes.image] : []}
       onChange={onChange}
       dataURLKey="data_url"
@@ -81,6 +81,6 @@ export const ClothesUploader: React.FC = () => {
           </React.Fragment>
         );
       }}
-    </Uploader>
+    </ImageUploader>
   );
 };

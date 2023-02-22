@@ -29,11 +29,15 @@ export const WheelTodos: React.FC<WheelTodosProps> = ({ isOpen }) => {
       isOpen={isOpen}
       place="right"
     >
-      <ul className="dashed-list">
-        {uncheckedTodos.map((todo) => (
-          <li key={todo.id}>{todo.name}</li>
-        ))}
-      </ul>
+      {uncheckedTodos.length ? (
+        <ul className="dashed-list">
+          {uncheckedTodos.map((todo) => (
+            <li key={todo.id}>{todo.name}</li>
+          ))}
+        </ul>
+      ) : (
+        <div>Все дела сделаны!</div>
+      )}
     </Tooltip>
   );
 };

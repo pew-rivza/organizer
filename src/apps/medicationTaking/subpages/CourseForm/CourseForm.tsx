@@ -26,28 +26,30 @@ export const CourseForm: React.FC = () => {
   const { id } = useParams() as CourseParams;
 
   useEffect(() => {
-    const editedCourse = findObject<number, CourseFullInfo>(
-      coursesFullInfo,
-      "id",
-      +id,
-    );
-    const {
-      start = null,
-      doctor = "",
-      diagnosis = "",
-    } = (editedCourse || {}) as ChangedCourse;
-    const preparedMedications: ChangedMedication[] = (
-      editedCourse?.medications || []
-    ).map(prepareMedicationToFrontend);
+    if (id) {
+      const editedCourse = findObject<number, CourseFullInfo>(
+        coursesFullInfo,
+        "id",
+        +id,
+      );
+      const {
+        start = null,
+        doctor = "",
+        diagnosis = "",
+      } = (editedCourse || {}) as ChangedCourse;
+      const preparedMedications: ChangedMedication[] = (
+        editedCourse?.medications || []
+      ).map(prepareMedicationToFrontend);
 
-    setChangedCourse({
-      id: +id,
-      start: start ? new Date(start) : null,
-      doctor,
-      diagnosis,
-    });
+      setChangedCourse({
+        id: +id,
+        start: start ? new Date(start) : null,
+        doctor,
+        diagnosis,
+      });
 
-    setChangedMedications(preparedMedications);
+      setChangedMedications(preparedMedications);
+    }
   }, [coursesFullInfo, id]);
 
   return (
