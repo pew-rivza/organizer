@@ -6,6 +6,7 @@ export interface ChangedClothes {
 }
 
 export interface Clothes {
+  id: number;
   image: string;
   category: number;
 }
