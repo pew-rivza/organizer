@@ -12,7 +12,9 @@ import { AreaValue, Wheel } from "BW_types/stores";
 
 // Effects
 export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
+  updateIsNewWheel(true);
   const wheels = await API_FETCH_WHEELS();
+  wheels.length && updateIsNewWheel(false);
   const lastWheelId: number | void = wheels[wheels.length - 1]?.id;
   const previousWheelId: number | void = wheels[wheels.length - 2]?.id;
   const areaValues: AreaValue[] = await fetchAreaValuesFx(lastWheelId);
@@ -21,7 +23,6 @@ export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
   );
   updateAreaValues(areaValues);
   updatePreviousAreaValues(previousAreaValues);
-  updateIsNewWheel(false);
   await fetchWheelTodosFx(lastWheelId);
   return wheels;
 });
