@@ -5,6 +5,11 @@ export interface ChangedClothes {
   category: number | null;
 }
 
+export interface Clothes {
+  image: string;
+  category: number;
+}
+
 export interface Category {
   id: number;
   name: string;
