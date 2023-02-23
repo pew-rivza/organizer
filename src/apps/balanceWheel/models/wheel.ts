@@ -12,9 +12,8 @@ import { AreaValue, Wheel } from "BW_types/stores";
 
 // Effects
 export const fetchWheelsFx = createEffect<void, Wheel[]>(async () => {
-  updateIsNewWheel(true);
   const wheels = await API_FETCH_WHEELS();
-  wheels.length && updateIsNewWheel(false);
+  wheels.length ? updateIsNewWheel(false) : updateIsNewWheel(true);
   const lastWheelId: number | void = wheels[wheels.length - 1]?.id;
   const previousWheelId: number | void = wheels[wheels.length - 2]?.id;
   const areaValues: AreaValue[] = await fetchAreaValuesFx(lastWheelId);
