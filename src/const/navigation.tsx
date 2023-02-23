@@ -57,8 +57,8 @@ export const navigation: Navigation = [
   },
   {
     icon: "mdi:wardrobe-outline",
-    link: "/virtual-wardrobe",
-    element: <VirtualWardrobe />,
+    link: "/virtual-wardrobe/clothes",
+    element: <VirtualWardrobe page="clothes" />,
     title: "Виртуальный гардероб",
     inMenu: true,
   },
