@@ -1,22 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { useStore } from "effector-react";
-
-import { $clothes } from "VW_models/clothes";
-import { Clothes as ClothesType } from "VW_types/stores";
-
-import "./Clothes.scss";
+import { List } from "./components/List";
+import { Tabs } from "./components/Tabs";
 
 export const Clothes: React.FC = () => {
-  const clothes = useStore<ClothesType[]>($clothes);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
 
   return (
-    <div className="vw_clothes">
-      {clothes.map((cloth) => (
-        <div className="vw_clothes-item" key={cloth.id}>
-          <img alt="" src={cloth.image} />
-        </div>
-      ))}
-    </div>
+    <React.Fragment>
+      <Tabs selected={selectedCategory} onSelect={setSelectedCategory} />
+      <List category={selectedCategory} />
+    </React.Fragment>
   );
 };

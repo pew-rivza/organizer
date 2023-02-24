@@ -18,3 +18,18 @@ export const API_ADD_CLOTHES = (clothes: ChangedClothes): Promise<Clothes> => {
     body: formData,
   }).then((response) => response.json());
 };
+
+export const API_UPDATE_CLOTHES = (
+  clothes: ChangedClothes,
+  clothesId: number,
+): Promise<Clothes> => {
+  const formData = new FormData();
+  clothes?.image?.file && formData.append("image", clothes.image.file);
+  formData.append("categoryId", clothes.category?.toString() || "");
+  formData.append("clothesId", clothesId.toString() || "");
+
+  return fetch(CLOTHES_URL, {
+    method: "PUT",
+    body: formData,
+  }).then((response) => response.json());
+};

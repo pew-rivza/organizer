@@ -25,7 +25,6 @@ export const Uploader: React.FC = () => {
     <ImageUploader
       value={changedClothes.image ? [changedClothes.image] : []}
       onChange={onChange}
-      dataURLKey="data_url"
     >
       {({
         imageList,
@@ -55,7 +54,7 @@ export const Uploader: React.FC = () => {
             {imageList[0] && (
               <div className="vw_clothes_form-image">
                 <img
-                  src={imageList[0]["data_url"]}
+                  src={imageList[0]["dataURL"]}
                   alt={imageList[0].file?.name || ""}
                 />
 

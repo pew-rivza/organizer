@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { useStore } from "effector-react";
 
@@ -10,11 +9,7 @@ import { findObject } from "utils/objects";
 import { DECLINATION, DEFAULT, IN_BEFORE_COMPLIANCE } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import {
-  CourseParams,
-  InBeforeComplianceKey,
-  NullableNumber,
-} from "MT_types/other";
+import { InBeforeComplianceKey, NullableNumber } from "MT_types/other";
 import { ItemProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -26,8 +21,6 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
   onChange,
   onDelete,
 }) => {
-  const { id } = useParams() as CourseParams;
-
   const [selectedMealTime, setSelectedMealTime] = useState<SelectOption | null>(
     null,
   );
@@ -92,7 +85,7 @@ export const MealTime: React.FC<ItemProps<NullableNumber>> = ({
         ) || null,
       );
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, mealTimeOptions]);
+  }, [mealTimeOptions]);
 
   const deleteField = () => {
     mealTimeChangeHandler(null);

@@ -8,10 +8,14 @@ export interface ChangedClothes {
 export interface Clothes {
   id: number;
   image: string;
-  category: number;
+  VWCategoryId: number;
 }
 
 export interface Category {
   id: number;
   name: string;
+}
+
+export interface GroupedClothes {
+  [id: number]: Clothes[];
 }

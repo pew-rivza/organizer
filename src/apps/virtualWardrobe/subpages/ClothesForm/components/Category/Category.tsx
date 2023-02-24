@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useStore } from "effector-react";
 
 import { Select } from "components/Select";
 import { SelectOption } from "types/other";
+import { findObject } from "utils/objects";
+
+import { NullableNumber } from "MT_types/other";
 
 import { $categories } from "VW_models/category";
 import { $changedClothes, updateChangedClothes } from "VW_models/clothes";
@@ -19,6 +22,17 @@ export const Category: React.FC = () => {
     label: category.name,
     value: category.id,
   }));
+
+  useEffect(() => {
+    const selectedCategoryOption =
+      findObject<NullableNumber, SelectOption>(
+        options,
+        "value",
+        changedClothes.category,
+      ) || null;
+
+    setCategory(selectedCategoryOption);
+  }, [changedClothes.category, options]);
 
   const selectChangeHandler = (option: SelectOption | null) => {
     setCategory(option);
