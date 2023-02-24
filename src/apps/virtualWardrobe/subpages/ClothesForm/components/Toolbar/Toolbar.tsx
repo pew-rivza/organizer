@@ -30,16 +30,13 @@ export const Toolbar: React.FC = () => {
         await API_ADD_CLOTHES(changedClothes);
       }
 
-      navigate(-1);
-      fetchClothes();
-
       toast(id ? "Вещь отредактирована" : "Новая вещь добавлена!", {
         toastId: 10,
         type: "success",
-        onClose: () => {
-          cancelChangedClothes();
-        },
       });
+
+      fetchClothes();
+      goBack();
     } else {
       toast("Заполните все поля", {
         toastId: 9,

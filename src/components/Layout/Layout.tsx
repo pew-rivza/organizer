@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import { Icon } from "@iconify/react";
 
@@ -15,7 +14,6 @@ export const Layout: React.FC = () => {
     <div className="layout">
       <div className="layout-content">
         <Outlet />
-        <ToastContainer autoClose={2000} limit={2} />
       </div>
       <nav>
         <ul>
