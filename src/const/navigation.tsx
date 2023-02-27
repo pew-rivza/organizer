@@ -9,6 +9,9 @@ import { Navigation } from "types/other";
 
 import { CourseForm } from "MT_subpages/CourseForm";
 
+import { ClothesForm } from "VW_subpages/ClothesForm";
+import { LookForm } from "VW_subpages/LookForm";
+
 import { Day } from "CR_subpages/Day";
 
 export const navigation: Navigation = [
@@ -61,6 +64,38 @@ export const navigation: Navigation = [
     element: <VirtualWardrobe page="clothes" />,
     title: "Виртуальный гардероб",
     inMenu: true,
+    subpages: [
+      {
+        link: "/virtual-wardrobe/clothes/add",
+        element: <ClothesForm />,
+        title: "Виртуальный гардероб: добавление одежды",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/clothes/edit/:id",
+        element: <ClothesForm />,
+        title: "Виртуальный гардероб: редактирование одежды",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/looks",
+        element: <VirtualWardrobe page="looks" />,
+        title: "Виртуальный гардероб",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/look/add",
+        element: <LookForm />,
+        title: "Виртуальный гардероб: добавление образа",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/look/edit/:id",
+        element: <LookForm />,
+        title: "Виртуальный гардероб: редактирование образа",
+        inMenu: false,
+      },
+    ],
   },
   {
     icon: "material-symbols:home-outline",
