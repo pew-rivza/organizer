@@ -36,18 +36,25 @@
     "date-fns": "^2.29.3",
     "effector": "^22.4.1",
     "effector-react": "^22.4.0",
+    "konva": "^8.4.2",
     "nanoid": "^4.0.0",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.0.1",
     "react-datepicker": "^4.8.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dnd-multi-backend": "^8.0.0",
+    "react-dnd-touch-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-images-uploading": "^3.1.7",
+    "react-konva": "^18.2.5",
     "react-loading-skeleton": "^3.1.0",
     "react-select": "^5.7.0",
     "react-text-mask": "^5.5.0",
     "react-toastify": "^9.1.1",
     "react-tooltip": "^5.7.5",
-    "reactjs-popup": "^2.0.5"
+    "reactjs-popup": "^2.0.5",
+    "use-image": "^1.1.0"
   },
   "eslintConfig": {
     "extends": [

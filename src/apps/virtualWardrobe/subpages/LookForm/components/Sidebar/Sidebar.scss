@@ -1,0 +1,25 @@
+.vw_look_form_sidebar {
+  width: 100%;
+  max-width: 402px;
+  height: calc(100vh - 140px);
+  overflow: auto;
+  box-sizing: border-box;
+  border: 1px solid #92a69a;
+
+  &-header {
+    background: #92a69a;
+    color: #f9f9f9;
+    padding: 10px;
+  }
+
+  &-header + &-header {
+    border-top: 1px solid #f9f9f9;
+  }
+
+  &-body {
+    padding: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+}
