@@ -1,7 +1,7 @@
-import { MutableRefObject } from "react";
+import { CSSProperties } from "react";
 
-import { DraggableObject } from "VW_types/other";
-import { Clothes } from "VW_types/stores";
+import { Coords } from "VW_types/other";
+import { Clothes, DraggableImage } from "VW_types/stores";
 
 export type AppProps = {
   page: "clothes" | "looks";
@@ -18,19 +18,13 @@ export type ClothesListProps = {
 
 export type ClothesItemProps = {
   clothes: Clothes;
-  draggableObject: MutableRefObject<DraggableObject | undefined>;
 };
-
-export type SidebarProps = {
-  draggableObject: MutableRefObject<DraggableObject | undefined>;
-};
-
-export type CanvasProps = {
-  draggableObject: MutableRefObject<DraggableObject | undefined>;
-};
-
-export type Coords = { x: number; y: number };
 
 export type CanvasImageProps = {
-  image: DraggableObject & Coords;
+  image: DraggableImage & Coords;
+};
+
+export type PreviewProps = {
+  style: CSSProperties | undefined;
+  item: Clothes;
 };

@@ -1,20 +1,30 @@
-import React, { DragEvent, useRef } from "react";
+import React, { DragEvent, useEffect, useRef } from "react";
 import { useDrop } from "react-dnd";
 import { Image, Layer, Stage } from "react-konva";
 
+import { useStore } from "effector-react";
 import Konva from "konva";
 import useImage from "use-image";
 
-import { DraggableObject } from "VW_types/other";
-import { CanvasImageProps, CanvasProps, Coords } from "VW_types/props";
+import {
+  $changedLook,
+  $draggableImage,
+  updateChangedLook,
+} from "VW_models/look";
+import { CanvasImageProps } from "VW_types/props";
+import { ChangedLook, DraggableImage } from "VW_types/stores";
 
 import "./Canvas.scss";
 
-export const Canvas: React.FC<CanvasProps> = ({ draggableObject }) => {
+export const Canvas: React.FC = () => {
+  const draggableImage = useStore<DraggableImage | null>($draggableImage);
+  const changedLook = useStore<ChangedLook>($changedLook);
   const stageRef = useRef<Konva.Stage>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
-  const [images, setImages] = React.useState<(DraggableObject & Coords)[]>([]);
   const [, drop] = useDrop(() => ({ accept: "clothes" }));
+  const canvasRect: DOMRect = (
+    document.getElementById("canvas-area") as HTMLDivElement
+  )?.getBoundingClientRect();
 
   const CanvasImage: React.FC<CanvasImageProps> = ({ image }) => {
     const [img] = useImage(image.src);
@@ -36,32 +46,48 @@ export const Canvas: React.FC<CanvasProps> = ({ draggableObject }) => {
     event.preventDefault();
     stageRef.current?.setPointersPositions(event);
     const coords = stageRef.current?.getPointerPosition();
-    setImages(
-      images.concat([
-        {
-          x: coords?.x || 0,
-          y: coords?.y || 0,
-          src: draggableObject.current?.src || "",
-          width: draggableObject.current?.width || 0,
-          height: draggableObject.current?.height || 0,
-          offsetX: draggableObject.current?.offsetX || 0,
-          offsetY: draggableObject.current?.offsetY || 0,
-        },
-      ]),
-    );
+
+    draggableImage &&
+      updateChangedLook({
+        ...changedLook,
+        clothes: [
+          ...changedLook.clothes,
+          {
+            ...draggableImage,
+            x: coords?.x || 0,
+            y: coords?.y || 0,
+          },
+        ],
+      });
   };
+
+  useEffect(() => {
+    window._organizer.virtualWardrobe.stageRef = stageRef;
+  }, []);
+
+  console.log("changedLook", changedLook);
 
   return (
     <div className="vw_look_form_canvas" ref={canvasRef}>
-      <div ref={drop} onDrop={dropImage} onDragOver={(e) => e.preventDefault()}>
+      <div
+        id="canvas-area"
+        ref={drop}
+        onDrop={dropImage}
+        onDragOver={(e) => e.preventDefault()}
+      >
         <Stage
-          width={canvasRef.current?.offsetWidth}
-          height={(canvasRef.current?.offsetHeight || 0) - 2}
+          width={canvasRect?.width - 1}
+          height={canvasRect?.height - 2}
           ref={stageRef}
         >
           <Layer>
-            {images.map((image) => {
-              return <CanvasImage key={image.src} image={image} />;
+            {changedLook.clothes.map((image) => {
+              return (
+                <CanvasImage
+                  key={`${image.src}${image.x}${image.y}`}
+                  image={image}
+                />
+              );
             })}
           </Layer>
         </Stage>

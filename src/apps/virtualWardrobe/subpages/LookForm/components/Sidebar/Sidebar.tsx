@@ -4,14 +4,13 @@ import { useStore } from "effector-react";
 
 import { $categories } from "VW_models/category";
 import { $groupedClothes } from "VW_models/clothes";
-import { SidebarProps } from "VW_types/props";
 import { Category, GroupedClothes } from "VW_types/stores";
 
 import { Item } from "../Item";
 
 import "./Sidebar.scss";
 
-export const Sidebar: React.FC<SidebarProps> = ({ draggableObject }) => {
+export const Sidebar: React.FC = () => {
   const categories = useStore<Category[]>($categories);
   const groupedClothes = useStore<GroupedClothes>($groupedClothes);
 
@@ -24,11 +23,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ draggableObject }) => {
           {groupedClothes[category.id] && (
             <div className="vw_look_form_sidebar-body">
               {groupedClothes[category.id].map((clothes) => (
-                <Item
-                  key={clothes.id}
-                  clothes={clothes}
-                  draggableObject={draggableObject}
-                />
+                <Item key={clothes.id} clothes={clothes} />
               ))}
             </div>
           )}
