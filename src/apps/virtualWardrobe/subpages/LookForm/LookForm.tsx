@@ -2,7 +2,7 @@ import React from "react";
 import { DndProvider } from "react-dnd";
 import { MultiBackend } from "react-dnd-multi-backend";
 
-import { backendOptions } from "VW_const/dndConfig";
+import { BACKEND_OPTIONS } from "VW_const/dnd-config";
 
 import { Canvas } from "./components/Canvas";
 import { Sidebar } from "./components/Sidebar";
@@ -15,7 +15,7 @@ export const LookForm: React.FC = () => {
     <div className="vw_look_form">
       <Toolbar />
       <div className="vw_look_form_container">
-        <DndProvider backend={MultiBackend} options={backendOptions}>
+        <DndProvider backend={MultiBackend} options={BACKEND_OPTIONS}>
           <Canvas />
           <Sidebar />
         </DndProvider>

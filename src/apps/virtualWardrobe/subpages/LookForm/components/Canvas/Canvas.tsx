@@ -1,18 +1,19 @@
 import React, { DragEvent, useEffect, useRef } from "react";
 import { useDrop } from "react-dnd";
-import { Image, Layer, Stage } from "react-konva";
+import { Layer, Stage } from "react-konva";
 
 import { useStore } from "effector-react";
 import Konva from "konva";
-import useImage from "use-image";
+import { KonvaEventObject } from "konva/lib/Node";
 
 import {
   $changedLook,
   $draggableImage,
   updateChangedLook,
 } from "VW_models/look";
-import { CanvasImageProps } from "VW_types/props";
 import { ChangedLook, DraggableImage } from "VW_types/stores";
+
+import { CanvasImage } from "../CanvasImage";
 
 import "./Canvas.scss";
 
@@ -22,27 +23,20 @@ export const Canvas: React.FC = () => {
   const stageRef = useRef<Konva.Stage>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop(() => ({ accept: "clothes" }));
+  const [selectedId, selectImage] = React.useState<string | null>(null);
   const canvasRect: DOMRect = (
     document.getElementById("canvas-area") as HTMLDivElement
   )?.getBoundingClientRect();
 
-  const CanvasImage: React.FC<CanvasImageProps> = ({ image }) => {
-    const [img] = useImage(image.src);
-
-    return (
-      <Image
-        image={img}
-        x={image.x}
-        y={image.y}
-        offsetX={image.offsetX}
-        offsetY={image.offsetY}
-        width={image.width}
-        height={image.height}
-      />
-    );
+  const checkDeselect = (
+    e: KonvaEventObject<MouseEvent | TouchEvent>,
+  ): void => {
+    if (e.target === e.target.getStage()) {
+      selectImage(null);
+    }
   };
 
-  const dropImage = (event: DragEvent<HTMLImageElement>) => {
+  const dropImage = (event: DragEvent<HTMLImageElement>): void => {
     event.preventDefault();
     stageRef.current?.setPointersPositions(event);
     const coords = stageRef.current?.getPointerPosition();
@@ -65,8 +59,6 @@ export const Canvas: React.FC = () => {
     window._organizer.virtualWardrobe.stageRef = stageRef;
   }, []);
 
-  console.log("changedLook", changedLook);
-
   return (
     <div className="vw_look_form_canvas" ref={canvasRef}>
       <div
@@ -79,13 +71,17 @@ export const Canvas: React.FC = () => {
           width={canvasRect?.width - 1}
           height={canvasRect?.height - 2}
           ref={stageRef}
+          onMouseDown={checkDeselect}
+          onTouchStart={checkDeselect}
         >
           <Layer>
             {changedLook.clothes.map((image) => {
               return (
                 <CanvasImage
-                  key={`${image.src}${image.x}${image.y}`}
+                  key={image.idOnCanvas}
                   image={image}
+                  isSelected={image.idOnCanvas === selectedId}
+                  onSelect={() => selectImage(image.idOnCanvas)}
                 />
               );
             })}

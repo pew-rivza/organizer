@@ -22,6 +22,8 @@ export type ClothesItemProps = {
 
 export type CanvasImageProps = {
   image: DraggableImage & Coords;
+  isSelected: boolean;
+  onSelect: () => void;
 };
 
 export type PreviewProps = {

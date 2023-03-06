@@ -23,6 +23,7 @@ export interface GroupedClothes {
 }
 
 export type DraggableImage = {
+  idOnCanvas: string;
   id: number;
   src: string;
   width: number;

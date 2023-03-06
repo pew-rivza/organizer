@@ -3,6 +3,7 @@ import { useDrag } from "react-dnd";
 import { Preview } from "react-dnd-multi-backend";
 
 import { useStore } from "effector-react";
+import { nanoid } from "nanoid";
 
 import {
   $changedLook,
@@ -40,6 +41,7 @@ export const Item: React.FC<ClothesItemProps> = ({ clothes }) => {
     const rect = target.getBoundingClientRect();
 
     updateDraggableImage({
+      idOnCanvas: nanoid(4),
       id: clothes.id,
       src: target.src,
       width: target.offsetWidth,
