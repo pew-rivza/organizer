@@ -30,3 +30,7 @@ export type PreviewProps = {
   style: CSSProperties | undefined;
   item: Clothes;
 };
+
+export type CloseButtonProps = {
+  image: DraggableImage & Coords;
+};

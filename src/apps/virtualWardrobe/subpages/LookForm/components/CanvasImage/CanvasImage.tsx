@@ -11,6 +11,7 @@ import { findObject } from "utils/objects";
 
 import { TRANSFORMER_CONFIG } from "VW_const/dnd-config";
 import { $changedLook, updateChangedLook } from "VW_models/look";
+import { CloseButton } from "VW_subpages/LookForm/components/CloseButton";
 import { Coords } from "VW_types/other";
 import { CanvasImageProps } from "VW_types/props";
 import { ChangedLook, DraggableImage } from "VW_types/stores";
@@ -115,6 +116,7 @@ export const CanvasImage: React.FC<CanvasImageProps> = ({
         onTap={onSelect}
         draggable
         onDragEnd={moveImage}
+        onTransform={resizeImage}
         onTransformEnd={resizeImage}
       />
       {isSelected && (
@@ -122,7 +124,9 @@ export const CanvasImage: React.FC<CanvasImageProps> = ({
           ref={transformerRef}
           boundBoxFunc={restrictSize}
           {...TRANSFORMER_CONFIG}
-        />
+        >
+          <CloseButton image={image} />
+        </Transformer>
       )}
     </React.Fragment>
   );
