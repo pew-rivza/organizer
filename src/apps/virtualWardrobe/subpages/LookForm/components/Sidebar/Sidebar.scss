@@ -1,10 +1,11 @@
 .vw_look_form_sidebar {
   width: 100%;
-  max-width: 402px;
+  max-width: 401px;
   height: calc(100vh - 140px);
   overflow: auto;
   box-sizing: border-box;
-  border: 1px solid #92a69a;
+  border: solid #92a69a;
+  border-width: 1px 1px 1px 0;
 
   &-header {
     background: #92a69a;

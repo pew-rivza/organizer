@@ -33,7 +33,19 @@ export type DraggableImage = {
 };
 
 export interface ChangedLook {
+  id?: number;
   clothes: (DraggableImage & Coords)[];
   background: string | null;
   canvasSize: number;
+  image?: string;
+}
+
+export interface Look {
+  id: number;
+  image: string;
+  background: string | null;
+  canvasSize: number;
+  VW_Clothes: (Clothes & {
+    VW_Clothes_Look: DraggableImage & Coords;
+  })[];
 }

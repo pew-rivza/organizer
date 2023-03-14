@@ -9,7 +9,9 @@ import { KonvaEventObject } from "konva/lib/Node";
 import {
   $changedLook,
   $draggableImage,
+  $stageRef,
   updateChangedLook,
+  updateStageRef,
 } from "VW_models/look";
 import { ChangedLook, DraggableImage } from "VW_types/stores";
 
@@ -20,13 +22,18 @@ import "./Canvas.scss";
 export const Canvas: React.FC = () => {
   const draggableImage = useStore<DraggableImage | null>($draggableImage);
   const changedLook = useStore<ChangedLook>($changedLook);
-  const stageRef = useRef<Konva.Stage>(null);
+  const stage = useRef<Konva.Stage>(null);
+  const stageRef = useStore<React.RefObject<Konva.Stage> | null>($stageRef);
   const canvasRef = useRef<HTMLDivElement>(null);
   const [, drop] = useDrop(() => ({ accept: "clothes" }));
   const [selectedId, selectImage] = React.useState<string | null>(null);
   const canvasRect: DOMRect = (
     document.getElementById("canvas-area") as HTMLDivElement
   )?.getBoundingClientRect();
+
+  useEffect(() => {
+    updateStageRef(stage);
+  }, []);
 
   const checkDeselect = (
     e: KonvaEventObject<MouseEvent | TouchEvent>,
@@ -37,27 +44,25 @@ export const Canvas: React.FC = () => {
   };
 
   const dropImage = (event: DragEvent<HTMLImageElement>): void => {
-    event.preventDefault();
-    stageRef.current?.setPointersPositions(event);
-    const coords = stageRef.current?.getPointerPosition();
+    if (stageRef) {
+      event.preventDefault();
+      stageRef.current?.setPointersPositions(event);
+      const coords = stageRef.current?.getPointerPosition();
 
-    draggableImage &&
-      updateChangedLook({
-        ...changedLook,
-        clothes: [
-          ...changedLook.clothes,
-          {
-            ...draggableImage,
-            x: coords?.x || 0,
-            y: coords?.y || 0,
-          },
-        ],
-      });
+      draggableImage &&
+        updateChangedLook({
+          ...changedLook,
+          clothes: [
+            ...changedLook.clothes,
+            {
+              ...draggableImage,
+              x: coords?.x || 0,
+              y: coords?.y || 0,
+            },
+          ],
+        });
+    }
   };
-
-  useEffect(() => {
-    window._organizer.virtualWardrobe.stageRef = stageRef;
-  }, []);
 
   return (
     <div className="vw_look_form_canvas" ref={canvasRef}>

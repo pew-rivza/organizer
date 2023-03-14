@@ -84,13 +84,13 @@ export const navigation: Navigation = [
         inMenu: false,
       },
       {
-        link: "/virtual-wardrobe/look/add",
+        link: "/virtual-wardrobe/looks/add",
         element: <LookForm />,
         title: "Виртуальный гардероб: добавление образа",
         inMenu: false,
       },
       {
-        link: "/virtual-wardrobe/look/edit/:id",
+        link: "/virtual-wardrobe/looks/edit/:id",
         element: <LookForm />,
         title: "Виртуальный гардероб: редактирование образа",
         inMenu: false,

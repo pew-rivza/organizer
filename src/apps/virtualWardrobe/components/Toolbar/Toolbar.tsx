@@ -20,7 +20,7 @@ export const Toolbar: React.FC = () => {
         </button>
         <button
           className="icon-button"
-          onClick={() => navigate("/virtual-wardrobe/look/add")}
+          onClick={() => navigate("/virtual-wardrobe/looks/add")}
         >
           <Icon icon="game-icons:clothes" />
         </button>

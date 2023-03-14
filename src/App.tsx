@@ -14,7 +14,8 @@ import { Course, Option } from "MT_types/stores";
 
 import { fetchCategoriesFx } from "VW_models/category";
 import { fetchClothesFx } from "VW_models/clothes";
-import { Category, Clothes } from "VW_types/stores";
+import { fetchLooksFx } from "VW_models/look";
+import { Category, Clothes, Look } from "VW_types/stores";
 
 import { fetchCheckedMedicationsFx } from "CR_models/medication";
 import { CheckedMedications } from "CR_types/stores";
@@ -32,6 +33,7 @@ const App: React.FC = () => {
   );
   const fetchCategories = useEvent<Category[]>(fetchCategoriesFx);
   const fetchClothes = useEvent<Clothes[]>(fetchClothesFx);
+  const fetchLooks = useEvent<Look[]>(fetchLooksFx);
 
   const location = useLocation();
   const routings: Routing[] = getRoutings();
@@ -54,6 +56,7 @@ const App: React.FC = () => {
     fetchCheckedMedications();
     fetchCategories();
     fetchClothes();
+    fetchLooks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

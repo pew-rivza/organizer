@@ -9,7 +9,6 @@ import App from "./App";
   balanceWheel: {
     areasFullInfo: [],
   },
-  virtualWardrobe: {},
 };
 
 const root = ReactDOM.createRoot(
