@@ -51,6 +51,7 @@ export const Item: React.FC<ClothesItemProps> = ({ clothes }) => {
       height: target.offsetHeight,
       offsetX: (event.touches?.[0] || event).clientX - rect.left,
       offsetY: (event.touches?.[0] || event).clientY - rect.top,
+      zIndex: changedLook.clothes.length,
     });
   };
 

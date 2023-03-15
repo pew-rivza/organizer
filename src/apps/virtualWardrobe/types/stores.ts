@@ -30,6 +30,7 @@ export type DraggableImage = {
   height: number;
   offsetX: number;
   offsetY: number;
+  zIndex: number;
 };
 
 export interface ChangedLook {
@@ -45,7 +46,5 @@ export interface Look {
   image: string;
   background: string | null;
   canvasSize: number;
-  VW_Clothes: (Clothes & {
-    VW_Clothes_Look: DraggableImage & Coords;
-  })[];
+  clothes: (Clothes & DraggableImage & Coords)[];
 }

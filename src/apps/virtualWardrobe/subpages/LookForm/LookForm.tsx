@@ -43,7 +43,7 @@ export const LookForm: React.FC = () => {
       ).getBoundingClientRect().width;
 
       const clothes: (DraggableImage & Coords)[] = scaleClothes(
-        editedLook?.VW_Clothes || [],
+        editedLook?.clothes || [],
         currentCanvasSize,
         canvasSize,
       );

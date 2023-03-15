@@ -26,9 +26,8 @@ export const TRANSFORMER_CONFIG: TransformerConfig = {
   anchorFill: "#e9edeb",
   anchorSize: 10,
   anchorCornerRadius: 5,
+  enabledAnchors: ["bottom-right"],
   borderStroke: "#92a69a",
-  rotationSnaps: [0, 45, 90, 135, 180, 225, 270, 315, 360],
-  rotationSnapTolerance: 4,
-  rotateAnchorOffset: 20,
+  rotateEnabled: false,
   borderDash: [5, 3],
 };

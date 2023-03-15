@@ -21,7 +21,7 @@ export const CanvasImage: React.FC<CanvasImageProps> = ({
   isSelected,
   onSelect,
 }) => {
-  const [img] = useImage(image.src);
+  const [img] = useImage(image.src, "anonymous");
   const imageRef = React.useRef<Konva.Image>(null);
   const transformerRef = React.useRef<Konva.Transformer>(null);
   const changedLook = useStore<ChangedLook>($changedLook);
@@ -96,7 +96,13 @@ export const CanvasImage: React.FC<CanvasImageProps> = ({
     const clothes = [...changedLook.clothes];
     clothes.splice(index, 1);
     clothes.push(movingClothes);
-    updateChangedLook({ ...changedLook, clothes });
+    const indexedClothes: (DraggableImage & Coords)[] = clothes.map(
+      (cloth, zIndex) => ({
+        ...cloth,
+        zIndex,
+      }),
+    );
+    updateChangedLook({ ...changedLook, clothes: indexedClothes });
   };
 
   return (

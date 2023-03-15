@@ -44,7 +44,13 @@ export const CloseButton: React.FC<CloseButtonProps> = ({ image }) => {
     const index = changedLook.clothes.indexOf(deletedClothes);
     const clothes = [...changedLook.clothes];
     clothes.splice(index, 1);
-    updateChangedLook({ ...changedLook, clothes });
+    const indexedClothes: (DraggableImage & Coords)[] = clothes.map(
+      (cloth, zIndex) => ({
+        ...cloth,
+        zIndex,
+      }),
+    );
+    updateChangedLook({ ...changedLook, clothes: indexedClothes });
   };
 
   return (

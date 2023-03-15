@@ -3,5 +3,9 @@
 
   &_container {
     display: flex;
+
+    @media (max-width: 728px) {
+      flex-direction: column;
+    }
   }
 }

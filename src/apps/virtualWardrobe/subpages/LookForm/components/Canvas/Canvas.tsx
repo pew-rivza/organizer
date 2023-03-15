@@ -73,7 +73,7 @@ export const Canvas: React.FC = () => {
         onDragOver={(e) => e.preventDefault()}
       >
         <Stage
-          width={canvasRect?.width - 1}
+          width={canvasRect?.width - 2}
           height={canvasRect?.height - 2}
           ref={stageRef}
           onMouseDown={checkDeselect}

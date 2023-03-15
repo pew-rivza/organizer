@@ -2,6 +2,11 @@
   height: calc(100vh - 140px);
   width: calc(100vh - 140px);
 
+  @media (max-width: 728px) {
+    height: calc(100vw - 40px);
+    width: calc(100vw - 40px);
+  }
+
   > div {
     aspect-ratio: 1/1;
     border: 1px solid #92a69a;

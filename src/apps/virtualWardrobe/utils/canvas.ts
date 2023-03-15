@@ -22,7 +22,7 @@ export const isFingerOnCanvas = (touchEvent: TouchEvent): boolean => {
 };
 
 export const scaleClothes = (
-  clothes: (Clothes & { VW_Clothes_Look: DraggableImage & Coords })[],
+  clothes: (Clothes & DraggableImage & Coords)[],
   currentCanvasSize: number,
   previousCanvasSize?: number,
 ): (DraggableImage & Coords)[] => {
@@ -30,14 +30,24 @@ export const scaleClothes = (
     currentCanvasSize / (previousCanvasSize || currentCanvasSize);
 
   return clothes.map((cloth) => {
-    const { id, image, VW_Clothes_Look } = cloth;
-    const { idOnCanvas, width, height, offsetX, offsetY, x, y } =
-      VW_Clothes_Look;
+    const {
+      id,
+      image,
+      idOnCanvas,
+      width,
+      height,
+      offsetX,
+      offsetY,
+      x,
+      y,
+      zIndex,
+    } = cloth;
 
     return {
       id,
       src: image,
       idOnCanvas,
+      zIndex,
       width: width * scale,
       height: height * scale,
       offsetX: offsetX * scale,
