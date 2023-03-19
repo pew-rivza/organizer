@@ -33,3 +33,12 @@ export const API_UPDATE_CLOTHES = (
     body: formData,
   }).then((response) => response.json());
 };
+
+export const API_DELETE_CLOTHES = (clothesId: number | void): Promise<void> =>
+  fetch(CLOTHES_URL, {
+    method: "DELETE",
+    body: JSON.stringify({ clothesId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());

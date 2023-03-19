@@ -28,3 +28,12 @@ export const API_UPDATE_LOOK = (look: ChangedLook): Promise<Medication[]> =>
       "Content-Type": "application/json",
     },
   }).then((response) => response.json());
+
+export const API_DELETE_LOOK = (lookId: number | void): Promise<void> =>
+  fetch(LOOK_URL, {
+    method: "DELETE",
+    body: JSON.stringify({ lookId }),
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((response) => response.json());
