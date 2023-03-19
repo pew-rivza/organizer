@@ -10,7 +10,7 @@ import "./App.scss";
 export const App: React.FC<AppProps> = ({ page }) => {
   return (
     <div data-testid="virtual-wardrobe" className="vw">
-      <Toolbar />
+      <Toolbar page={page} />
 
       {page === "clothes" && <Clothes />}
       {page === "looks" && <Looks />}

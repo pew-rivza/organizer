@@ -3,8 +3,10 @@ import { CSSProperties } from "react";
 import { Coords } from "VW_types/other";
 import { Clothes, DraggableImage } from "VW_types/stores";
 
+type Page = "clothes" | "looks";
+
 export type AppProps = {
-  page: "clothes" | "looks";
+  page: Page;
 };
 
 export type TabsProps = {
@@ -33,4 +35,8 @@ export type PreviewProps = {
 
 export type CloseButtonProps = {
   image: DraggableImage & Coords;
+};
+
+export type ToolbarProps = {
+  page: Page;
 };
