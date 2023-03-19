@@ -10,7 +10,7 @@ import { Medication, Option } from "MT_types/stores";
 import { $looks } from "VW_models/look";
 import { Look } from "VW_types/stores";
 
-import { $looks as $calendarLooks } from "CR_models/look";
+import { $calendarLooks } from "CR_models/look";
 import { CalendarData } from "CR_types/stores";
 import {
   fillCalendarData,

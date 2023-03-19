@@ -19,7 +19,7 @@ import { Category, Clothes, Look } from "VW_types/stores";
 
 import { fetchLooksFx as fetchCalendarLooksFx } from "CR_models/look";
 import { fetchCheckedMedicationsFx } from "CR_models/medication";
-import { Look as CalendarLook, CheckedMedications } from "CR_types/stores";
+import { CalendarLook, CheckedMedications } from "CR_types/stores";
 
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";

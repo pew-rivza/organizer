@@ -1,14 +1,17 @@
 import { LOOK_URL } from "CR_const/api";
-import { Look } from "CR_types/stores";
+import { CalendarLook } from "CR_types/stores";
 
-export const API_FETCH_LOOKS = (): Promise<Look[]> =>
+export const API_FETCH_LOOKS = (): Promise<CalendarLook[]> =>
   fetch(LOOK_URL, {
     method: "GET",
     body: null,
     headers: {},
   }).then((response) => response.json());
 
-export const API_PUT_ON_LOOK = (date: Date, lookId: number): Promise<Look> =>
+export const API_PUT_ON_LOOK = (
+  date: Date,
+  lookId: number,
+): Promise<CalendarLook> =>
   fetch(LOOK_URL, {
     method: "POST",
     body: JSON.stringify({ date, lookId }),

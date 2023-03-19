@@ -17,7 +17,7 @@ export interface CheckedMedications extends Obj {
   medicationId: number;
 }
 
-export interface Look {
+export interface CalendarLook {
   date: Date;
   VWLookId: number;
 }
