@@ -156,13 +156,12 @@ export const getGroupedMedications = (
   return groupedMedications;
 };
 
-export const fillCalendarData = (
+export function fillCalendarData<ValueType>(
   calendarData: CalendarData,
-  takingDates: Date[],
   date: Date,
   field: DayDataKey,
-): CalendarData => {
-  const filledCalendarData = { ...calendarData };
+): CalendarData {
+  const filledCalendarData: CalendarData = { ...calendarData };
 
   filledCalendarData[date.getFullYear()] =
     filledCalendarData[date.getFullYear()] || {};
@@ -171,12 +170,12 @@ export const fillCalendarData = (
   filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] =
     filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] ||
     {};
-  filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
+
+  (filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
     field
-  ] =
-    filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
-      field
-    ] || [];
+  ] as ValueType[]) = (filledCalendarData[date.getFullYear()][date.getMonth()][
+    date.getDate()
+  ][field] || []) as ValueType[];
 
   return filledCalendarData;
-};
+}

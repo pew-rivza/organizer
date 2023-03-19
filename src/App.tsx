@@ -17,8 +17,9 @@ import { fetchClothesFx } from "VW_models/clothes";
 import { fetchLooksFx } from "VW_models/look";
 import { Category, Clothes, Look } from "VW_types/stores";
 
+import { fetchLooksFx as fetchCalendarLooksFx } from "CR_models/look";
 import { fetchCheckedMedicationsFx } from "CR_models/medication";
-import { CheckedMedications } from "CR_types/stores";
+import { Look as CalendarLook, CheckedMedications } from "CR_types/stores";
 
 import "react-toastify/dist/ReactToastify.css";
 import "react-tooltip/dist/react-tooltip.css";
@@ -34,6 +35,7 @@ const App: React.FC = () => {
   const fetchCategories = useEvent<Category[]>(fetchCategoriesFx);
   const fetchClothes = useEvent<Clothes[]>(fetchClothesFx);
   const fetchLooks = useEvent<Look[]>(fetchLooksFx);
+  const fetchCalendarLooks = useEvent<CalendarLook[]>(fetchCalendarLooksFx);
 
   const location = useLocation();
   const routings: Routing[] = getRoutings();
@@ -57,6 +59,7 @@ const App: React.FC = () => {
     fetchCategories();
     fetchClothes();
     fetchLooks();
+    fetchCalendarLooks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

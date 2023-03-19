@@ -46,10 +46,10 @@
       top: 5px;
       right: 5px;
       display: flex;
-      gap: 5px;
 
       svg {
         cursor: pointer;
+        margin-left: 5px;
       }
 
       &-delete path {
