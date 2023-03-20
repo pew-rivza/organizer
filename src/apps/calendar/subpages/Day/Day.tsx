@@ -30,7 +30,7 @@ export const Day: React.FC = () => {
   return (
     <div className="cr_day">
       <Toolbar date={date} />
-      <div>
+      <div className="cr_day-widgets">
         <Medications medications={dayData?.medications || []} />
         {dayData?.look?.[0] && <Look look={dayData.look[0]} date={date} />}
       </div>
