@@ -1,0 +1,17 @@
+.vw_look_form_sidebar-body-item {
+  height: 120px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px dashed #92a69a;
+
+  img {
+    width: auto;
+    height: auto;
+    max-height: 100px;
+    max-width: 100px;
+    cursor: pointer;
+  }
+}

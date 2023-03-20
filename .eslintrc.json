@@ -18,7 +18,7 @@
         "pathGroups": [
           { "pattern": "^react.*(?<!(css))$", "group": "external" },
           {
-            "pattern": "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(\\.)).*(?<!(css))$",
+            "pattern": "^(?!(apps)|(components)|(const)|(types)|(utils)|(BW_)|(MT_)|(CR_)|(VW_)|(\\.)).*(?<!(css))$",
             "group": "external"
           },
           {
@@ -27,6 +27,7 @@
           },
           { "pattern": "^BW_.*$", "group": "internal" },
           { "pattern": "^MT_.*$", "group": "internal" },
+          { "pattern": "^VW_.*$", "group": "internal" },
           { "pattern": "^CR_.*$", "group": "internal" },
           { "pattern": "^.*(?<!css)$", "group": "parent" },
           { "pattern": "^.*(?<!s)css$", "group": "sibling" },

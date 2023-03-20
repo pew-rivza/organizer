@@ -4,13 +4,32 @@ import { Link } from "react-router-dom";
 import { BalanceWheel } from "apps/balanceWheel";
 import { Calendar } from "apps/calendar";
 import { MedicationTaking } from "apps/medicationTaking";
+import { VirtualWardrobe } from "apps/virtualWardrobe";
 import { Navigation } from "types/other";
 
 import { CourseForm } from "MT_subpages/CourseForm";
 
+import { ClothesForm } from "VW_subpages/ClothesForm";
+import { LookForm } from "VW_subpages/LookForm";
+
 import { Day } from "CR_subpages/Day";
 
 export const navigation: Navigation = [
+  {
+    icon: "material-symbols:calendar-month-outline-sharp",
+    link: "/calendar",
+    element: <Calendar />,
+    title: "Календарь",
+    inMenu: true,
+    subpages: [
+      {
+        link: "/calendar/:timestamp",
+        element: <Day />,
+        title: "Календарь: карточка дня",
+        inMenu: false,
+      },
+    ],
+  },
   {
     icon: "carbon:chart-radar",
     link: "/balance-wheel",
@@ -40,16 +59,40 @@ export const navigation: Navigation = [
     ],
   },
   {
-    icon: "material-symbols:calendar-month-outline-sharp",
-    link: "/calendar",
-    element: <Calendar />,
-    title: "Календарь",
+    icon: "mdi:wardrobe-outline",
+    link: "/virtual-wardrobe/clothes",
+    element: <VirtualWardrobe page="clothes" />,
+    title: "Виртуальный гардероб",
     inMenu: true,
     subpages: [
       {
-        link: "/calendar/:timestamp",
-        element: <Day />,
-        title: "Календарь: карточка дня",
+        link: "/virtual-wardrobe/clothes/add",
+        element: <ClothesForm />,
+        title: "Виртуальный гардероб: добавление одежды",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/clothes/edit/:id",
+        element: <ClothesForm />,
+        title: "Виртуальный гардероб: редактирование одежды",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/looks",
+        element: <VirtualWardrobe page="looks" />,
+        title: "Виртуальный гардероб",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/looks/add",
+        element: <LookForm />,
+        title: "Виртуальный гардероб: добавление образа",
+        inMenu: false,
+      },
+      {
+        link: "/virtual-wardrobe/looks/edit/:id",
+        element: <LookForm />,
+        title: "Виртуальный гардероб: редактирование образа",
         inMenu: false,
       },
     ],
@@ -62,7 +105,6 @@ export const navigation: Navigation = [
     index: true,
     inMenu: false,
   },
-  { icon: "mdi:wardrobe-outline", link: "/virtual-wardrobe", inMenu: false },
   {
     icon: "material-symbols:check-box-outline-sharp",
     link: "/check-lists",

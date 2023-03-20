@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { useStore } from "effector-react";
 
@@ -10,7 +9,7 @@ import { findObject } from "utils/objects";
 import { DEFAULT, GENDER } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { CourseParams, NullableNumber } from "MT_types/other";
+import { NullableNumber } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions, Option } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -24,8 +23,6 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
   selected,
   index,
 }) => {
-  const { id } = useParams() as CourseParams;
-
   const [selectedInWhich, setSelectedInWhich] = useState<SelectOption | null>(
     null,
   );
@@ -90,7 +87,7 @@ export const InVariant: React.FC<RouteOfAdministrationItemVariantProps> = ({
         )(findObject<number, SelectOption>(inOptions, "value", inId) || null);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, inOptions]);
+  }, [inOptions]);
 
   return (
     <ItemTemplate.Variant

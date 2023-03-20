@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import { Icon } from "@iconify/react";
 
@@ -10,12 +9,12 @@ import "./Layout.scss";
 
 export const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(window.location.pathname);
+  const selectedPageKey = currentPage.replace(/([\w-]+)\/.*/, "$1");
 
   return (
     <div className="layout">
       <div className="layout-content">
         <Outlet />
-        <ToastContainer autoClose={2000} limit={2} />
       </div>
       <nav>
         <ul>
@@ -26,10 +25,7 @@ export const Layout: React.FC = () => {
                   key={i}
                   onClick={() => setCurrentPage(item.link)}
                   className={
-                    currentPage === item.link ||
-                    new RegExp(`${item.link}/.+`).test(currentPage)
-                      ? "selected"
-                      : ""
+                    item.link.includes(selectedPageKey) ? "selected" : ""
                   }
                 >
                   <Link to={item.link}>

@@ -1,0 +1,35 @@
+.vw_toolbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  &-forms, &-pages {
+    display: flex;
+    gap: 0 10px;
+  }
+
+  &-forms button {
+    background: #084259;
+    position: relative;
+
+    &:before {
+      position: absolute;
+      content: url('https://api.iconify.design/material-symbols/add.svg?color=%23f9f9f9&width=11&height=11');;
+      background: #084259;
+      width: 12px;
+      height: 12px;
+      right: 2px;
+      bottom: 2px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &-pages {
+    button {
+      background: #46858c;
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.vw_looks {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(6, 1fr);
+
+  @media (max-width: 1340px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  @media (max-width: 1120px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (max-width: 680px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 400px) {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  &-item {
+    border: 1px solid #92a69a;
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+
+    img {
+      height: auto;
+      width: auto;
+      max-width: 100%;
+      max-height: 100%;
+    }
+
+    &-toolbar {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      display: flex;
+
+      svg {
+        cursor: pointer;
+        margin-left: 5px;
+      }
+
+      &-delete path {
+        fill: #8c2e2e;
+      }
+
+      &-calendar {
+        fill: #084259;
+      }
+    }
+  }
+}

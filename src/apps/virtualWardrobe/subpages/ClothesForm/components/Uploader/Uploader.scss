@@ -1,0 +1,54 @@
+.vw_clothes_form {
+  &-dropzone {
+    background: rgba(146,166,154,0.2);
+    border: 1px solid #92a69a;
+    padding: 20px;
+    cursor: pointer;
+    max-width: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 500ms;
+
+    &:hover, &-dragging {
+      background: rgba(146,166,154,0.4);
+    }
+
+    svg {
+      height: 40px;
+      width: 40px;
+
+      path {
+        fill: #92a69a;
+      }
+    }
+  }
+
+  &-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: fit-content;
+    gap: 20px 0;
+
+    img {
+      width: 100%;
+      height: auto;
+      max-width: 600px;
+      max-height: 600px;
+    }
+
+    &-toolbar {
+      display: flex;
+      gap: 0 15px;
+
+      &-update {
+        background: #084259;
+      }
+
+      &-remove {
+        background: #d9c8a9;
+      }
+    }
+  }
+}

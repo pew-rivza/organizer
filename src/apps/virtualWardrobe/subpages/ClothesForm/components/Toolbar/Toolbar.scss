@@ -1,0 +1,15 @@
+.vw_clothes_form-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &-save {
+    background: #92a69a;
+  }
+
+  &-back {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+  }
+}

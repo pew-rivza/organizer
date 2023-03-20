@@ -1,0 +1,1 @@
+export { CanvasImage } from "./CanvasImage"

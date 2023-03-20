@@ -47,5 +47,3 @@ export const App: React.FC = () => {
     </div>
   );
 };
-
-// TODO: настроить проверку import/order в eslint

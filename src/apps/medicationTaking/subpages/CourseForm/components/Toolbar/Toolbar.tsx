@@ -63,15 +63,11 @@ export const Toolbar: React.FC = () => {
 
       fetchCourses();
       fetchCheckedMedications();
-      navigate(-1);
+      goBack();
 
       toast(id ? "Курс отредактирован!" : "Новый курс добавлен!", {
         toastId: 6,
         type: "success",
-        onClose: () => {
-          cancelChangedCourse();
-          cancelChangedMedications();
-        },
       });
     } else {
       toast("Заполните обязательные поля", {

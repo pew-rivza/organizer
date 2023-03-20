@@ -1,0 +1,16 @@
+.vw_clothes_tabs {
+  display: flex;
+  align-items: center;
+  gap: 5px 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+
+  &-item {
+    cursor: pointer;
+
+    &-selected {
+      text-decoration: underline;
+      cursor: default;
+    }
+  }
+}

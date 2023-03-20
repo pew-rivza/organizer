@@ -101,9 +101,14 @@ export const Date: React.FC = () => {
     updateEditedDate(formattedDate);
   };
 
+  const isPrevDisabled =
+    (isNewWheel && !wheels.length) ||
+    (!isNewWheel && isFirstWheel) ||
+    !wheel.date;
+
   const prevWheelCn: string = joinCn(
     "bw_date-icon",
-    isFirstWheel || !wheel.date ? "disabled" : "",
+    isPrevDisabled && "disabled",
   );
   const nextWheelCn: string = joinCn(
     "bw_date-icon",
@@ -115,7 +120,7 @@ export const Date: React.FC = () => {
       <Icon
         icon="material-symbols:arrow-back-ios-new"
         onClick={() =>
-          !isFirstWheel &&
+          !isPrevDisabled &&
           switchWheelTo(
             isNewWheel ? wheels[wheelIndex] : wheels[wheelIndex - 1],
             isNewWheel ? wheels[wheelIndex - 1] : wheels[wheelIndex - 2],

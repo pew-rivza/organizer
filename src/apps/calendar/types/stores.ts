@@ -16,3 +16,8 @@ export interface CheckedMedications extends Obj {
   timesOfDay: TimesOfDayNominative;
   medicationId: number;
 }
+
+export interface CalendarLook {
+  date: Date;
+  VWLookId: number;
+}

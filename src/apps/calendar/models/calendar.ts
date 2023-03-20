@@ -5,8 +5,12 @@ import { findObject, mergeDeep } from "utils/objects";
 import { $medications } from "MT_models/medication";
 import { $options } from "MT_models/option";
 import { Periods } from "MT_types/other";
-import { Option } from "MT_types/stores";
+import { Medication, Option } from "MT_types/stores";
 
+import { $looks } from "VW_models/look";
+import { Look } from "VW_types/stores";
+
+import { $calendarLooks } from "CR_models/look";
 import { CalendarData } from "CR_types/stores";
 import {
   fillCalendarData,
@@ -17,6 +21,7 @@ import {
 
 // Events
 export const updateCurrentDate = createEvent<Date | null>();
+export const updateCalendarLooks = createEvent<Date>();
 
 // Stores
 export const $currentDate = createStore<Date | null>(null).on(
@@ -24,9 +29,8 @@ export const $currentDate = createStore<Date | null>(null).on(
   (_, currentDate) => currentDate,
 );
 
-export const $calendarData = createStore<CalendarData>({}).on(
-  $medications,
-  (prevState, medications) => {
+export const $calendarData = createStore<CalendarData>({})
+  .on($medications, (prevState, medications) => {
     let newState: CalendarData = {};
 
     medications.forEach((medication) => {
@@ -47,13 +51,37 @@ export const $calendarData = createStore<CalendarData>({}).on(
       );
 
       takingDates.forEach((date) => {
-        newState = fillCalendarData(newState, takingDates, date, "medications");
+        newState = fillCalendarData<Medication>(newState, date, "medications");
         newState[date.getFullYear()][date.getMonth()][
           date.getDate()
-        ].medications.push(medication);
+        ].medications?.push(medication);
       });
     });
 
     return { ...mergeDeep(prevState, newState) };
-  },
-);
+  })
+  .on($calendarLooks, (prevState, looks) => {
+    let newState: CalendarData = {};
+    looks.forEach((look) => {
+      const { date, VWLookId } = look;
+      const lookInfo: Look = findObject<number, Look>(
+        $looks.getState(),
+        "id",
+        VWLookId,
+      ) as Look;
+
+      newState = fillCalendarData<Look>(newState, date, "look");
+      newState[date.getFullYear()][date.getMonth()][date.getDate()].look?.push({
+        ...lookInfo,
+      });
+    });
+    return { ...mergeDeep(prevState, newState) };
+  })
+  .on(updateCalendarLooks, (prevState, deletedDate) => {
+    let newState: CalendarData = { ...prevState };
+    delete newState?.[deletedDate.getFullYear()]?.[deletedDate.getMonth()]?.[
+      deletedDate.getDate()
+    ]?.look;
+
+    return newState;
+  });

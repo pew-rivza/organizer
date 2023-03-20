@@ -40,7 +40,14 @@
       "CR_api/*": ["./src/apps/calendar/api/*"],
       "CR_models/*": ["./src/apps/calendar/models/*"],
       "CR_const/*": ["./src/apps/calendar/const/*"],
-      "CR_utils/*": ["./src/apps/calendar/utils/*"]
+      "CR_utils/*": ["./src/apps/calendar/utils/*"],
+      "VW_subpages/*": ["./src/apps/virtualWardrobe/subpages/*"],
+      "VW_components/*": ["./src/apps/virtualWardrobe/components/*"],
+      "VW_types/*": ["./src/apps/virtualWardrobe/types/*"],
+      "VW_api/*": ["./src/apps/virtualWardrobe/api/*"],
+      "VW_models/*": ["./src/apps/virtualWardrobe/models/*"],
+      "VW_const/*": ["./src/apps/virtualWardrobe/const/*"],
+      "VW_utils/*": ["./src/apps/virtualWardrobe/utils/*"]
     }
   },
   "include": ["src"]

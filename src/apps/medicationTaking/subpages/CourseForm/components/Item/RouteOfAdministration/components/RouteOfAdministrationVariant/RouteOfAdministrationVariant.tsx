@@ -1,5 +1,4 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useParams } from "react-router-dom";
 
 import { useStore } from "effector-react";
 
@@ -10,7 +9,7 @@ import { findObject } from "utils/objects";
 import { DEFAULT } from "MT_const/common";
 import { $changedMedications } from "MT_models/medication";
 import { $options } from "MT_models/option";
-import { CourseParams } from "MT_types/other";
+import { NullableNumber } from "MT_types/other";
 import { RouteOfAdministrationItemVariantProps } from "MT_types/props";
 import { ChangedMedication, GroupedOptions } from "MT_types/stores";
 import { castToOptions } from "MT_utils/options";
@@ -21,14 +20,25 @@ export const RouteOfAdministrationVariant: React.FC<
   RouteOfAdministrationItemVariantProps
 > = ({ variantSelectHandler, selectChangeHandler, name, selected, index }) => {
   const changedMedications = useStore<ChangedMedication[]>($changedMedications);
-  const { id } = useParams() as CourseParams;
   const [selectedRouteOfAdministration, setSelectedRouteOfAdministration] =
     useState<SelectOption | null>(null);
+  const { routeOfAdministrationId } = changedMedications[index || 0];
 
   const groupedOptions = useStore<GroupedOptions>($options);
   const routeOfAdministrationOptions = useMemo<SelectOption[]>(() => {
     return castToOptions(groupedOptions.routeOfAdministration, DEFAULT);
   }, [groupedOptions.routeOfAdministration]);
+
+  useEffect(() => {
+    const selectedRouteOfAdministrationOption =
+      findObject<NullableNumber, SelectOption>(
+        routeOfAdministrationOptions,
+        "value",
+        routeOfAdministrationId,
+      ) || null;
+
+    setSelectedRouteOfAdministration(selectedRouteOfAdministrationOption);
+  }, [routeOfAdministrationId, routeOfAdministrationOptions]);
 
   useEffect(() => {
     if (typeof index === "number") {
@@ -48,7 +58,7 @@ export const RouteOfAdministrationVariant: React.FC<
         );
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [id, routeOfAdministrationOptions]);
+  }, [routeOfAdministrationOptions]);
 
   return (
     <ItemTemplate.Variant

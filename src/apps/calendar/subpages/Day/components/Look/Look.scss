@@ -1,0 +1,48 @@
+.cr_day_look {
+  &_header {
+    display: flex;
+    gap: 0 5px;
+    background: #92a69a;
+    color: #f9f9f9;
+    padding: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 0 5px;
+      color: #f9f9f9;
+
+      svg {
+        width: 17px;
+        height: 17px;
+      }
+
+      * {
+        color: #f9f9f9;
+      }
+    }
+
+    &-delete {
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+
+      path {
+        fill: #8c2e2e;
+      }
+    }
+  }
+
+  &_item {
+    display: flex;
+    padding: 10px 10px 0;
+    border: 1px solid #92a69a;
+    border-top-width: 0;
+
+    img {
+      width: 100%;
+    }
+  }
+}

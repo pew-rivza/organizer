@@ -1,5 +1,9 @@
+import React from "react";
+
 import { MedicationInfo } from "MT_types/other";
 import { Medication } from "MT_types/stores";
+
+import { Look } from "VW_types/stores";
 
 import { TimesOfDayNominative } from "CR_types/other";
 
@@ -13,13 +17,16 @@ export type IconTemplateProps = {
   prefix: string;
   id: string;
   icon: string;
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 };
 
-export type MedicationIconProps = {
+type IconProps = {
   id: string;
-  medications: Medication[];
   disabled: boolean;
+};
+
+export type MedicationIconProps = IconProps & {
+  medications: Medication[];
 };
 
 export type MedicationItemIconProps = {
@@ -34,6 +41,11 @@ export type MedicationListIconProps = {
 
 export type MedicationsDayProps = {
   medications: Medication[];
+};
+
+export type LookDayProps = {
+  look: Look;
+  date: Date;
 };
 
 export type MedicationItemDayProps = {
@@ -54,3 +66,7 @@ export type DayDateProps = { date: Date | null };
 export type DayToolbarProps = { date: Date | null };
 
 export type WheelTodosProps = { isOpen: boolean };
+
+export type LookIconProps = IconProps & {
+  look: Look;
+};

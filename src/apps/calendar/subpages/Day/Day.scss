@@ -1,4 +1,18 @@
 .cr_day {
   display: flex;
   flex-direction: column;
+
+  &-widgets {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+
+    > div {
+      width: calc(50% - 10px);
+
+      @media (max-width: 760px) {
+        width: 100%;
+      }
+    }
+  }
 }
