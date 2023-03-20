@@ -1,4 +1,13 @@
 .cr_day {
   display: flex;
   flex-direction: column;
+
+  > div {
+    display: flex;
+    gap: 20px;
+
+    > div {
+      width: 50%;
+    }
+  }
 }

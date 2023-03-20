@@ -10,7 +10,7 @@ import { GroupedMedicationsByPeriod, VisibleChips } from "MT_types/other";
 import { CourseFullInfo, Medication } from "MT_types/stores";
 
 export type ItemTemplateProps = {
-  children: JSX.Element | JSX.Element[];
+  children: React.ReactNode;
 };
 
 export type ItemTemplateSubComponents = {
@@ -28,11 +28,11 @@ type LabelProps = {
 };
 
 type InputGroupProps = {
-  children: (JSX.Element | string)[] | JSX.Element;
+  children: React.ReactNode;
 };
 
 type VariantProps = {
-  children: (JSX.Element | string)[] | JSX.Element;
+  children: React.ReactNode;
   selected: boolean;
   onChange: ChangeEventHandler<HTMLInputElement>;
   name?: string;

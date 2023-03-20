@@ -5,7 +5,7 @@ import { Medication } from "MT_types/stores";
 
 import { Look } from "VW_types/stores";
 
-export type DayData = { medications: Medication[]; look: Look[] };
+export type DayData = { medications?: Medication[]; look?: Look[] };
 export type DayDataKey = "medications" | "look";
 
 export type TimesOfDayNominative = string &

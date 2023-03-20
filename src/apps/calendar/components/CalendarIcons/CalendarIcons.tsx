@@ -4,6 +4,7 @@ import { useStore } from "effector-react";
 
 import { dateFormatter } from "const/common";
 
+import { LookIcon } from "CR_components/CalendarIcons/components/LookIcon";
 import { $calendarData } from "CR_models/calendar";
 import { DayData } from "CR_types/other";
 import { CalendarIconsProps } from "CR_types/props";
@@ -30,6 +31,9 @@ export const CalendarIcons: React.FC<CalendarIconsProps> = ({
           medications={dayData.medications}
           disabled={disabled}
         />
+      )}
+      {dayData?.look?.[0] && (
+        <LookIcon id={id} look={dayData.look[0]} disabled={disabled} />
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useStore } from "effector-react";
 
 import { $calendarData, updateCurrentDate } from "CR_models/calendar";
+import { Look } from "CR_subpages/Day/components/Look";
 import { DayData, DayParams } from "CR_types/other";
 import { CalendarData } from "CR_types/stores";
 
@@ -29,7 +30,10 @@ export const Day: React.FC = () => {
   return (
     <div className="cr_day">
       <Toolbar date={date} />
-      <Medications medications={dayData?.medications || []} />
+      <div>
+        <Medications medications={dayData?.medications || []} />
+        {dayData?.look?.[0] && <Look look={dayData.look[0]} date={date} />}
+      </div>
     </div>
   );
 };

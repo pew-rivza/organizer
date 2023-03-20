@@ -1,6 +1,8 @@
+import React from "react";
+
 export type Routing = {
   path: string;
-  element: JSX.Element;
+  element: React.ReactNode;
   title: string;
   index?: boolean;
 };
@@ -17,7 +19,7 @@ export type SelectOption = Obj & {
 export type Page = {
   icon?: string;
   link: string;
-  element?: JSX.Element;
+  element?: React.ReactNode;
   title?: string;
   index?: boolean;
   inMenu: boolean;

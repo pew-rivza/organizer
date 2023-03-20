@@ -21,6 +21,7 @@ import {
 
 // Events
 export const updateCurrentDate = createEvent<Date | null>();
+export const updateCalendarLooks = createEvent<Date>();
 
 // Stores
 export const $currentDate = createStore<Date | null>(null).on(
@@ -53,7 +54,7 @@ export const $calendarData = createStore<CalendarData>({})
         newState = fillCalendarData<Medication>(newState, date, "medications");
         newState[date.getFullYear()][date.getMonth()][
           date.getDate()
-        ].medications.push(medication);
+        ].medications?.push(medication);
       });
     });
 
@@ -70,10 +71,17 @@ export const $calendarData = createStore<CalendarData>({})
       ) as Look;
 
       newState = fillCalendarData<Look>(newState, date, "look");
-      newState[date.getFullYear()][date.getMonth()][date.getDate()].look.push({
+      newState[date.getFullYear()][date.getMonth()][date.getDate()].look?.push({
         ...lookInfo,
       });
     });
+    return { ...mergeDeep(prevState, newState) };
+  })
+  .on(updateCalendarLooks, (prevState, deletedDate) => {
+    let newState: CalendarData = { ...prevState };
+    delete newState?.[deletedDate.getFullYear()]?.[deletedDate.getMonth()]?.[
+      deletedDate.getDate()
+    ]?.look;
 
     return newState;
   });
