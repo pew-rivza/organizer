@@ -87,7 +87,9 @@ const pushMedicationInfo = (
       return (
         checkedMedication.medicationId === medicationInfo.id &&
         checkedMedication.timesOfDay === field &&
-        checkedMedication.date.getTime() === currentDate?.getTime()
+        checkedMedication.date.getFullYear() === currentDate?.getFullYear() &&
+        checkedMedication.date.getMonth() === currentDate?.getMonth() &&
+        checkedMedication.date.getDate() === currentDate?.getDate()
       );
     });
     newGroupedMedications[field].push({
