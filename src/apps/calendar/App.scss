@@ -124,6 +124,25 @@
 
     &.fc-day-other {
       cursor: default;
+
+      .fc-daygrid-day-events .fc-daygrid-day-bottom a {
+        opacity: 0.3;
+        cursor: default;
+        pointer-events: none;
+
+        &:hover {
+          color: #46858c;
+          background: transparent;
+
+          div {
+            color: #46858c;
+
+            path {
+              fill: #46858c;
+            }
+          }
+        }
+      }
     }
   }
 

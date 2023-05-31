@@ -10,6 +10,7 @@ export interface Todo {
   date: Date | null;
   CLCheckListId?: number;
   updatedAt?: string;
+  createdAt?: string;
 }
 
 export interface CheckListFullInfo extends CheckList {
