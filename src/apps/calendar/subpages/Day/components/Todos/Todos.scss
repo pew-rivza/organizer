@@ -1,0 +1,24 @@
+.cr_day_todos {
+  &_header {
+    background: #92a69a;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 0 5px;
+    color: #f9f9f9;
+
+    svg {
+      width: 17px;
+      height: 17px;
+    }
+
+    * {
+      color: #f9f9f9;
+    }
+  }
+
+  &_list {
+    border: solid #92a69a;
+    border-width: 0 1px 1px 1px;
+  }
+}

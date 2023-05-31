@@ -1,1 +1,1 @@
-export { LookIcon } from "./LookIcon"
+export { LookIcon } from "./LookIcon";

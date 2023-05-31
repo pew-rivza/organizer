@@ -9,11 +9,13 @@ import { DatePicker } from "components/DatePicker";
 import { dateFormatter } from "const/common";
 import { convertUTCDate } from "utils/date";
 
+import { API_PUT_ON_LOOK } from "CR_api/look";
+import { fetchLooksFx as fetchCalendarLooksFx } from "CR_models/look";
+import { CalendarLook } from "CR_types/stores";
+
 import { API_DELETE_LOOK } from "VW_api/look";
 import { $looks, fetchLooksFx } from "VW_models/look";
 import { Look } from "VW_types/stores";
-
-import { API_PUT_ON_LOOK } from "CR_api/look";
 
 import "./Looks.scss";
 
@@ -21,6 +23,7 @@ export const Looks: React.FC = () => {
   const looks = useStore<Look[]>($looks);
   const navigate = useNavigate();
   const fetchLooks = useEvent<Look[]>(fetchLooksFx);
+  const fetchCalendarLooks = useEvent<CalendarLook[]>(fetchCalendarLooksFx);
 
   const deleteLook = async (id: number): Promise<void> => {
     await API_DELETE_LOOK(id);
@@ -36,6 +39,7 @@ export const Looks: React.FC = () => {
     if (convertedDate) {
       const formattedDate = dateFormatter.format(convertedDate);
       await API_PUT_ON_LOOK(convertedDate, id);
+      fetchCalendarLooks();
 
       toast(`Образ добавлен на ${formattedDate}`, {
         toastId: 15,

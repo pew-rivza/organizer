@@ -18,6 +18,7 @@ export type DatePickerProps<WithRange extends boolean | undefined = false> =
     wrapperClassNames?: string[];
     placeholder?: string;
     month?: boolean;
+    inputSize?: number;
   };
 
 export type SelectProps = Props<SelectOption, false, GroupBase<SelectOption>>;

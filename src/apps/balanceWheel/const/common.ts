@@ -18,5 +18,3 @@ export const DEFAULT_AREAS: string[] = [
 const DEFAULT_DATE: Date = new Date(Date.now());
 export const FORMATTED_DEFAULT_DATE: string = getStringFromDate(DEFAULT_DATE);
 export const DATE_REGEXP: RegExp = /^((0[1-9])|(1[1-2])).[1-9][0-9][0-9][0-9]$/;
-export const ESCAPE_CODE: string = "Escape";
-export const ENTER_CODE: string = "Enter";

@@ -36,7 +36,7 @@ export const WheelTodos: React.FC<WheelTodosProps> = ({ isOpen }) => {
           ))}
         </ul>
       ) : (
-        <div>Все дела сделаны!</div>
+        <div>Все задачи сделаны!</div>
       )}
     </Tooltip>
   );

@@ -12,6 +12,12 @@
     &-content {
       width: 100%;
       cursor: pointer;
+      transition-duration: 500ms;
+      transition-delay: 500ms;
+
+      &:hover {
+        box-shadow: 0 1px 0 #d9c8a987;
+      }
     }
   }
 

@@ -3,16 +3,17 @@ import { Link } from "react-router-dom";
 
 import { BalanceWheel } from "apps/balanceWheel";
 import { Calendar } from "apps/calendar";
+import { CheckLists } from "apps/checkLists";
 import { MedicationTaking } from "apps/medicationTaking";
 import { VirtualWardrobe } from "apps/virtualWardrobe";
 import { Navigation } from "types/other";
+
+import { Day } from "CR_subpages/Day";
 
 import { CourseForm } from "MT_subpages/CourseForm";
 
 import { ClothesForm } from "VW_subpages/ClothesForm";
 import { LookForm } from "VW_subpages/LookForm";
-
-import { Day } from "CR_subpages/Day";
 
 export const navigation: Navigation = [
   {
@@ -98,16 +99,18 @@ export const navigation: Navigation = [
     ],
   },
   {
+    icon: "material-symbols:check-box-outline-sharp",
+    link: "/check-lists",
+    element: <CheckLists />,
+    title: "Чек-листы",
+    inMenu: true,
+  },
+  {
     icon: "material-symbols:home-outline",
     link: "/",
     element: <NotFound />,
     title: "Домашняя страница",
     index: true,
-    inMenu: false,
-  },
-  {
-    icon: "material-symbols:check-box-outline-sharp",
-    link: "/check-lists",
     inMenu: false,
   },
   { icon: "uil:food", link: "/recipes-book", inMenu: false },

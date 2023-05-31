@@ -36,7 +36,7 @@ export const Look: React.FC<LookDayProps> = ({ look, date }) => {
           Образ на день
         </div>
         <Icon
-          icon="ri:delete-bin-line"
+          icon="radix-icons:cross-2"
           className="cr_day_look_header-delete"
           onClick={deleteLook}
         />

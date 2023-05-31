@@ -1,1 +1,1 @@
-export { ClothesForm } from "./ClothesForm"
+export { ClothesForm } from "./ClothesForm";

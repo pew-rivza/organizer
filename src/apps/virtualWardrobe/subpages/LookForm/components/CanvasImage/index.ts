@@ -1,1 +1,1 @@
-export { CanvasImage } from "./CanvasImage"
+export { CanvasImage } from "./CanvasImage";

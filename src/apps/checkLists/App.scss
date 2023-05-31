@@ -1,0 +1,13 @@
+.cl {
+  &_button-add {
+    margin-bottom: 20px;
+    background: #084259;
+  }
+
+  &_checklists {
+    margin-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+}

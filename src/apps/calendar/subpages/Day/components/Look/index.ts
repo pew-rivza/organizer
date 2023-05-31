@@ -1,1 +1,1 @@
-export { Look } from "./Look"
+export { Look } from "./Look";

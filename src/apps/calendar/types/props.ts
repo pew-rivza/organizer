@@ -1,11 +1,13 @@
 import React from "react";
 
+import { TimesOfDayNominative } from "CR_types/other";
+
+import { Todo } from "CL_types/stores";
+
 import { MedicationInfo } from "MT_types/other";
 import { Medication } from "MT_types/stores";
 
 import { Look } from "VW_types/stores";
-
-import { TimesOfDayNominative } from "CR_types/other";
 
 export type CalendarIconsProps = {
   date: Date;
@@ -46,6 +48,14 @@ export type MedicationsDayProps = {
 export type LookDayProps = {
   look: Look;
   date: Date;
+};
+
+export type TodosDayProps = {
+  todos: Todo[];
+};
+
+export type TodoItemDayProps = {
+  todo: Todo;
 };
 
 export type MedicationItemDayProps = {

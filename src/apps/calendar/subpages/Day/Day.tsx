@@ -5,6 +5,7 @@ import { useStore } from "effector-react";
 
 import { $calendarData, updateCurrentDate } from "CR_models/calendar";
 import { Look } from "CR_subpages/Day/components/Look";
+import { Todos } from "CR_subpages/Day/components/Todos";
 import { DayData, DayParams } from "CR_types/other";
 import { CalendarData } from "CR_types/stores";
 
@@ -32,6 +33,7 @@ export const Day: React.FC = () => {
       <Toolbar date={date} />
       <div className="cr_day-widgets">
         <Medications medications={dayData?.medications || []} />
+        <Todos todos={dayData?.todos || []} />
         {dayData?.look?.[0] && <Look look={dayData.look[0]} date={date} />}
       </div>
     </div>

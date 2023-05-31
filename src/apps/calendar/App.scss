@@ -126,4 +126,98 @@
       cursor: default;
     }
   }
+
+  .fc-daygrid-day-events {
+    margin: 0;
+    padding: 0 4px 4px 4px;
+
+    .fc-daygrid-day-bottom {
+      margin: 0;
+
+      a {
+        margin-top: 4px;
+        padding: 0;
+
+        div {
+          color: #46858c;
+          transition: 500ms;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          svg {
+            min-height: 17px;
+            min-width: 17px;
+
+            path {
+              transition: 500ms;
+              fill: #46858c;
+            }
+          }
+        }
+
+        &:hover {
+          color: #46858c50;
+          background: transparent;
+
+          div {
+            color: #46858c50;
+
+            path {
+              fill: #46858c50;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .fc-event.fc-event {
+    background: transparent;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    transition: 500ms;
+
+    .fc-event-main {
+      color: #555555;
+    }
+
+    .fc-event-title {
+      text-overflow: ellipsis;
+      padding: 0;
+      max-width: calc(100% - 13px);
+      white-space: unset;
+    }
+
+    &:hover {
+      background: transparent;
+    }
+  }
+
+  .fc-more-popover {
+    max-width: 320px;
+
+    .fc-popover-header {
+      background: #92a69a;
+      font-weight: 700;
+
+      * {
+        color: #f9f9f9;
+      }
+    }
+
+    .fc-popover-body {
+      background: #f9f9f9;
+      padding: 7px;
+
+      .fc-more-popover-misc {
+        display: none;
+      }
+
+      .fc-event-title.checked {
+        text-decoration: line-through;
+      }
+    }
+  }
 }

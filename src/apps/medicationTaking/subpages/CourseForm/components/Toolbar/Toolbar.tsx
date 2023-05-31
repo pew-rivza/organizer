@@ -7,6 +7,9 @@ import { useEvent, useStore } from "effector-react";
 
 import { convertUTCDate } from "utils/date";
 
+import { fetchCheckedMedicationsFx } from "CR_models/medication";
+import { CheckedMedications } from "CR_types/stores";
+
 import { API_ADD_COURSE, API_UPDATE_COURSE } from "MT_api/course";
 import { API_ADD_MEDICATIONS, API_UPDATE_MEDICATIONS } from "MT_api/medication";
 import {
@@ -21,9 +24,6 @@ import {
 import { ChangedCourse, ChangedMedication, Course } from "MT_types/stores";
 import { prepareMedicationForBackend } from "MT_utils/prepare";
 import { isValidCourse, isValidMedications } from "MT_utils/validation";
-
-import { fetchCheckedMedicationsFx } from "CR_models/medication";
-import { CheckedMedications } from "CR_types/stores";
 
 import "./Toolbar.scss";
 

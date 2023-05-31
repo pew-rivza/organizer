@@ -1,5 +1,7 @@
 import { findObject } from "utils/objects";
 
+import { TimesOfDay } from "CR_types/other";
+
 import { COUNT_WORD_FIELDS, IN_BEFORE_COMPLIANCE } from "MT_const/common";
 import {
   InBeforeComplianceKey,
@@ -9,8 +11,6 @@ import {
 } from "MT_types/other";
 import { GroupedOptions, Medication, Option } from "MT_types/stores";
 import { getWordByCount, getWordByGender } from "MT_utils/options";
-
-import { TimesOfDay } from "CR_types/other";
 
 export const getMedicationInfo = (
   medication: Medication,

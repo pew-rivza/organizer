@@ -3,6 +3,7 @@ import { resolve } from "path";
 export default {
   webpack: {
     alias: {
+      api: resolve(__dirname, "src/api"),
       apps: resolve(__dirname, "src/apps"),
       components: resolve(__dirname, "src/components"),
       const: resolve(__dirname, "src/const"),
@@ -35,6 +36,13 @@ export default {
       VW_types: resolve(__dirname, "src/apps/virtualWardrobe/types"),
       VW_utils: resolve(__dirname, "src/apps/virtualWardrobe/utils"),
       VW_subpages: resolve(__dirname, "src/apps/virtualWardrobe/subpages"),
+      CL_api: resolve(__dirname, "src/apps/checkLists/api"),
+      CL_components: resolve(__dirname, "src/apps/checkLists/components"),
+      CL_const: resolve(__dirname, "src/apps/checkLists/const"),
+      CL_models: resolve(__dirname, "src/apps/checkLists/models"),
+      CL_types: resolve(__dirname, "src/apps/checkLists/types"),
+      CL_utils: resolve(__dirname, "src/apps/checkLists/utils"),
+      CL_subpages: resolve(__dirname, "src/apps/checkLists/subpages"),
     },
   },
 };

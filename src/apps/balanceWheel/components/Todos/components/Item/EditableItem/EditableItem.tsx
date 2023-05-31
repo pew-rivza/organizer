@@ -66,8 +66,9 @@ export const EditableItem: React.FC<EditableItemProps> = ({ todo }) => {
       }}
       toolbar={{
         save: {
-          show: todoEditMode,
+          show: todoEditMode && !!editedTodo,
           handler: saveHandler,
+          available: !!editedTodo,
         },
         cancel: {
           show: todoEditMode,

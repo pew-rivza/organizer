@@ -3,7 +3,7 @@
   gap: 0 10px;
   align-items: center;
 
-  .select [class*=-control] [class*=-ValueContainer] {
+  .select [class*="-control"] [class*="-ValueContainer"] {
     max-width: 200px;
   }
 }

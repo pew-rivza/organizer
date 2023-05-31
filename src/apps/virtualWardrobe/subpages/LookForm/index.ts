@@ -1,1 +1,1 @@
-export { LookForm } from "./LookForm"
+export { LookForm } from "./LookForm";

@@ -1,8 +1,8 @@
 import { Obj } from "types/other";
 
-import { Medication } from "MT_types/stores";
-
 import { TimesOfDay } from "CR_types/other";
+
+import { Medication } from "MT_types/stores";
 
 export type CastMode = "DECLINATION" | "GENDER" | "DEFAULT";
 
