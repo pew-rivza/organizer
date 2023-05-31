@@ -1,0 +1,35 @@
+.cr_day_todos_list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px 0;
+
+  &-name {
+    display: flex;
+    gap: 0 7px;
+    align-items: flex-start;
+  }
+
+  &-toolbar {
+    display: flex;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+      min-height: 16px;
+      margin-left: 10px;
+    }
+
+    &-cancel path {
+      color: #d9c8a9;
+    }
+
+    &-reschedule path {
+      color: #92a69a;
+    }
+  }
+
+  &:last-child {
+    padding-bottom: 10px;
+  }
+}

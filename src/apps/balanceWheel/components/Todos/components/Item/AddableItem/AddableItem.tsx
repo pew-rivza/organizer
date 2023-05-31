@@ -54,6 +54,7 @@ export const AddableItem: React.FC = () => {
         save: {
           show: !!addedTodo,
           handler: saveHandler,
+          available: !!addedTodo,
         },
         cancel: {
           show: true,

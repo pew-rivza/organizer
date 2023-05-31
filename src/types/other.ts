@@ -28,3 +28,7 @@ export type Page = {
 export type Navigation = (Page & {
   subpages?: Page[];
 })[];
+
+export type Auth = {
+  authenticated: boolean;
+};

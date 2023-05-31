@@ -1,0 +1,89 @@
+.cl_checklist_item {
+  padding: 10px 10px 0;
+  display: flex;
+
+  &-checkbox {
+    margin-right: 7px;
+  }
+
+  &-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  &-name {
+    align-items: flex-start;
+
+    &-content {
+      width: 100%;
+      cursor: pointer;
+      transition-duration: 500ms;
+      transition-delay: 500ms;
+
+      &:hover {
+        box-shadow: 0 1px 0 #d9c8a987;
+      }
+
+      &-is-aging {
+        color: #d9c8a9;
+      }
+
+      &-is-outdated {
+        color: #8c2e2e;
+      }
+    }
+
+    &-date {
+      color: #46858c;
+    }
+  }
+
+  &-toolbar {
+    display: flex;
+    align-items: center;
+
+    svg {
+      cursor: pointer;
+      min-height: 16px;
+      margin-left: 10px;
+    }
+
+    &-delete path {
+      color: #8c2e2e;
+    }
+
+    &-cancel path {
+      color: #d9c8a9;
+    }
+
+    &-save path {
+      color: #92a69a;
+    }
+  }
+
+  &-input {
+    width: 100%;
+    box-sizing: border-box;
+    background: transparent;
+    border: 0;
+    position: static;
+    padding: 0;
+    transition: 100ms;
+
+    &:focus-visible {
+      border-bottom: 1px solid #999;
+      outline: none;
+    }
+  }
+
+  &-date-wrapper {
+    margin-right: 5px;
+
+    input[type=text] {
+      max-width: unset;
+      width: unset;
+    }
+  }
+}

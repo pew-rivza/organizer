@@ -2,14 +2,14 @@ import React from "react";
 
 import { useStore } from "effector-react";
 
-import { $options } from "MT_models/option";
-import { GroupedOptions } from "MT_types/stores";
-
 import { $checkedMedications } from "CR_models/medication";
 import { TimesOfDayNominative } from "CR_types/other";
 import { MedicationIconProps } from "CR_types/props";
 import { CheckedMedications } from "CR_types/stores";
 import { getGroupedMedications } from "CR_utils/medication";
+
+import { $options } from "MT_models/option";
+import { GroupedOptions } from "MT_types/stores";
 
 import { IconTemplate } from "./../IconTemplate";
 import { List } from "./components/List";

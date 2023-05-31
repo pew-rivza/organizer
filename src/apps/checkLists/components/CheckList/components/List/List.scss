@@ -1,0 +1,12 @@
+.cl_checklist_list {
+  border: solid #92a69a;
+  border-width: 0 1px;
+
+  .cl_checklist_item:last-child {
+    padding-bottom: 10px;
+  }
+
+  &:last-child {
+    border-bottom: 1px solid #92a69a;
+  }
+}

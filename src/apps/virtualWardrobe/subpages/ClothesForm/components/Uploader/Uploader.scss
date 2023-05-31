@@ -1,6 +1,6 @@
 .vw_clothes_form {
   &-dropzone {
-    background: rgba(146,166,154,0.2);
+    background: rgba(146, 166, 154, 0.2);
     border: 1px solid #92a69a;
     padding: 20px;
     cursor: pointer;
@@ -10,8 +10,9 @@
     justify-content: center;
     transition: 500ms;
 
-    &:hover, &-dragging {
-      background: rgba(146,166,154,0.4);
+    &:hover,
+    &-dragging {
+      background: rgba(146, 166, 154, 0.4);
     }
 
     svg {

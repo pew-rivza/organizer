@@ -9,6 +9,7 @@ import App from "./App";
   balanceWheel: {
     areasFullInfo: [],
   },
+  auth: null,
 };
 
 const root = ReactDOM.createRoot(

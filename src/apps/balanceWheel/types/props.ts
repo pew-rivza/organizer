@@ -6,6 +6,7 @@ import { AreaFullInfo, Todo } from "BW_types/stores";
 type ToolbarItem<HandlerType> = {
   show: boolean;
   handler?: HandlerType;
+  available?: boolean;
 };
 
 export type ItemTemplateProps = {

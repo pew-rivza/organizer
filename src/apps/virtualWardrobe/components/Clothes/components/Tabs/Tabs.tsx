@@ -26,7 +26,7 @@ export const Tabs: React.FC<TabsProps> = ({ selected, onSelect }) => {
       {categories.map((category) => {
         const cn = joinCn(
           "vw_clothes_tabs-item",
-          category.id === selected && "vw_clothes-tabs_item-selected",
+          category.id === selected && "vw_clothes_tabs-item-selected",
         );
 
         return (

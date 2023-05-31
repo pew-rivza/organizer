@@ -27,6 +27,7 @@
     background: #f9f9f9;
     border-radius: 0;
     box-shadow: 2px 2px 5px #777;
+
     &__header {
       border-radius: 0;
       border: 1px solid #92a69a;
@@ -134,5 +135,23 @@
       background: #92a69a;
       box-shadow: none;
     }
+  }
+}
+
+.react-datepicker__input-container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.react-datepicker__close-icon {
+  position: static;
+  padding: 0 0 0 2px;
+
+  &:after {
+    content: url('https://api.iconify.design/radix-icons/cross-2.svg?color=%23d9c8a9&width=13');
+    background-color: transparent;
+    padding: 0;
+    height: 15px;
+    width: 15px;
   }
 }

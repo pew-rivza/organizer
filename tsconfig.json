@@ -47,7 +47,14 @@
       "VW_api/*": ["./src/apps/virtualWardrobe/api/*"],
       "VW_models/*": ["./src/apps/virtualWardrobe/models/*"],
       "VW_const/*": ["./src/apps/virtualWardrobe/const/*"],
-      "VW_utils/*": ["./src/apps/virtualWardrobe/utils/*"]
+      "VW_utils/*": ["./src/apps/virtualWardrobe/utils/*"],
+      "CL_subpages/*": ["./src/apps/checkLists/subpages/*"],
+      "CL_components/*": ["./src/apps/checkLists/components/*"],
+      "CL_types/*": ["./src/apps/checkLists/types/*"],
+      "CL_api/*": ["./src/apps/checkLists/api/*"],
+      "CL_models/*": ["./src/apps/checkLists/models/*"],
+      "CL_const/*": ["./src/apps/checkLists/const/*"],
+      "CL_utils/*": ["./src/apps/checkLists/utils/*"]
     }
   },
   "include": ["src"]

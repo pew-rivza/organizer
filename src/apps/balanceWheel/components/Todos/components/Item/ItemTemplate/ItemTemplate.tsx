@@ -4,8 +4,9 @@ import MaskedInput from "react-text-mask";
 import { Icon } from "@iconify/react";
 import { useEvent, useStore } from "effector-react";
 
+import { ENTER_CODE, ESCAPE_CODE } from "const/common";
+
 import { API_UPDATE_TODO } from "BW_api/todo";
-import { ENTER_CODE, ESCAPE_CODE } from "BW_const/common";
 import { fetchWheelTodosFx } from "BW_models/todo";
 import { $wheel } from "BW_models/wheel";
 import { ItemTemplateProps } from "BW_types/props";
@@ -27,7 +28,7 @@ export const ItemTemplate: React.FC<ItemTemplateProps> = ({
     if (event.code === ESCAPE_CODE) {
       toolbar.cancel.handler?.();
     }
-    if (event.code === ENTER_CODE) {
+    if (event.code === ENTER_CODE && toolbar.save.available) {
       await updateTodo();
     }
   };

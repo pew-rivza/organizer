@@ -1,10 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
+import { EventSourceInput } from "@fullcalendar/core";
 import FullCalendar from "@fullcalendar/react";
+import { useStore } from "effector-react";
 
 import { WheelTodos } from "CR_components/WheelTodos";
 import { calendarConfig } from "CR_const/calendarConfig";
+
+import { $todos } from "CL_models/todo";
+import { Todo } from "CL_types/stores";
 
 import "./App.scss";
 
@@ -15,6 +20,21 @@ export const App: React.FC = () => {
   const month: string = searchParams.get("month") || "";
   const year: string = searchParams.get("year") || "";
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const todos = useStore<Todo[]>($todos);
+
+  const events: EventSourceInput = todos
+    .filter((todo) => todo.date)
+    .map((todo) => ({
+      title: todo.name,
+      extendedProps: {
+        checked: todo.checked,
+      },
+      date: (todo.date as Date)
+        .toLocaleDateString()
+        .split(".")
+        .reverse()
+        .join("-"),
+    }));
 
   useEffect(() => {
     if (calendarRef.current) {
@@ -42,6 +62,7 @@ export const App: React.FC = () => {
             },
           },
         }}
+        events={events}
       />
       <WheelTodos isOpen={isOpen} />
     </div>

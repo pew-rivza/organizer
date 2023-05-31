@@ -7,14 +7,14 @@ import {
   TimesOfDayNominative,
 } from "apps/calendar/types/other";
 
-import { $options } from "MT_models/option";
-import { GroupedOptions } from "MT_types/stores";
-
 import { $currentDate } from "CR_models/calendar";
 import { $checkedMedications } from "CR_models/medication";
 import { MedicationsDayProps } from "CR_types/props";
 import { CheckedMedications } from "CR_types/stores";
 import { getGroupedMedications } from "CR_utils/medication";
+
+import { $options } from "MT_models/option";
+import { GroupedOptions } from "MT_types/stores";
 
 import { Group } from "./components/Group";
 

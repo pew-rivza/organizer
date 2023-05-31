@@ -1,0 +1,25 @@
+.cl_form {
+  margin-bottom: 20px;
+  max-width: calc(50% - 10px);
+  display: flex;
+  width: 100%;
+  gap: 10px;
+
+  svg {
+    cursor: pointer;
+  }
+
+  &-toolbar {
+    &-save path {
+      fill: #92a69a;
+    }
+
+    &-cancel path {
+      fill: #d9c8a9;
+    }
+  }
+
+  @media (max-width: 660px) {
+    max-width: 100%
+  }
+}

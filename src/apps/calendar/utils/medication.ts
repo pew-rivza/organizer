@@ -1,24 +1,20 @@
 import { addToDate } from "utils/date";
 import { findObject } from "utils/objects";
 
-import { $courses } from "MT_models/course";
-import { $options } from "MT_models/option";
-import { MedicationInfo, Periods } from "MT_types/other";
-import { Course, GroupedOptions, Medication, Option } from "MT_types/stores";
-import { getMedicationInfo } from "MT_utils/getMedicationInfo";
-
 import {
   ALL_DAY,
   EMPTY_GROUPED_MEDICATIONS,
   TIMES_OF_DAY_COMPLIANCE,
   TIMES_OF_DAY_LIST,
 } from "CR_const/common";
-import {
-  DayDataKey,
-  GroupedMedications,
-  TimesOfDayNominative,
-} from "CR_types/other";
-import { CalendarData, CheckedMedications } from "CR_types/stores";
+import { GroupedMedications, TimesOfDayNominative } from "CR_types/other";
+import { CheckedMedications } from "CR_types/stores";
+
+import { $courses } from "MT_models/course";
+import { $options } from "MT_models/option";
+import { MedicationInfo, Periods } from "MT_types/other";
+import { Course, GroupedOptions, Medication, Option } from "MT_types/stores";
+import { getMedicationInfo } from "MT_utils/getMedicationInfo";
 
 export const getMedicationStart = (medication: Medication): Date | void => {
   const courseStart = findObject<number, Course>(
@@ -157,27 +153,3 @@ export const getGroupedMedications = (
 
   return groupedMedications;
 };
-
-export function fillCalendarData<ValueType>(
-  calendarData: CalendarData,
-  date: Date,
-  field: DayDataKey,
-): CalendarData {
-  const filledCalendarData: CalendarData = { ...calendarData };
-
-  filledCalendarData[date.getFullYear()] =
-    filledCalendarData[date.getFullYear()] || {};
-  filledCalendarData[date.getFullYear()][date.getMonth()] =
-    filledCalendarData[date.getFullYear()][date.getMonth()] || {};
-  filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] =
-    filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()] ||
-    {};
-
-  (filledCalendarData[date.getFullYear()][date.getMonth()][date.getDate()][
-    field
-  ] as ValueType[]) = (filledCalendarData[date.getFullYear()][date.getMonth()][
-    date.getDate()
-  ][field] || []) as ValueType[];
-
-  return filledCalendarData;
-}

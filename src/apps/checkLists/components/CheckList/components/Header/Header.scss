@@ -1,0 +1,47 @@
+.cl_checklist_header {
+  background: #92a69a;
+  padding: 10px;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  * {
+    color: #f9f9f9;
+  }
+
+  &-input {
+    display: flex;
+    gap: 5px;
+    width: 100%;
+
+    input[type=text] {
+      border-bottom-color: #f9f9f9;
+    }
+  }
+
+  &-toolbar {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+    margin-left: 10px;
+
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  &-add-todo {
+    height: 15px;
+    width: 15px;
+    min-width: 15px;
+    min-height: 15px;
+  }
+
+  &-delete-checklist {
+    path {
+      fill: #8c2e2e;
+    }
+  }
+}

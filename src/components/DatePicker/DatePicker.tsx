@@ -19,6 +19,7 @@ export function DatePicker<WithRange extends boolean | undefined = false>({
   placeholder = "",
   classNames = [],
   wrapperClassNames = [],
+  inputSize,
   ...props
 }: DatePickerProps<WithRange>) {
   const CustomInput = forwardRef<
@@ -40,6 +41,7 @@ export function DatePicker<WithRange extends boolean | undefined = false>({
         readOnly
         ref={ref}
         placeholder={placeholder}
+        size={inputSize}
       />
     );
   });
