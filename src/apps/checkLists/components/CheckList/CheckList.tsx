@@ -12,7 +12,7 @@ export const CheckList: React.FC<CheckListProps> = ({ checkList }) => {
       new Date().getTime() - new Date(todo.updatedAt as string).getTime();
     const daysCoefficient = 1000 * 60 * 60 * 24;
     const daysDifference = Math.trunc(millisecondsDifference / daysCoefficient);
-    return !todo.checked || (todo.checked && daysDifference <= 7);
+    return !todo.checked || (todo.checked && daysDifference <= 3);
   });
 
   return (

@@ -32,8 +32,8 @@ export const ItemTemplate: React.FC<ItemTemplateProps> = ({
     new Date().getTime() - new Date(todo.createdAt as string).getTime();
   const daysCoefficient = 1000 * 60 * 60 * 24;
   const daysDifference = Math.trunc(millisecondsDifference / daysCoefficient);
-  const isAging = !todo.checked && daysDifference > 14;
-  const isOutdated = !todo.checked && daysDifference > 30;
+  const isAging = !todo.checked && daysDifference > 365;
+  const isOutdated = !todo.checked && daysDifference > 365 * 5;
 
   const todoKeyDownHandler = async (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.code === ESCAPE_CODE) {
