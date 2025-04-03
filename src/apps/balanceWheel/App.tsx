@@ -23,7 +23,6 @@ export const App: React.FC = () => {
 
   return (
     <div data-testid="balance-wheel" className="bw">
-      rivza deploy test
       <Date />
       <div className="bw_container">
         <Wheel />
