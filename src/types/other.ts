@@ -16,19 +16,6 @@ export type SelectOption = Obj & {
   label: string;
 };
 
-export type Page = {
-  icon?: string;
-  link: string;
-  element?: React.ReactNode;
-  title?: string;
-  index?: boolean;
-  inMenu: boolean;
-};
-
-export type Navigation = (Page & {
-  subpages?: Page[];
-})[];
-
 export type Auth = {
   authenticated: boolean;
 };
