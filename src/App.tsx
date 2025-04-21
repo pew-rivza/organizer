@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { useEvent } from "effector-react";
 
@@ -101,6 +101,7 @@ const App: React.FC = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
+        <Route path="/" element={<Navigate to="/calendar" />} />
         {routings.map((routing) => (
           <Route
             key={routing.path}

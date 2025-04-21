@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-import { Icon } from "@iconify/react";
+import { Icon, Types } from "organizer-ui";
 
 import { navigation } from "const/navigation";
 
@@ -11,6 +11,10 @@ export const Layout: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(window.location.pathname);
   const selectedPageKey = currentPage.replace(/([\w-]+)\/.*/, "$1");
 
+  useEffect(() => {
+    setCurrentPage(window.location.pathname);
+  }, []);
+
   return (
     <div className="layout">
       <div className="layout-content">
@@ -19,17 +23,34 @@ export const Layout: React.FC = () => {
       <nav>
         <ul>
           {navigation.map((item, i) => {
+            const isSelected =
+              selectedPageKey !== "/" && item.link.includes(selectedPageKey);
+            const cn = [
+              isSelected && "selected",
+              selectedPageKey !== "/" &&
+                navigation[i + 1]?.link?.includes(selectedPageKey) &&
+                "pre-selected",
+            ]
+              .filter(Boolean)
+              .join(" ");
             return (
-              item.inMenu && (
+              item.inMenu &&
+              item.icon && (
                 <li
                   key={i}
                   onClick={() => setCurrentPage(item.link)}
-                  className={
-                    item.link.includes(selectedPageKey) ? "selected" : ""
-                  }
+                  className={cn}
                 >
                   <Link to={item.link}>
-                    <Icon icon={item.icon || ""} className="menu-icon" />
+                    <Icon
+                      name={item.icon}
+                      theme={
+                        isSelected
+                          ? Types.ColorThemeExtended.Primary
+                          : Types.ColorThemeExtended.Tertiary
+                      }
+                      size={Types.Size.Large}
+                    />
                   </Link>
                 </li>
               )
@@ -40,3 +61,5 @@ export const Layout: React.FC = () => {
     </div>
   );
 };
+
+// TODO: bibla na udalenie @iconify/react
